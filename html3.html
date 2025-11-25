@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<title>Българската история в линия на времето</title>
+<link rel="stylesheet" href="css3.css">
+</head>
+<body>
+
+<h1>Българската история в линия на времето</h1>
+
+<!-- Меню -->
+<div id="menu">
+  <button onclick="showSection('line')">Линия</button>
+  <button onclick="showSection('howto')">Указания</button>
+  <button onclick="showSection('quiz')">Въпроси</button>
+</div>
+
+<!-- Секции -->
+<div id="sections">
+
+  <!-- Линия с епохи -->
+  <div id="line" class="section active">
+    <div id="timeline-container">
+      <div id="timeline-line"></div>
+      <div id="timeline">
+        <button onclick="showEpoch('Ant')">Античност</button>
+        <button onclick="showEpoch('Sredn')">Средновековие</button>
+        <button onclick="showEpoch('Vazr')">Възраждане</button>
+        <button onclick="showEpoch('NovoVr')">Новo време</button>
+      </div>
+    </div>
+    <div id="events"></div>
+  </div>
+
+  <!-- Указания -->
+  <div id="howto" class="section" style="display:none;">
+    <h2>Указания за работа със сайта</h2>
+    <p>Натисни бутон за епоха и ще видиш главните събития за всяко едно от тях, като ще имаш възможност да го разгледаш подробно като кликнеш върху него. След това можеш да видиш секцията "Въпроси" и да провериш какво си разбрал със въпроси за събитията от различните епохи.</p>
+  </div>
+
+  <!-- Въпроси -->
+  <div id="quiz" class="section" style="display:none;">
+    <h2>Въпроси за усвоените знания</h2>
+    <button id="generate-quiz" onclick="generateQuiz()">Покажи въпроси</button>
+    <div id="questions"></div>
+    <button id="check-button" onclick="checkQuiz()" style="display:none;">Виж резултата</button>
+    <p id="result"></p>
+  </div>
+
+</div>
+
+<!-- Overlay за събития -->
+<div id="event-overlay" style="display:none;">
+  <div id="event-content">
+    <span id="close-overlay" onclick="closeEvent()">&times;</span>
+    <h2 id="event-title"></h2>
+    <p id="event-text"></p>
+  </div>
+</div>
+
+<script src="java3.js"></script>
+</body>
+</html>
+
