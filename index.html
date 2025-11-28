@@ -67,6 +67,63 @@
 <script src="java3.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<title>Българската история в линия на времето</title>
+<link rel="stylesheet" href="css3.css">
+</head>
+<body>
+
+<!-- Корицата -->
+<div id="header">
+    <h1>БЪЛГАРСКА ИСТОРИЯ</h1>
+    <img src="images/logo.png" alt="Logo">
+</div>
+
+<!-- Лента с менюта -->
+<div id="menu">
+  <button onclick="showSection('line')">Линия</button>
+  <button onclick="showSection('howto')">Указания</button>
+  <button onclick="showSection('quiz')">Въпроси</button>
+</div>
+
+<!-- Секции -->
+<div id="sections">
+  <!-- Линия с епохи -->
+  <div id="line" class="section active">
+    <div id="timeline-container">
+      <div id="timeline-line"></div>
+      <div id="timeline">
+        <button onclick="showEpoch('Ant')">Античност</button>
+        <button onclick="showEpoch('Sredn')">Средновековие</button>
+        <button onclick="showEpoch('Vazr')">Възраждане</button>
+        <button onclick="showEpoch('NovoVr')">Новo време</button>
+      </div>
+    </div>
+    <div id="events"></div>
+  </div>
+
+  <!-- Указания -->
+  <div id="howto" class="section" style="display:none;">
+    <p>Натисни бутон за епоха и ще видиш главните събития за всяка епоха. След това можеш да провериш секцията "Въпроси".</p>
+  </div>
+
+  <!-- Въпроси -->
+  <div id="quiz" class="section" style="display:none;">
+    <button id="generate-quiz" onclick="generateQuiz()">Покажи въпроси</button>
+    <div id="questions"></div>
+    <button id="check-button" onclick="checkQuiz()" style="display:none;">Виж резултата</button>
+    <p id="result"></p>
+  </div>
+</div>
+
+<script src="java3.js"></script>
+</body>
+</html>
+
+
 
 
 
