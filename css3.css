@@ -154,7 +154,7 @@ body {
 }
 #header {
     width: 100%;
-    background-color:ral 1027; /*жълто*/
+    background-color: RAL 1027; /*жълто*/
     padding: 15px 0;
     display: flex;
     align-items: center;
@@ -163,19 +163,26 @@ body {
     color: white;
     border-bottom: 4px solid gold;
 }
+#header {
+    display: flex;
+    align-items: center;   /* вертикално центриране на текста и логото */
+    justify-content: flex-start;  /* поставя съдържанието леко вляво */
+    padding: 10px 20px;   /* разстояние от краищата на екрана */
+    background-color: RAL 1027;  /* примерно светъл фон за корицата */
+}
 
 #header img {
-    height: 60px;
-    width: auto;
+    height: 60px;          /* размер на логото */
+    margin-right: 15px;     /* разстояние между логото и текста */
 }
 
 #header h1 {
-    font-size: 32px;
+    font-size: 28px;
+    color: #333;
     margin: 0;
-    font-weight: bold;
 }
 
-}
+
 
 
 
