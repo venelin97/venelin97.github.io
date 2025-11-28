@@ -152,32 +152,31 @@ body {
 #quiz button:hover {
   background-color: navy;
 }
-/* Горен хедър */
-#top-bar {
+#header {
     width: 100%;
-    background-color: #003366;     /* тъмносин — стабилен, стилен */
-    padding: 15px 25px;
+    background-color: #004aad; /* тъмно синьо */
+    padding: 15px 0;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 20px;
     color: white;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    border-bottom: 4px solid gold;
 }
 
-/* Лого */
-#top-bar #logo {
+#header img {
     height: 60px;
     width: auto;
-    border-radius: 10px;
 }
 
-/* Заглавие */
-#top-bar h1 {
-    margin: 0;
+#header h1 {
     font-size: 32px;
+    margin: 0;
     font-weight: bold;
-    letter-spacing: 2px;
 }
+
+}
+
 
 
 
