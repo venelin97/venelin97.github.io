@@ -94,4 +94,29 @@ function checkQuiz() {
   });
   document.getElementById('result').innerText = `Точни отговори: ${score} от 5`;
 }
+function showEvent(title, text) {
+    document.getElementById('event-title').innerText = title;
+    document.getElementById('event-text').innerText = text;
+    document.getElementById('event-overlay').style.display = 'flex';
+    
+    // скриваме бутоните на епохите
+    document.getElementById('timeline').style.display = 'none';
+}
+
+function closeEvent() {
+    document.getElementById('event-overlay').style.display = 'none';
+    
+    // показваме отново бутоните на епохите
+    document.getElementById('timeline').style.display = 'flex';
+}
+function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+    const section = document.getElementById(sectionId);
+    section.style.display = 'block';
+    
+    // скролваме секцията до средата на екрана
+    section.scrollIntoView({ block: 'center', behavior: 'smooth' });
+}
+
+
 
