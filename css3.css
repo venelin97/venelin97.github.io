@@ -123,38 +123,35 @@ body {
     align-items: center;
 }
 /* Оранжеви бутони за събития */
-.event button {
-    background-color: #ff8c00; /* силно оранжево */
+#events button {
+    background-color: orange; /* оранжево */
     color: white;
     border: none;
-    padding: 12px 20px;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#events button:hover {
+    background-color: darkorange; /* по-тъмно при hover */
+    transform: scale(1.05);
+}
+#quiz button {
+    background-color: darkblue; /* синьо */
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
     margin: 5px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.2s;
+    transition: background-color 0.3s;
 }
 
-.event button:hover {
-    background-color: #e67600;
+#quiz button:hover {
+    background-color: navy; /* по-тъмно синьо */
 }
 
-/* Сини бутони за въпроси */
-.quiz button {
-    background-color: #0066ff; /* синьо */
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    margin: 5px 0;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.2s;
-}
-
-.quiz button:hover {
-    background-color: #0052cc;
-}
 
 
 #event-content {
@@ -172,5 +169,7 @@ body {
     cursor: pointer;
     font-size: 28px;
 }
+
+
 
 
