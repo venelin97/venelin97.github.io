@@ -94,3 +94,4 @@ function checkQuiz() {
   });
   document.getElementById('result').innerText = `Точни отговори: ${score} от 5`;
 }
+
