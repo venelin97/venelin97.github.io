@@ -49,7 +49,7 @@ body {
 /* Секции */
 .section {
     display: none;
-    height: calc(100vh - 260px); /* корица + меню */
+    height: calc(100vh - 260px);
     display: flex;
     flex-direction: column;
     justify-content: center;
