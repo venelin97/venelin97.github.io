@@ -1,283 +1,140 @@
 body {
-  background-color: aliceblue;
-  font-family: Arial, sans-serif;
-  color: dimgray;
-  margin: 0;
-  padding: 20px;
-  text-align: center;
-}
-
-/* Меню */
-#menu {
-  display: flex;
-  justify-content: center;
-  background-color: darkorange;
-  border-radius: 8px;
-  width: 70%;
-  margin: 20px auto;
-}
-
-#menu button {
-  flex: 1;
-  background-color: darkorange;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 0;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-#menu button:hover {
-  background-color: orangered;
-  transform: scale(1.05);
-}
-
-/* Времева линия */
-#timeline-container {
-  position: relative;
-  width: 80%;
-  margin: 40px auto;
-}
-
-#timeline-line {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 5px; /* жълта линия */
-  background-color: gold;
-  transform: translateY(-50%);
-  border-radius: 2px;
-}
-
-#timeline {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  z-index: 1;
-}
-
-#timeline button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 12px 22px;
-  border-radius: 14px;
-  cursor: pointer;
-  transition: 0.2s;
-  font-weight: bold;
-}
-
-#timeline button:hover {
-  background-color: darkred;
-  transform: translateY(-3px) scale(1.05);
-}
-
-#timeline button:active {
-  transform: scale(0.95);
-}
-
-/* Събития */
-
-#events {
-  display: flex;             /* подреждане на елементите в ред */
-  justify-content: center;   /* центрира хоризонтално */
-  flex-wrap: wrap;           /* позволява на бутоните да минават на нов ред, ако не се събират */
-  margin: 20px auto;
-  gap: 10px;                 /* разстояние между бутоните */
-}
-
-#events button {
-  display: inline-block;
-  margin: 0;
-  padding: 10px 20px;
-  background-color: red;
-  color: white;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-#events button:hover {
-  background-color: darkred;
-  transform: scale(1.05);
-}
-
-
-
-
-/* Overlay за събитие */
-#event-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-#event-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 800px;
-  width: 90%;
-  max-height: 90%;
-  overflow-y: auto;
-  text-align: center;
-  position: relative;
-}
-
-#close-overlay {
-  position: absolute;
-  top: 10px; right: 20px;
-  font-size: 30px;
-  cursor: pointer;
-}
-
-/* Въпроси */
-#quiz button {
-  background-color: darkblue;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  margin: 10px;
-}
-
-#quiz button:hover {
-  background-color: navy;
-}
-#header {
-    width: 100%;
-    background-color: #A77F0E; /*жълто*/
-    padding: 15px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    color: white;
-    border-bottom: 4px solid gold;
-}
-#header {
-    display: flex;
-    align-items: center;   /* вертикално центриране на текста и логото */
-    justify-content: flex-start;  /* поставя съдържанието леко вляво */
-    padding: 10px 20px;   /* разстояние от краищата на екрана */
-    background-color: #A77F0E;  /* примерно светъл фон за корицата */
-}
-
-#header img {
-    height: 60px;          /* размер на логото */
-    margin-right: 15px;     /* разстояние между логото и текста */
-}
-
-#header h1 {
-    font-size: 28px;
-    color: #333;
-    margin: 0;
-}
-/* Основен фон и шрифтове */
-body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: aliceblue;
     color: dimgray;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
 /* Корицата */
-#header {
-    background-color: #A77F0E; /* RAL 1027 Curry */
-    color: black;
+#cover {
+    background-color: gold;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+#cover h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+#cover img {
+    height: 100px;
+}
+
+/* Меню */
+#menu {
+    display: flex;
+    justify-content: center;
+    background-color: darkorange;
+}
+
+#menu button {
+    flex: 1;
+    padding: 12px 0;
+    border: none;
+    background-color: rgb(255,70,70);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#menu button:hover {
+    background-color: rgb(180,0,0);
+}
+
+/* Секции */
+.section {
+    display: none;
+    height: calc(100vh - 260px); /* корица + меню */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.section.active {
+    display: flex;
+}
+
+/* Линия и бутони */
+#timeline-container {
+    position: relative;
+    width: 80%;
+}
+
+#timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: gold;
+    transform: translateY(-50%);
+    border-radius: 2px;
+}
+
+#timeline {
     display: flex;
     justify-content: space-between;
+    position: relative;
+    z-index: 1;
+    margin-top: -15px;
+}
+
+#timeline button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+#timeline button:hover {
+    background-color: darkred;
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* Събития */
+.event {
+    background: white;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    cursor: pointer;
+}
+
+/* Overlay */
+#event-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
     align-items: center;
-    padding: 20px 40px;
 }
 
-/* Лого */
-#header img {
-    height: 60px;
-    width: auto;
+#event-content {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 80%;
+    position: relative;
 }
 
-<!DOCTYPE html>
-<html lang="bg">
-<head>
-<meta charset="UTF-8">
-<title>Българската история</title>
-<link rel="stylesheet" href="css3.css">
-</head>
-<body>
-
-<!-- Корица -->
-<div id="cover">
-  <h1>БЪЛГАРСКА ИСТОРИЯ</h1>
-  <img src="images/logo.png" alt="Logo" id="logo">
-</div>
-
-<!-- Меню -->
-<div id="menu">
-  <button onclick="showSection('line')">Линия</button>
-  <button onclick="showSection('howto')">Указания</button>
-  <button onclick="showSection('quiz')">Въпроси</button>
-</div>
-
-<!-- Секции -->
-<div id="sections">
-  <div id="line" class="section active">
-    <div id="timeline-container">
-      <div id="timeline-line"></div>
-      <div id="timeline">
-        <button onclick="showEpoch('Ant')">Античност</button>
-        <button onclick="showEpoch('Sredn')">Средновековие</button>
-        <button onclick="showEpoch('Vazr')">Възраждане</button>
-        <button onclick="showEpoch('NovoVr')">Новo време</button>
-      </div>
-    </div>
-    <div id="events"></div>
-  </div>
-
-  <div id="howto" class="section">
-    <p>Натисни бутон за епоха и ще видиш ключови събития. След това можеш да отвориш секцията "Въпроси".</p>
-  </div>
-
-  <div id="quiz" class="section">
-    <button id="generate-quiz" onclick="generateQuiz()">Генерирай въпроси</button>
-    <div id="questions"></div>
-    <button id="check-button" onclick="checkQuiz()" style="display:none;">Виж резултата</button>
-    <p id="result"></p>
-  </div>
-</div>
-
-<!-- Overlay за събития -->
-<div id="event-overlay" style="display:none;">
-  <div id="event-content">
-    <span id="close-overlay" onclick="closeEvent()">&times;</span>
-    <h2 id="event-title"></h2>
-    <p id="event-text"></p>
-  </div>
-</div>
-
-<script src="java3.js"></script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
+#close-overlay {
+    position: absolute;
+    top: 10px; right: 20px;
+    cursor: pointer;
+    font-size: 28px;
+}
