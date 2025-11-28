@@ -154,7 +154,7 @@ body {
 }
 #header {
     width: 100%;
-    background-color: RAL 1027; /*жълто*/
+    background-color: #A77F0E; /*жълто*/
     padding: 15px 0;
     display: flex;
     align-items: center;
@@ -168,7 +168,7 @@ body {
     align-items: center;   /* вертикално центриране на текста и логото */
     justify-content: flex-start;  /* поставя съдържанието леко вляво */
     padding: 10px 20px;   /* разстояние от краищата на екрана */
-    background-color: RAL 1027;  /* примерно светъл фон за корицата */
+    background-color: #A77F0E;  /* примерно светъл фон за корицата */
 }
 
 #header img {
@@ -181,6 +181,7 @@ body {
     color: #333;
     margin: 0;
 }
+
 
 
 
