@@ -1,6 +1,6 @@
 
 
-// Събития по епохи
+// ====== Данни за събитията ======
 const eventsData = {
   Ant: [
     {title:"Създаване на тракийските цивилизации", text:"Тракийските племена населяват територията на днешна България и създават свои култури и градове."},
@@ -28,11 +28,25 @@ const eventsData = {
     {title:"Първа световна война", text:"България участва в Първата световна война (1914-1918) на страната на Тройния съюз с надежда за територии."},
     {title:"Втора световна война", text:"България е съюзник на Германия, но избегна тежки разрушения."},
     {title:"Социалистическа държава", text:"От 1944 до 1989 България става социалистическа държава начело с Тодор Живков."},
-    {title:"Демократични промени", text:"През 1989 започва преход към демокрация и пазарна икономика."}
+    {title:"Демократични промени", text:"През 1989 започва преход към демократична и пазарна икономика."}
   ]
 };
 
-// Показване на събития
+// ====== Overlay за събития ======
+function openEvent(epoch, index) {
+  const ev = eventsData[epoch][index];
+  document.getElementById('event-title').innerText = ev.title;
+  document.getElementById('event-text').innerText = ev.text;
+  document.getElementById('event-overlay').style.display = 'flex';
+  document.getElementById('timeline').style.display = 'none';
+}
+
+function closeEvent() {
+  document.getElementById('event-overlay').style.display = 'none';
+  document.getElementById('timeline').style.display = 'flex';
+}
+
+// ====== Показване на бутоните за събития ======
 function showEpoch(epoch) {
   const container = document.getElementById('events');
   container.innerHTML = '';
@@ -42,260 +56,43 @@ function showEpoch(epoch) {
     btn.onclick = () => openEvent(epoch, idx);
     container.appendChild(btn);
   });
+  setTimeout(centerTimelineAndEvents, 10);
 }
 
-// Overlay
-function openEvent(epoch, index) {
-  const ev = eventsData[epoch][index];
-  document.getElementById('event-title').innerText = ev.title;
-  document.getElementById('event-text').innerText = ev.text;
-  document.getElementById('event-overlay').style.display = 'flex';
-}
-
-function closeEvent() {
-  document.getElementById('event-overlay').style.display = 'none';
-}
-
-// Въпроси
-const quizQuestions = [
-  {q:"Кой е основателят на Първото българско царство?", a:"хан Аспарух"},
-  {q:"През коя година България обявява независимост?", a:"1908"},
-  {q:"На кой е съюзник България през 2-рата световна война",a:"Германия"},
-  {q:"При кого България е в Златния си век ", a:"Симеон Велики"},
-  {q:"На чия страна е България по време на Първата световна война", a:"Тройния съюз"},
-  {q:"Благодарение на кой договор България е освободена от турското робство през 1878 г.", a:"Санстефанския"},
-  {q:"Кой е начело на България 1944-1989?", a:"Тодор Живков"},
-  
-  {q:"През коя година България преминава от комунистическо управлевие към демократично", a:"1989 г."},
-  {q:"Коя империя е владяла България преди 1878?", a:"Османската империя"}
-];
-
-function generateQuiz() {
-  const container = document.getElementById('questions');
-  container.innerHTML = '';
-  const selected = quizQuestions.sort(() => 0.5 - Math.random()).slice(0,5);
-  selected.forEach((q,i) => {
-    const div = document.createElement('div');
-    div.innerHTML = `<p>${i+1}. ${q.q}</p><input type="text" id="ans${i}" />`;
-    container.appendChild(div);
-  });
-  document.getElementById('check-button').style.display = 'inline-block';
-}
-
-function checkQuiz() {
-  let score = 0;
-  const inputs = document.querySelectorAll('#questions input');
-  inputs.forEach((inp, idx) => {
-    if(inp.value.trim().toLowerCase() === quizQuestions[idx].a.toLowerCase()) score++;
-  });
-  document.getElementById('result').innerText = `Точни отговори: ${score} от 5`;
-}
-function showEvent(title, text) {
-    document.getElementById('event-title').innerText = title;
-    document.getElementById('event-text').innerText = text;
-    document.getElementById('event-overlay').style.display = 'flex';
-    
-    // скриваме бутоните на епохите
-    document.getElementById('timeline').style.display = 'none';
-}
-
-function closeEvent() {
-    document.getElementById('event-overlay').style.display = 'none';
-    
-    // показваме отново бутоните на епохите
-    document.getElementById('timeline').style.display = 'flex';
-}
+// ====== Менюта и смяна на секции ======
 function showSection(sectionId) {
-    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-    const section = document.getElementById(sectionId);
-    section.style.display = 'block';
-    
-    // скролваме секцията до средата на екрана
-    section.scrollIntoView({ block: 'center', behavior: 'smooth' });
-}
-
-function showEvent(title, text) {
-    // Скриваме бутоните за епохите
-    document.getElementById('timeline').style.display = 'none';
-
-    // Попълваме съдържанието на overlay-а
-    document.getElementById('event-title').innerText = title;
-    document.getElementById('event-text').innerText = text;
-
-    // Показваме overlay-а
-    document.getElementById('event-overlay').style.display = 'flex';
-}
-function closeEvent() {
-    document.getElementById('event-overlay').style.display = 'none';
-    document.getElementById('timeline').style.display = 'flex'; // бутоните за епохите се показват отново
-}
-function showSection(sectionId) {
-  document.querySelectorAll('.section').forEach(s => s.style.display='none');
-
+  document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
   const section = document.getElementById(sectionId);
-  section.style.display = 'flex'; // задължително flex за центриране
+  section.style.display = 'flex';
   section.style.flexDirection = 'column';
   section.style.justifyContent = 'center';
   section.style.alignItems = 'center';
-
-  // Ако е „Линия“, скролваме контейнера до средата на екрана
-  if(sectionId === 'line') {
-      section.scrollIntoView({ behavior: 'auto', block: 'center' });
-  }
+  if(sectionId === 'line') setTimeout(centerTimelineAndEvents, 10);
 }
-function showSection(sectionId) {
-    document.querySelectorAll('.section').forEach(s => s.style.display='none');
-    const section = document.getElementById(sectionId);
-    section.style.display = 'block';
 
-    // Скролваме до корицата + секцията
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-function showSection(sectionId) {
-    // Скриваме всички секции
-    document.querySelectorAll('.section').forEach(s => {
-        s.style.display = 'none';
-    });
-
-    // Показваме избраната
-    const section = document.getElementById(sectionId);
-    section.style.display = 'block';
-
-    // Ако е секцията с линията, центрираме контейнера
-    if(sectionId === 'line') {
-        const timelineContainer = document.getElementById('timeline-container');
-        // Центриране спрямо прозореца
-        const vh = window.innerHeight;
-        const containerHeight = timelineContainer.offsetHeight;
-        timelineContainer.style.top = `${(vh - containerHeight)/2}px`;
-    }
-}
-window.addEventListener('load', () => {
-    // Ако секцията "line" е видима при старта
-    const lineSection = document.getElementById('line');
-    if(lineSection.style.display !== 'none') {
-        centerTimeline();
-    }
-});
-
-function centerTimeline() {
-    const timelineContainer = document.getElementById('timeline-container');
-    const vh = window.innerHeight;
-    const containerHeight = timelineContainer.offsetHeight;
-    timelineContainer.style.top = `${(vh - containerHeight)/2}px`;
-}
-if(sectionId === 'line') {
-    centerTimeline();
-}
+// ====== Центриране на линия и събития ======
 function centerTimelineAndEvents() {
-    const timelineContainer = document.getElementById('timeline-container');
-    const eventsContainer = document.getElementById('events');
-    
-    const vh = window.innerHeight;
-    const timelineHeight = timelineContainer.offsetHeight;
-    
-    // Центриране на линията
-    timelineContainer.style.position = 'absolute';
-    timelineContainer.style.top = `${(vh - timelineHeight)/2}px`;
+  const wrapper = document.getElementById('timeline-wrapper');
+  const eventsContainer = document.getElementById('events');
+  if(!wrapper || !eventsContainer) return;
 
-    // Преместване на събитията малко по-нагоре
-    if(eventsContainer) {
-        eventsContainer.style.position = 'absolute';
-        // 30px над линията например
-        eventsContainer.style.top = `${(vh - timelineHeight)/2 - 30}px`;
-    }
-}
-window.addEventListener('load', centerTimelineAndEvents);
+  wrapper.style.position = 'relative';
+  eventsContainer.style.position = 'relative';
 
-function showSection(sectionId) {
-    document.querySelectorAll('.section').forEach(s => s.style.display='none');
-    document.getElementById(sectionId).style.display='block';
-    
-    if(sectionId === 'line') {
-        centerTimelineAndEvents();
-    }
-}
-function positionTimelineAndEvents() {
-    const timelineContainer = document.getElementById('timeline-container');
-    const events = document.getElementById('events');
-
-    if (!timelineContainer || !events) return;
-
-    const screenH = window.innerHeight;
-    const timelineH = timelineContainer.offsetHeight;
-
-    // Центриране на линията вертикално
-    const topPos = (screenH - timelineH) / 2;
-    timelineContainer.style.position = "absolute";
-    timelineContainer.style.top = `${topPos}px`;
-
-    // Събитията – малко по-нагоре
-    events.style.position = "absolute";
-    events.style.top = `${topPos + 140}px`;  // ако са прекалено надолу — казваш и коригирам
-}
-window.addEventListener("load", positionTimelineAndEvents);
-
-function showSection(id) {
-    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-
-    if (id === "line") {
-        setTimeout(positionTimelineAndEvents, 50);
-    }
-}
-function centerTimelineAndEvents() {
-    const timelineWrapper = document.getElementById('timeline-wrapper');
-    const eventsContainer = document.getElementById('events');
-
-    if (!timelineWrapper || !eventsContainer) return;
-
-    // Reset позицията
-    timelineWrapper.style.position = 'relative';
-    eventsContainer.style.position = 'relative';
-
-    // Вземаме височината на прозореца
-    const windowHeight = window.innerHeight;
-
-    // Вземаме височината на контейнера с линията и бутоните
-    const totalHeight = timelineWrapper.offsetHeight;
-
-    // Изчисляваме отстояние отгоре, за да е центрирано
-    const topOffset = (windowHeight - totalHeight) / 2;
-
-    timelineWrapper.style.top = `${topOffset}px`;
+  const windowHeight = window.innerHeight;
+  const totalHeight = wrapper.offsetHeight + eventsContainer.offsetHeight + 20; // gap
+  const topOffset = (windowHeight - totalHeight)/2;
+  wrapper.style.top = `${topOffset}px`;
+  eventsContainer.style.marginTop = '20px';
 }
 
-// Викаме функцията след като бутоните за събитията се генерират
-function showEpoch(epoch) {
-    const container = document.getElementById('events');
-    container.innerHTML = '';
-    eventsData[epoch].forEach((ev, idx) => {
-        const btn = document.createElement('button');
-        btn.textContent = ev.title;
-        btn.onclick = () => openEvent(epoch, idx);
-        container.appendChild(btn);
-    });
-
-    // Центрираме всичко след генериране на бутоните
-    setTimeout(centerTimelineAndEvents, 10);
-}
-
-// При смяна на менюта
-function showSection(sectionId) {
-    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-    const section = document.getElementById(sectionId);
-    section.style.display = 'flex';
-
-    if(sectionId === 'line') {
-        setTimeout(centerTimelineAndEvents, 10);
-    }
-}
-
-// При resize на прозореца
+// ====== Resize ======
 window.addEventListener('resize', centerTimelineAndEvents);
 
-
-
+// ====== Load ======
+window.addEventListener('load', () => {
+  centerTimelineAndEvents();
+});
 
 
 
