@@ -174,6 +174,26 @@ function showSection(sectionId) {
         timelineContainer.style.top = `${(vh - containerHeight)/2}px`;
     }
 }
+window.addEventListener('load', () => {
+    // Ако секцията "line" е видима при старта
+    const lineSection = document.getElementById('line');
+    if(lineSection.style.display !== 'none') {
+        centerTimeline();
+    }
+});
+
+function centerTimeline() {
+    const timelineContainer = document.getElementById('timeline-container');
+    const vh = window.innerHeight;
+    const containerHeight = timelineContainer.offsetHeight;
+    timelineContainer.style.top = `${(vh - containerHeight)/2}px`;
+}
+if(sectionId === 'line') {
+    centerTimeline();
+}
+
+
+
 
 
 
