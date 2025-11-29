@@ -155,6 +155,16 @@ function showSection(sectionId) {
     // Скролваме до корицата + секцията
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+    const section = document.getElementById(sectionId);
+    section.style.display = 'flex'; // с flex, за да се центрира съдържанието
+
+    // Скролваме до началото на секцията (или корицата)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
 
 
 
