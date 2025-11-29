@@ -269,4 +269,11 @@ function closeEvent() {
     text-align: center;
 }
 /* Контейнерът за линията: хоризонтално и вертикално центриране */
+#timeline-container {
+    position: absolute; /* абсолютен спрямо body */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
 
