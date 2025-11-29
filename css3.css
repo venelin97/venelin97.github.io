@@ -256,6 +256,75 @@ function closeEvent() {
     justify-content: center;
     min-height: 50vh;
 }
+/* Главният контейнер за секцията Линия */
+#line {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;       /* вертикално центриране */
+    align-items: center;           /* хоризонтално центриране */
+    height: calc(100vh - 150px);   /* така винаги е по средата под менюто */
+    padding: 20px;
+}
+
+/* Контейнерът на линията */
+#timeline-container {
+    width: 80%;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+/* Самата линия */
+#timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background-color: gold;
+    border-radius: 3px;
+    transform: translateY(-50%);
+}
+
+/* Епохите – бутони върху линията */
+#timeline {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;   /* подрежда ги равномерно */
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Бутоните за епохите */
+#timeline button {
+    background-color: red;
+    padding: 12px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+#events {
+    display: flex;
+    justify-content: center;  /* хоризонтално центриране */
+    flex-wrap: wrap;          /* позволява да минават на нов ред */
+    gap: 12px;                /* разстояние между тях */
+    margin-top: 30px;         /* разстояние под линията */
+}
+
+#events button {
+    width: 260px;             /* еднаква дължина за всички */
+    min-height: 70px;         /* по-високи за дълъг текст */
+    background-color: orange;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+
 
 
 
