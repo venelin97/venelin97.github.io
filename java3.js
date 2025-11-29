@@ -243,6 +243,57 @@ function showSection(id) {
         setTimeout(positionTimelineAndEvents, 50);
     }
 }
+function centerTimelineAndEvents() {
+    const timelineWrapper = document.getElementById('timeline-wrapper');
+    const eventsContainer = document.getElementById('events');
+
+    if (!timelineWrapper || !eventsContainer) return;
+
+    // Reset позицията
+    timelineWrapper.style.position = 'relative';
+    eventsContainer.style.position = 'relative';
+
+    // Вземаме височината на прозореца
+    const windowHeight = window.innerHeight;
+
+    // Вземаме височината на контейнера с линията и бутоните
+    const totalHeight = timelineWrapper.offsetHeight;
+
+    // Изчисляваме отстояние отгоре, за да е центрирано
+    const topOffset = (windowHeight - totalHeight) / 2;
+
+    timelineWrapper.style.top = `${topOffset}px`;
+}
+
+// Викаме функцията след като бутоните за събитията се генерират
+function showEpoch(epoch) {
+    const container = document.getElementById('events');
+    container.innerHTML = '';
+    eventsData[epoch].forEach((ev, idx) => {
+        const btn = document.createElement('button');
+        btn.textContent = ev.title;
+        btn.onclick = () => openEvent(epoch, idx);
+        container.appendChild(btn);
+    });
+
+    // Центрираме всичко след генериране на бутоните
+    setTimeout(centerTimelineAndEvents, 10);
+}
+
+// При смяна на менюта
+function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+    const section = document.getElementById(sectionId);
+    section.style.display = 'flex';
+
+    if(sectionId === 'line') {
+        setTimeout(centerTimelineAndEvents, 10);
+    }
+}
+
+// При resize на прозореца
+window.addEventListener('resize', centerTimelineAndEvents);
+
 
 
 
