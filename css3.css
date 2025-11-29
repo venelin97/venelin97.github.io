@@ -219,6 +219,26 @@ function closeEvent() {
   align-items: center;
   min-height: calc(100vh - 150px); /* изваждаш височината на менюто + корицата */
 }
+#header {
+  display: flex;
+  justify-content: space-between; /* заглавие вляво, логото вдясно */
+  align-items: center;           /* вертикално центриране */
+  padding: 10px 20px;
+  background-color: #A77F0E;     /* примерно жълто RAL 1027 */
+  color: black;
+}
+
+#header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+#header img {
+  height: 60px;   /* задава височина на логото */
+  width: auto;    /* запазва пропорциите */
+}
+
+
 
 
 
