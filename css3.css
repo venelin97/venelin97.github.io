@@ -195,20 +195,19 @@ function closeEvent() {
 }
 
 #events button {
-    padding: 10px 20px;        /* вътрешно разстояние */
-    background-color: orange;  /* оранжев цвят за бутоните на събития */
+    width: 150px;              /* фиксирана ширина */
+    padding: 10px;             /* вътрешно разстояние */
+    background-color: orange;  /* оранжев цвят */
     color: white;
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    font-size: 16px;           /* по-голям шрифт */
-    white-space: normal;       /* позволява на текста да се пренася на следващ ред */
-    min-width: 150px;          /* минимална ширина на бутоните */
-    max-width: 250px;          /* максимална ширина */
+    font-size: 16px;           /* шрифт */
+    white-space: normal;       /* текстът се пренася */
     text-align: center;        /* центриране на текста */
+    height: auto;              /* автоматична височина според текста */
+    line-height: 1.4em;        /* разстояние между редовете */
 }
-
-
 
 
 
