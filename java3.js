@@ -122,13 +122,16 @@ function showEvent(title, text) {
     // Скриваме бутоните за епохите
     document.getElementById('timeline').style.display = 'none';
 
-    // Попълваме съдържанието
+    // Попълваме съдържанието на overlay-а
     document.getElementById('event-title').innerText = title;
     document.getElementById('event-text').innerText = text;
 
-    // Показваме overlay
+    // Показваме overlay-а
     document.getElementById('event-overlay').style.display = 'flex';
 }
-
+function closeEvent() {
+    document.getElementById('event-overlay').style.display = 'none';
+    document.getElementById('timeline').style.display = 'flex'; // бутоните за епохите се показват отново
+}
 
 
