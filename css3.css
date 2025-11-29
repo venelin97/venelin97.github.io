@@ -274,6 +274,16 @@ function closeEvent() {
     left: 50%;
     transform: translateX(-50%);
 }
+#events {
+    width: 100%;
+    display: flex;
+    justify-content: center;  /* Хоризонтално центриране */
+    flex-wrap: wrap;
+    gap: 15px;
+    position: relative;
+}
+
+
 
 
 
