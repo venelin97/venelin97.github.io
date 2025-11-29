@@ -217,7 +217,7 @@ function closeEvent() {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 150vh) ; /* изваждаш височината на менюто + корицата */
+  min-height: calc(100vh - 150px) ; /* изваждаш височината на менюто + корицата */
 }
 #header {
   display: flex;
@@ -269,3 +269,4 @@ function closeEvent() {
     text-align: center;
 }
 /* Контейнерът за линията: хоризонтално и вертикално центриране */
+
