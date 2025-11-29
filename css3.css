@@ -282,6 +282,25 @@ function closeEvent() {
     gap: 15px;
     position: relative;
 }
+#cover {
+    width: 100%;
+    height: 300px;
+    background-color: #A77F0E;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+#logo {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    margin-right: 20px;
+}
+
+
 
 
 
