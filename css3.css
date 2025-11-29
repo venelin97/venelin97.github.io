@@ -268,6 +268,46 @@ function closeEvent() {
     min-height: calc(100vh - 120px); /* 100vh минус височината на корицата и менюто */
     text-align: center;
 }
+#timeline-container {
+    position: absolute; /* за да може да се позиционира спрямо прозореца */
+    top: 50%;           /* средата на екрана вертикално */
+    left: 50%;          /* средата на екрана хоризонтално */
+    transform: translate(-50%, -50%); /* центрира напълно по хоризонтала и вертикала */
+    width: 80%;         /* колко широка да е линията */
+    max-width: 1000px;  /* максимална ширина, ако искаш */
+}
+
+#timeline-line {
+    height: 5px;        /* дебелина на линията */
+    background-color: gold;
+    border-radius: 2px;
+    width: 100%;
+    position: relative;
+}
+
+#timeline {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;   /* разстояние между бутоните и самата линия */
+}
+
+#timeline button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+#timeline button:hover {
+    background-color: darkred;
+    transform: translateY(-3px) scale(1.05);
+}
+
+
 
 
 
