@@ -268,3 +268,47 @@ function closeEvent() {
     min-height: calc(100vh - 120px); /* 100vh минус височината на корицата и менюто */
     text-align: center;
 }
+/* Контейнерът за линията: хоризонтално и вертикално центриране */
+#timeline-container {
+    position: fixed;          /* остава на едно място, дори при скрол */
+    top: 50%;                 /* вертикално центриране */
+    left: 50%;                /* хоризонтално центриране */
+    transform: translate(-50%, -50%); /* преместване за центриране */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;              /* над другите елементи */
+}
+
+/* Линията */
+#timeline-line {
+    width: 100%;
+    height: 5px;
+    background-color: gold;
+    border-radius: 2px;
+    margin-bottom: 20px;  /* разстояние между линията и бутоните */
+}
+
+/* Бутоните за епохите */
+#timeline {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;  /* регулирай колко широки да са бутоните спрямо линията */
+}
+
+#timeline button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+#timeline button:hover {
+    background-color: darkred;
+    transform: scale(1.1);
+}
+
+
