@@ -135,18 +135,19 @@ function closeEvent() {
 }
 function showSection(sectionId) {
   document.querySelectorAll('.section').forEach(s => s.style.display='none');
-  
+
   const section = document.getElementById(sectionId);
-  section.style.display = 'flex'; // ако използваме flex за центриране
+  section.style.display = 'flex'; // задължително flex за центриране
   section.style.flexDirection = 'column';
   section.style.justifyContent = 'center';
   section.style.alignItems = 'center';
 
-  // scrollTo за да е по средата
-  if (sectionId === 'line') {
+  // Ако е „Линия“, скролваме контейнера до средата на екрана
+  if(sectionId === 'line') {
       section.scrollIntoView({ behavior: 'auto', block: 'center' });
   }
 }
+
 
 
 
