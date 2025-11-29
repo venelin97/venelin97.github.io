@@ -191,6 +191,36 @@ function centerTimeline() {
 if(sectionId === 'line') {
     centerTimeline();
 }
+function centerTimelineAndEvents() {
+    const timelineContainer = document.getElementById('timeline-container');
+    const eventsContainer = document.getElementById('events');
+    
+    const vh = window.innerHeight;
+    const timelineHeight = timelineContainer.offsetHeight;
+    
+    // Центриране на линията
+    timelineContainer.style.position = 'absolute';
+    timelineContainer.style.top = `${(vh - timelineHeight)/2}px`;
+
+    // Преместване на събитията малко по-нагоре
+    if(eventsContainer) {
+        eventsContainer.style.position = 'absolute';
+        // 30px над линията например
+        eventsContainer.style.top = `${(vh - timelineHeight)/2 - 30}px`;
+    }
+}
+window.addEventListener('load', centerTimelineAndEvents);
+
+function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(s => s.style.display='none');
+    document.getElementById(sectionId).style.display='block';
+    
+    if(sectionId === 'line') {
+        centerTimelineAndEvents();
+    }
+}
+
+
 
 
 
