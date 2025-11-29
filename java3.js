@@ -243,10 +243,6 @@ function showSection(id) {
         setTimeout(positionTimelineAndEvents, 50);
     }
 }
-function showSection(sectionId) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.getElementById(sectionId).classList.add('active');
-}
 
 
 
