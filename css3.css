@@ -186,30 +186,26 @@ function closeEvent() {
 
 
 }
-/* Контейнер за бутоните на събитията */
 #events {
-  display: flex;               /* хоризонтално подреждане */
-  justify-content: center;     /* центриране по хоризонтала */
-  gap: 1cm;                    /* разстояние между бутоните */
-  margin-top: 2cm;             /* разстояние от линията */
-  flex-wrap: wrap;             /* бутоните минават на следващ ред ако няма място */
+    display: flex;             /* хоризонтално подреждане */
+    justify-content: center;   /* центрира реда */
+    flex-wrap: wrap;           /* ако няма място, минават на нов ред */
+    gap: 1cm;                  /* разстояние между бутоните */
+    margin-top: 2cm;           /* отстояние от линията */
 }
 
-/* Стил за бутоните на събитията */
 #events button {
-  width: 120px;                /* еднаква ширина */
-  height: 40px;                /* еднаква височина */
-  background-color: orange;    /* оранжеви бутони */
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-#events button:hover {
-  background-color: darkorange;
-  transform: scale(1.05);
+    padding: 10px 20px;        /* вътрешно разстояние */
+    background-color: orange;  /* оранжев цвят за бутоните на събития */
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;           /* по-голям шрифт */
+    white-space: normal;       /* позволява на текста да се пренася на следващ ред */
+    min-width: 150px;          /* минимална ширина на бутоните */
+    max-width: 250px;          /* максимална ширина */
+    text-align: center;        /* центриране на текста */
 }
 
 
