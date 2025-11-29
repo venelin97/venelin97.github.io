@@ -183,7 +183,35 @@ function closeEvent() {
     
     // показваме отново бутоните на епохите
     document.getElementById('timeline').style.display = 'flex';
+
+
 }
+/* Контейнер за бутоните на събитията */
+#events {
+  display: flex;               /* хоризонтално подреждане */
+  justify-content: center;     /* центриране по хоризонтала */
+  gap: 1cm;                    /* разстояние между бутоните */
+  margin-top: 2cm;             /* разстояние от линията */
+  flex-wrap: wrap;             /* бутоните минават на следващ ред ако няма място */
+}
+
+/* Стил за бутоните на събитията */
+#events button {
+  width: 120px;                /* еднаква ширина */
+  height: 40px;                /* еднаква височина */
+  background-color: orange;    /* оранжеви бутони */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#events button:hover {
+  background-color: darkorange;
+  transform: scale(1.05);
+}
+
 
 
 
