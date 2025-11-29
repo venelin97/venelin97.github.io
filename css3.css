@@ -237,6 +237,26 @@ function closeEvent() {
   height: 60px;   /* задава височина на логото */
   width: auto;    /* запазва пропорциите */
 }
+/* Всяка секция да бъде идеално центрирана */
+.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* вертикално */
+    align-items: center;       /* хоризонтално */
+    min-height: 80vh;          /* заема почти целия екран */
+    text-align: center;
+}
+#menu {
+    margin-top: 20px;
+}
+#timeline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+}
+
 
 
 
