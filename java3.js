@@ -247,6 +247,47 @@ function showSection(id) {
         setTimeout(positionTimelineAndEvents, 50);
     }
 }
+function centerTimeline() {
+    const lineSection = document.getElementById("line");
+    const timelineContainer = document.getElementById("timeline-container");
+    const eventsContainer = document.getElementById("events");
+
+    // Ако секцията не е видима – не центрираме
+    if (lineSection.style.display === "none") return;
+
+    const vh = window.innerHeight;
+    const containerHeight = timelineContainer.offsetHeight;
+
+    // Центриране вертикално
+    timelineContainer.style.position = "relative";
+    timelineContainer.style.top = `${(vh - containerHeight) / 2 - 80}px`;
+
+    // Центриране хоризонтално (вече е с margin auto)
+    timelineContainer.style.margin = "0 auto";
+
+    // Събитията – малко под линията и хоризонтално центрирани
+    eventsContainer.style.width = "100%";
+    eventsContainer.style.display = "flex";
+    eventsContainer.style.justifyContent = "center";
+    eventsContainer.style.marginTop = "20px";
+}
+
+// Първо центриране при зареждане
+window.addEventListener("load", () => {
+    setTimeout(centerTimeline, 50); 
+});
+
+// Центриране при връщане към меню "Линия"
+function showSection(sectionId) {
+    document.querySelectorAll(".section").forEach(s => s.style.display = "none");
+    document.getElementById(sectionId).style.display = "block";
+
+    if (sectionId === "line") {
+        setTimeout(centerTimeline, 50);
+    }
+}
+
+
 
 
 
