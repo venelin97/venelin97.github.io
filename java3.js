@@ -118,5 +118,17 @@ function showSection(sectionId) {
     section.scrollIntoView({ block: 'center', behavior: 'smooth' });
 }
 
+function showEvent(title, text) {
+    // Скриваме бутоните за епохите
+    document.getElementById('timeline').style.display = 'none';
+
+    // Попълваме съдържанието
+    document.getElementById('event-title').innerText = title;
+    document.getElementById('event-text').innerText = text;
+
+    // Показваме overlay
+    document.getElementById('event-overlay').style.display = 'flex';
+}
+
 
 
