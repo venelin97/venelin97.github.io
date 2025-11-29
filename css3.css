@@ -215,10 +215,11 @@ function closeEvent() {
 #line {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* вертикално центриране */
-  align-items: center;     /* хоризонтално центриране */
-  min-height: calc(100vh - 100px); /* изваждаш менюто/корицата */
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 150px); /* изваждаш височината на менюто + корицата */
 }
+
 
 
 
