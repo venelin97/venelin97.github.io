@@ -323,6 +323,26 @@ function closeEvent() {
     font-weight: bold;
     color: white;
 }
+#timeline-wrapper {
+  display: flex;
+  justify-content: center; /* хоризонтално центриране */
+  align-items: center;     /* вертикално центриране */
+  height: 100vh;           /* да заема цялата височина на прозореца */
+  width: 100%;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#timeline-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
 
 
 
