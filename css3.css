@@ -217,7 +217,7 @@ function closeEvent() {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh ; /* изваждаш височината на менюто + корицата */
+  min-height: calc(100vh - 150vh) ; /* изваждаш височината на менюто + корицата */
 }
 #header {
   display: flex;
@@ -237,6 +237,7 @@ function closeEvent() {
   height: 60px;   /* задава височина на логото */
   width: auto;    /* запазва пропорциите */
 }
+
 
 
 
