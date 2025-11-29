@@ -346,6 +346,46 @@ function showSection(sectionId) {
   document.querySelectorAll('.section').forEach(s => s.style.display='none');
   document.getElementById(sectionId).style.display='block';
 }
+/* Центриране на линията и събитията по средата на екрана */
+#timeline-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* вертикално */
+  align-items: center;     /* хоризонтално */
+  min-height: calc(100vh - 100px); /* височина под менюто */
+  width: 100%;
+}
+
+#timeline-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#timeline-line {
+  width: 80%;
+  height: 6px;
+  background-color: gold;
+  border-radius: 3px;
+  margin: 0 auto;
+}
+
+#timeline {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: 20px;
+}
+
+#events {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem; /* разстояние под линията */
+}
+
+
 
 
 
