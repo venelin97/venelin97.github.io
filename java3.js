@@ -155,6 +155,27 @@ function showSection(sectionId) {
     // Скролваме до корицата + секцията
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+function showSection(sectionId) {
+    // Скриваме всички секции
+    document.querySelectorAll('.section').forEach(s => {
+        s.style.display = 'none';
+    });
+
+    // Показваме избраната
+    const section = document.getElementById(sectionId);
+    section.style.display = 'block';
+
+    // Ако е секцията с линията, центрираме контейнера
+    if(sectionId === 'line') {
+        const timelineContainer = document.getElementById('timeline-container');
+        // Центриране спрямо прозореца
+        const vh = window.innerHeight;
+        const containerHeight = timelineContainer.offsetHeight;
+        timelineContainer.style.top = `${(vh - containerHeight)/2}px`;
+    }
+}
+
+
 
 
 
