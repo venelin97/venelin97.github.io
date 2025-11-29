@@ -133,5 +133,21 @@ function closeEvent() {
     document.getElementById('event-overlay').style.display = 'none';
     document.getElementById('timeline').style.display = 'flex'; // бутоните за епохите се показват отново
 }
+function showSection(sectionId) {
+    // Скриваме всички секции
+    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+
+    // Показваме избраната секция
+    const section = document.getElementById(sectionId);
+    section.style.display = 'block';
+
+    // Ако е секция линия, скролваме до средата на екрана
+    if (sectionId === 'line') {
+        const container = document.getElementById('timeline-container');
+        container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+
 
 
