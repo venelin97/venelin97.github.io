@@ -122,6 +122,10 @@ body {
     justify-content: center;
     align-items: center;
 }
+#event-overlay {
+    z-index: 1000;
+}
+
 /* Оранжеви бутони за събития */
 #events button {
     background-color: orange; /* оранжево */
@@ -208,6 +212,7 @@ function closeEvent() {
     height: auto;              /* автоматична височина според текста */
     line-height: 1.4em;        /* разстояние между редовете */
 }
+
 
 
 
