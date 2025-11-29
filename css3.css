@@ -212,13 +212,14 @@ function closeEvent() {
     height: auto;              /* автоматична височина според текста */
     line-height: 1.4em;        /* разстояние между редовете */
 }
-.section#line {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* вертикално центриране */
-    align-items: center;     /* хоризонтално центриране */
-    min-height: calc(100vh - 100px); /* за да не е точно върху менюто */
+#line {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* вертикално центриране */
+  align-items: center;     /* хоризонтално центриране */
+  min-height: calc(100vh - 100px); /* изваждаш менюто/корицата */
 }
+
 
 
 
