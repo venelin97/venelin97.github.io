@@ -341,11 +341,7 @@ html, body {
   align-items: center;
   height: 100vh;
   width: 100%;
-}                                                                 // Секции
-function showSection(sectionId) {
-  document.querySelectorAll('.section').forEach(s => s.style.display='none');
-  document.getElementById(sectionId).style.display='block';
-}
+}                                                              
 /* Центриране на линията и събитията по средата на екрана */
 #timeline-wrapper {
   display: flex;
@@ -384,6 +380,15 @@ function showSection(sectionId) {
   gap: 1rem;
   margin-top: 2rem; /* разстояние под линията */
 }
+#timeline-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+
 
 
 
