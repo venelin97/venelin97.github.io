@@ -134,18 +134,18 @@ function closeEvent() {
     document.getElementById('timeline').style.display = 'flex'; // бутоните за епохите се показват отново
 }
 function showSection(sectionId) {
-    // Скриваме всички секции
-    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+  document.querySelectorAll('.section').forEach(s => s.style.display='none');
+  
+  const section = document.getElementById(sectionId);
+  section.style.display = 'flex'; // ако използваме flex за центриране
+  section.style.flexDirection = 'column';
+  section.style.justifyContent = 'center';
+  section.style.alignItems = 'center';
 
-    // Показваме избраната секция
-    const section = document.getElementById(sectionId);
-    section.style.display = 'block';
-
-    // Ако е секция линия, скролваме до средата на екрана
-    if (sectionId === 'line') {
-        const container = document.getElementById('timeline-container');
-        container.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+  // scrollTo за да е по средата
+  if (sectionId === 'line') {
+      section.scrollIntoView({ behavior: 'auto', block: 'center' });
+  }
 }
 
 
