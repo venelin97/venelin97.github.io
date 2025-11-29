@@ -147,6 +147,15 @@ function showSection(sectionId) {
       section.scrollIntoView({ behavior: 'auto', block: 'center' });
   }
 }
+function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(s => s.style.display='none');
+    const section = document.getElementById(sectionId);
+    section.style.display = 'block';
+
+    // Скролваме до корицата + секцията
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 
 
 
