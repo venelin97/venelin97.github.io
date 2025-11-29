@@ -299,6 +299,18 @@ function closeEvent() {
     object-fit: contain;
     margin-right: 20px;
 }
+/* Корица (като във Facebook) */
+#cover {
+    width: 100%;
+    height: 250px; /* можеш да го направиш 300, 350, 400… */
+    background-image: url("images/logo.png"); /* тук е снимката */
+    background-size: cover;  /* заема цялата корица */
+    background-position: center; /* центрира изображението */
+    background-repeat: no-repeat; 
+    border-bottom: 4px solid gold;
+}
+background-image: url("bg history/Bulgarian history-horisontal.png");
+
 
 
 
