@@ -256,6 +256,20 @@ function closeEvent() {
 #sections {
     padding-top: 120px; /* височината на корицата + малко разстояние */
 }
+.section {
+    display: none; /* всички скрити по подразбиране */
+    
+    /* Flex за вертикално и хоризонтално центриране */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* вертикално */
+    align-items: center;      /* хоризонтално */
+    
+    min-height: calc(100vh - 120px); /* 100vh минус височината на корицата и менюто */
+    text-align: center;
+}
+
+
 
 
 
