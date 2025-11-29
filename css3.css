@@ -114,16 +114,16 @@ body {
 
 /* Overlay */
 #event-overlay {
-    display: none;
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.7);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
     justify-content: center;
     align-items: center;
-}
-#event-overlay {
-    z-index: 1000;
+    z-index: 1000; /* над бутоните за епохите */
 }
 
 /* Оранжеви бутони за събития */
@@ -212,6 +212,7 @@ function closeEvent() {
     height: auto;              /* автоматична височина според текста */
     line-height: 1.4em;        /* разстояние между редовете */
 }
+
 
 
 
