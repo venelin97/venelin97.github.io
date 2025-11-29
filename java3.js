@@ -219,6 +219,36 @@ function showSection(sectionId) {
         centerTimelineAndEvents();
     }
 }
+function positionTimelineAndEvents() {
+    const timelineContainer = document.getElementById('timeline-container');
+    const events = document.getElementById('events');
+
+    if (!timelineContainer || !events) return;
+
+    const screenH = window.innerHeight;
+    const timelineH = timelineContainer.offsetHeight;
+
+    // Центриране на линията вертикално
+    const topPos = (screenH - timelineH) / 2;
+    timelineContainer.style.position = "absolute";
+    timelineContainer.style.top = `${topPos}px`;
+
+    // Събитията – малко по-нагоре
+    events.style.position = "absolute";
+    events.style.top = `${topPos + 140}px`;  // ако са прекалено надолу — казваш и коригирам
+}
+window.addEventListener("load", positionTimelineAndEvents);
+
+function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+
+    if (id === "line") {
+        setTimeout(positionTimelineAndEvents, 50);
+    }
+}
+
+
 
 
 
