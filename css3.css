@@ -237,79 +237,7 @@ function closeEvent() {
   height: 60px;   /* задава височина на логото */
   width: auto;    /* запазва пропорциите */
 }
-#cover {
-    position: fixed;  /* остава винаги горе */
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #A77F0E; /* например жълто */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 40px;
-    z-index: 1000;
-}
 
-#cover img {
-    height: 60px;
-}
-#sections {
-    padding-top: 120px; /* височината на корицата + малко разстояние */
-}
-.section {
-    display: none; /* всички скрити по подразбиране */
-    
-    /* Flex за вертикално и хоризонтално центриране */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;  /* вертикално */
-    align-items: center;      /* хоризонтално */
-    
-    min-height: calc(100vh - 120px); /* 100vh минус височината на корицата и менюто */
-    text-align: center;
-}
-/* Контейнерът за линията: хоризонтално и вертикално центриране */
-#timeline-container {
-    position: absolute; /* абсолютен спрямо body */
-    left: 50%;
-    transform: translateX(-50%);
-}
-#events {
-    width: 100%;
-    display: flex;
-    justify-content: center;  /* Хоризонтално центриране */
-    flex-wrap: wrap;
-    gap: 15px;
-    position: relative;
-}
-#cover {
-    width: 100%;
-    height: 300px;
-    background-color: #A77F0E;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-}
-
-#logo {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-    margin-right: 20px;
-}
-/* Корица (като във Facebook) */
-#cover {
-    width: 100%;
-    height: 250px; /* можеш да го направиш 300, 350, 400… */
-    background-image: url("images/logo.png"); /* тук е снимката */
-    background-size: cover;  /* заема цялата корица */
-    background-position: center; /* центрира изображението */
-    background-repeat: no-repeat; 
-    border-bottom: 4px solid gold;
-}
-background-image: url("bg history/Bulgarian history-horisontal.png");
 
 
 
