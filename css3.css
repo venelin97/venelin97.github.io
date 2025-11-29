@@ -237,10 +237,25 @@ function closeEvent() {
   height: 60px;   /* задава височина на логото */
   width: auto;    /* запазва пропорциите */
 }
+#cover {
+    position: fixed;  /* остава винаги горе */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #A77F0E; /* например жълто */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    z-index: 1000;
+}
 
-
-
-
+#cover img {
+    height: 60px;
+}
+#sections {
+    padding-top: 120px; /* височината на корицата + малко разстояние */
+}
 
 
 
