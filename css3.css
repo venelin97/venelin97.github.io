@@ -206,6 +206,26 @@ button:focus {
     background-color: darkorange;
     transform: scale(1.07);
 }
+/* Премахва черната рамка около всички бутони */
+button {
+    outline: none !important;
+    border: none;
+}
+
+/* Премахва синята/черната рамка при кликване */
+button:focus {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* По-добра интерактивност при натискане */
+button:active {
+    transform: scale(0.97);
+    opacity: 0.9;
+}
+
+
 
 
 
