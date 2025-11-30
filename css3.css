@@ -232,6 +232,9 @@ function closeEvent() {
 #header h1 {
   margin: 0;
   font-size: 28px;
+  color: light brown !important;
+}
+
 }
 
 #header img {
@@ -388,6 +391,7 @@ html, body {
     align-items: center;
     position: relative;
 }
+
 
 
 
