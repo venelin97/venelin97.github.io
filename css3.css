@@ -18,11 +18,11 @@ body {
 #cover h1 {
     margin: 0;
     font-size: 36px;
-    color: light brown;
+    
 }
 
 #cover img {
-    height: 100px;
+    height: 30px;
 }
 
 /* Меню */
@@ -391,6 +391,7 @@ html, body {
     align-items: center;
     position: relative;
 }
+
 
 
 
