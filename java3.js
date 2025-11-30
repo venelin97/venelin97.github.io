@@ -46,13 +46,7 @@ const quizQuestions = [
 ];
 
 // ====== Overlay за събития ======
-function openEvent(epoch, index) {
-  const ev = eventsData[epoch][index];
-  document.getElementById('event-title').innerText = ev.title;
-  document.getElementById('event-text').innerText = ev.text;
-  document.getElementById('event-overlay').style.display = 'flex';
-  document.getElementById('timeline').style.display = 'none';
-}
+
 
 function closeEvent() {
   document.getElementById('event-overlay').style.display = 'none';
@@ -126,6 +120,7 @@ window.addEventListener('resize', centerTimelineAndEvents);
 window.addEventListener('load', () => {
   centerTimelineAndEvents();
 });
+
 
 
 
