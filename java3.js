@@ -33,11 +33,19 @@ const eventsData = {
 };
 
 // ====== Overlay за събития ======
-function openEvent(epoch, index) {
-  const ev = eventsData[epoch][index];
-  document.getElementById('event-title').innerText = ev.title;
-  document.getElementById('event-text').innerText = ev.text;
-  document.getElementById('event-overlay').style.display = 'flex';
+
+
+function openEvent(epoch, idx) {
+  const ev = eventsData[epoch][idx];
+  const overlay = document.getElementById('event-overlay');
+  const title = document.getElementById('event-title');
+  const text = document.getElementById('event-text');
+
+  if(!overlay || !title || !text) return; // ако елементите липсват
+
+  title.innerText = ev.title;
+  text.innerText = ev.text;
+  overlay.style.display = 'flex';
   document.getElementById('timeline').style.display = 'none';
 }
 
@@ -46,9 +54,11 @@ function closeEvent() {
   document.getElementById('timeline').style.display = 'flex';
 }
 
-// ====== Показване на бутоните за събития ======
+// ====== Показване на събития ======
 function showEpoch(epoch) {
   const container = document.getElementById('events');
+  if(!container) return;
+
   container.innerHTML = '';
   eventsData[epoch].forEach((ev, idx) => {
     const btn = document.createElement('button');
@@ -56,17 +66,22 @@ function showEpoch(epoch) {
     btn.onclick = () => openEvent(epoch, idx);
     container.appendChild(btn);
   });
+
+  // Центриране след добавяне на бутоните
   setTimeout(centerTimelineAndEvents, 10);
 }
 
-// ====== Менюта и смяна на секции ======
+// ====== Секцията и меню ======
 function showSection(sectionId) {
   document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
   const section = document.getElementById(sectionId);
+  if(!section) return;
+
   section.style.display = 'flex';
   section.style.flexDirection = 'column';
   section.style.justifyContent = 'center';
   section.style.alignItems = 'center';
+
   if(sectionId === 'line') setTimeout(centerTimelineAndEvents, 10);
 }
 
@@ -80,20 +95,16 @@ function centerTimelineAndEvents() {
   eventsContainer.style.position = 'relative';
 
   const windowHeight = window.innerHeight;
-  const totalHeight = wrapper.offsetHeight + eventsContainer.offsetHeight + 20; // gap
+  const totalHeight = wrapper.offsetHeight + eventsContainer.offsetHeight + 20;
   const topOffset = (windowHeight - totalHeight)/2;
+
   wrapper.style.top = `${topOffset}px`;
   eventsContainer.style.marginTop = '20px';
 }
 
-// ====== Resize ======
+// ====== Resize и load ======
 window.addEventListener('resize', centerTimelineAndEvents);
-
-// ====== Load ======
-window.addEventListener('load', () => {
-  centerTimelineAndEvents();
-});
-
+window.addEventListener('load', centerTimelineAndEvents);
 
 
 
