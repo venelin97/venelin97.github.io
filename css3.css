@@ -127,17 +127,7 @@ body {
     margin-top: 2rem;
 }
 
-#events button {
-    width: 260px;
-    min-height: 70px;
-    background-color: orange;
-    border-radius: 12px;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-}
+
 
 /* Overlay */
 #event-overlay {
@@ -180,6 +170,45 @@ body {
 #quiz button:hover {
     background-color: navy;
 }
+button {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+#events {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 30px;
+}
+
+#events button {
+    width: 250px;
+    min-height: 75px;
+    background-color: orange;
+    border: none;
+    border-radius: 14px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+#events button:hover {
+    background-color: darkorange;
+    transform: scale(1.07);
+}
+
+
+
 
 
 
