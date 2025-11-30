@@ -18,7 +18,7 @@ body {
 #cover h1 {
     margin: 0;
     font-size: 36px;
-    color: light brown
+    color: light brown;
 }
 
 #cover img {
@@ -232,7 +232,7 @@ function closeEvent() {
 #header h1 {
   margin: 0;
   font-size: 28px;
-  color: light brown !important;
+  
 }
 
 }
@@ -391,6 +391,7 @@ html, body {
     align-items: center;
     position: relative;
 }
+
 
 
 
