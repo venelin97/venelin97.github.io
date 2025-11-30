@@ -52,6 +52,18 @@
     <button id="check-button" onclick="checkQuiz()" style="display:none;">Виж резултата</button>
     <p id="result"></p>
   </div>
+  <div id="quiz-section" class="section" style="display:none;">
+  <div id="questions"></div>
+  <button id="check-button" style="display:none;" onclick="checkQuiz()">Проверка</button>
+</div>
+
+<!-- Бутон за показване на въпроси -->
+<button id="show-quiz-btn" onclick="showSection('quiz-section'); generateQuiz();">
+  Покажи въпроси
+</button>
+
+<div id="result"></div>
+
 
 </div>
 
@@ -70,6 +82,7 @@
 <script src="java3.js"></script>
 </body>
 </html>
+
 
 
 
