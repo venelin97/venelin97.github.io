@@ -32,20 +32,25 @@ const eventsData = {
   ]
 };
 
+// ====== Данни за квиза ======
+const quizQuestions = [
+  {q:"Кой е основателят на Първото българско царство?", a:"хан Аспарух"},
+  {q:"През коя година България обявява независимост?", a:"1908"},
+  {q:"На кой е съюзник България през 2-рата световна война",a:"Германия"},
+  {q:"При кого България е в Златния си век ", a:"Симеон Велики"},
+  {q:"На чия страна е България по време на Първата световна война", a:"Тройния съюз"},
+  {q:"Благодарение на кой договор България е освободена от турското робство през 1878 г.", a:"Санстефанския"},
+  {q:"Кой е начело на България 1944-1989?", a:"Тодор Живков"},
+  {q:"През коя година България преминава от комунистическо управление към демократично", a:"1989"},
+  {q:"Коя империя е владяла България преди 1878?", a:"Османската империя"}
+];
+
 // ====== Overlay за събития ======
-
-
-function openEvent(epoch, idx) {
-  const ev = eventsData[epoch][idx];
-  const overlay = document.getElementById('event-overlay');
-  const title = document.getElementById('event-title');
-  const text = document.getElementById('event-text');
-
-  if(!overlay || !title || !text) return; // ако елементите липсват
-
-  title.innerText = ev.title;
-  text.innerText = ev.text;
-  overlay.style.display = 'flex';
+function openEvent(epoch, index) {
+  const ev = eventsData[epoch][index];
+  document.getElementById('event-title').innerText = ev.title;
+  document.getElementById('event-text').innerText = ev.text;
+  document.getElementById('event-overlay').style.display = 'flex';
   document.getElementById('timeline').style.display = 'none';
 }
 
@@ -54,11 +59,9 @@ function closeEvent() {
   document.getElementById('timeline').style.display = 'flex';
 }
 
-// ====== Показване на събития ======
+// ====== Показване на бутоните за събития ======
 function showEpoch(epoch) {
   const container = document.getElementById('events');
-  if(!container) return;
-
   container.innerHTML = '';
   eventsData[epoch].forEach((ev, idx) => {
     const btn = document.createElement('button');
@@ -66,22 +69,17 @@ function showEpoch(epoch) {
     btn.onclick = () => openEvent(epoch, idx);
     container.appendChild(btn);
   });
-
-  // Центриране след добавяне на бутоните
   setTimeout(centerTimelineAndEvents, 10);
 }
 
-// ====== Секцията и меню ======
+// ====== Менюта и смяна на секции ======
 function showSection(sectionId) {
   document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
   const section = document.getElementById(sectionId);
-  if(!section) return;
-
   section.style.display = 'flex';
   section.style.flexDirection = 'column';
   section.style.justifyContent = 'center';
   section.style.alignItems = 'center';
-
   if(sectionId === 'line') setTimeout(centerTimelineAndEvents, 10);
 }
 
@@ -97,22 +95,37 @@ function centerTimelineAndEvents() {
   const windowHeight = window.innerHeight;
   const totalHeight = wrapper.offsetHeight + eventsContainer.offsetHeight + 20;
   const topOffset = (windowHeight - totalHeight)/2;
-
   wrapper.style.top = `${topOffset}px`;
   eventsContainer.style.marginTop = '20px';
 }
 
-// ====== Resize и load ======
+// ====== Квиз ======
+function generateQuiz() {
+  const container = document.getElementById('questions');
+  container.innerHTML = '';
+  const selected = quizQuestions.sort(() => 0.5 - Math.random()).slice(0,5);
+  selected.forEach((q,i) => {
+    const div = document.createElement('div');
+    div.innerHTML = `<p>${i+1}. ${q.q}</p><input type="text" id="ans${i}" />`;
+    container.appendChild(div);
+  });
+  document.getElementById('check-button').style.display = 'inline-block';
+}
+
+function checkQuiz() {
+  const inputs = document.querySelectorAll('#questions input');
+  let score = 0;
+  inputs.forEach((inp,i) => {
+    if(inp.value.trim().toLowerCase() === quizQuestions[i].a.toLowerCase()) score++;
+  });
+  document.getElementById('result').innerText = `Точни отговори: ${score} от 5`;
+}
+
+// ====== Resize & Load ======
 window.addEventListener('resize', centerTimelineAndEvents);
-window.addEventListener('load', centerTimelineAndEvents);
-
-
-
-
-
-
-
-
+window.addEventListener('load', () => {
+  centerTimelineAndEvents();
+});
 
 
 
