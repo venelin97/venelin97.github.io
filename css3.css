@@ -224,6 +224,27 @@ button:active {
     transform: scale(0.97);
     opacity: 0.9;
 }
+#event-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* винаги над всичко */
+}
+
+#events button {
+    z-index: 1001; /* ако искаш да са интерактивни, overlay съдържанието трябва да е над тях */
+}
+#timeline {
+    position: relative;
+    z-index: 1; /* остава под overlay-а, но видимостта е нормална */
+}
+
 
 
 
