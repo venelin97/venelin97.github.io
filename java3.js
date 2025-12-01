@@ -114,6 +114,15 @@ function generateQuiz() {
   });
   document.getElementById('check-button').style.display = 'inline-block';
 }
+function normalizeAnswer(str) {
+  return str
+    .toLowerCase()
+    .replace(/година|г\.|г|год\./g, "")  // махаме думи като “година”, “г”, “г.”
+    .replace(/[^0-9a-zа-я]/g, "")       // махаме интервали, точки, запетаи, тирета
+    .trim();                            // чистим остатъчни интервали
+}
+
+
 
 function checkQuiz() {
   const inputs = document.querySelectorAll('#questions input');
@@ -122,13 +131,17 @@ function checkQuiz() {
     if(inp.value.trim().toLowerCase() === quizQuestions[i].a.toLowerCase()) score++;
   });
   document.getElementById('result').innerText = `Точни отговори: ${score} от 5`;
+
+if (normalizeAnswer(userAnswer) === normalizeAnswer(correctAnswer));
 }
+
 
 // ====== Resize & Load ======
 window.addEventListener('resize', centerTimelineAndEvents);
 window.addEventListener('load', () => {
   centerTimelineAndEvents();
 });
+
 
 
 
