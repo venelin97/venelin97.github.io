@@ -129,30 +129,6 @@ window.addEventListener('resize', centerTimelineAndEvents);
 window.addEventListener('load', () => {
   centerTimelineAndEvents();
 });
-function checkQuiz() {
-    let correct = 0;
-
-    // твоето броене – оставям го както е
-    questionsData.forEach((q, index) => {
-        const selected = document.querySelector(`input[name="q${index}"]:checked`);
-        if (selected && parseInt(selected.value) === q.correct) {
-            correct++;
-        }
-    });
-
-    const result = document.getElementById("result");
-    result.innerText = `Твоят резултат е: ${correct} / 5`;
-
-    // Цветове според резултата
-    if (correct <= 2) {
-        result.style.color = "red";
-    } else if (correct <= 4) {
-        result.style.color = "orange";
-    } else {
-        result.style.color = "limegreen";
-    }
-}
-
 
 
 
