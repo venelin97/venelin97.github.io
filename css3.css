@@ -380,6 +380,58 @@ button:active {
     margin: 8px 0;
     font-size: 18px;
 }
+/* Контейнер на въпрос */
+.quiz-question {
+    background: #f5f0e6;     /* светло бежово */
+    padding: 18px;
+    margin: 12px 0;
+    width: 90%;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Текст на въпроса */
+.question-text {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Радио опциите – подредени една под друга */
+.answer-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 5px 0;
+}
+
+/* Бутони */
+#show-quiz-btn,
+#check-btn {
+    background: #ffcc66;
+    border: none;
+    padding: 15px 25px;
+    margin-top: 15px;
+    font-size: 18px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#show-quiz-btn:hover,
+#check-btn:hover {
+    background: #ffb833;
+    transform: scale(1.05);
+}
+
+/* Резултат */
+#quiz-result {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
 
 
 
