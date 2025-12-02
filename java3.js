@@ -87,6 +87,32 @@ function showQuiz() {
   const quizBox = document.getElementById("quiz-box");
   quizBox.innerHTML = "";
   document.getElementById("quiz-result-btn").style.display = "block";
+  function showQuiz() {
+  const quizBox = document.getElementById("quiz-box");
+  quizBox.innerHTML = "";
+
+  quizQuestions.forEach((q, i) => {
+    const block = document.createElement("div");
+    block.className = "quiz-question";
+
+    let html = `<p>${i + 1}. ${q.q}</p>`;
+
+    q.options.forEach(opt => {
+      html += `
+        <label class="answer-option">
+          <input type="radio" name="q${i}" value="${opt}"> ${opt}
+        </label>
+      `;
+    });
+
+    block.innerHTML = html;
+    quizBox.appendChild(block);
+  });
+
+  // ЕТО ТОВА Е ВАЖНО
+  document.getElementById("quiz-result-btn").style.display = "block";
+}
+
 
 
   quizQuestions.forEach((q, i) => {
@@ -193,6 +219,7 @@ window.addEventListener('load', () => {
 if (sectionId === "quiz") {
     showQuiz();
 }
+
 
 
 
