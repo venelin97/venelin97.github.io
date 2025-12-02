@@ -86,6 +86,8 @@ const quizQuestions = [
 function showQuiz() {
   const quizBox = document.getElementById("quiz-box");
   quizBox.innerHTML = "";
+  document.getElementById("quiz-result-btn").style.display = "block";
+
 
   quizQuestions.forEach((q, i) => {
     const block = document.createElement("div");
@@ -191,6 +193,7 @@ window.addEventListener('load', () => {
 if (sectionId === "quiz") {
     showQuiz();
 }
+
 
 
 
