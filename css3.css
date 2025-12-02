@@ -314,6 +314,25 @@ button:active {
     border-radius: 10px;
     font-size: 18px;
 }
+.quiz-question {
+  background: #222;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.answer-option {
+  display: block;
+  margin: 6px 0;
+}
+
+#quiz-result {
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: bold;
+}
 
 
 
