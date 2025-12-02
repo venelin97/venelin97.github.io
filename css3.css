@@ -343,6 +343,40 @@ button:active {
     z-index: 1;
     position: relative;
 }
+#quiz-result-btn {
+    display: none;
+}
+.quiz-main-btn, #quiz-result-btn {
+    padding: 15px 30px;
+    background: #ffe5b4;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.quiz-main-btn:hover, #quiz-result-btn:hover {
+    background: #ffcc88;
+    transform: scale(1.05);
+}
+.quiz-question {
+    background: #fff7e6;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 18px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.15);
+}
+.answer-option {
+    display: block;
+    margin: 6px 0;
+    font-size: 17px;
+}
+
 
 
 
