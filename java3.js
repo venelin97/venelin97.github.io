@@ -188,6 +188,10 @@ window.addEventListener('resize', centerTimelineAndEvents);
 window.addEventListener('load', () => {
   centerTimelineAndEvents();
 });
+if (sectionId === "quiz") {
+    showQuiz();
+}
+
 
 
 
