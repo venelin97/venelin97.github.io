@@ -433,7 +433,7 @@ button:active {
 /* ===== КОРИЦА ===== */
 #cover {
     width: 100%;
-    height: 280px; /* можеш да смениш */
+    height: 310px; /* можеш да смениш */
     background-image: url("logo.png"); /* ИМЕТО НА СНИМКАТА */
     background-size: cover; /* важно – запълва цялата корица */
     background-position: center; /* не изрязва важното */
@@ -449,6 +449,7 @@ button:active {
     font-size: 50px;
     text-shadow: 0 0 10px black;
 }
+
 
 
 
