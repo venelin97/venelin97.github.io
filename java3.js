@@ -33,56 +33,98 @@ const eventsData = {
 };
 
 // ====== Данни за квиза ======
+// ====== ВЪПРОСИ С ВАРИАНТИ ======
 const quizQuestions = [
   {
     q: "Кой е основателят на Първото българско царство?",
-    options: ["хан Аспарух", "Крум", "Симеон Велики"],
-    correct: 0
+    correct: "хан Аспарух",
+    options: ["хан Аспарух", "Крум", "Симеон Велики"]
   },
   {
     q: "През коя година България обявява независимост?",
-    options: ["1878", "1908", "1944"],
-    correct: 1
+    correct: "1908",
+    options: ["1878", "1908", "1944"]
   },
   {
-    q: "На чия страна е България през Втората световна война?",
-    options: ["Германия", "СССР", "Италия"],
-    correct: 0
+    q: "На кой е съюзник България през 2-рата световна война?",
+    correct: "Германия",
+    options: ["СССР", "Германия", "Англия"]
   },
   {
-    q: "При кого България е в Златния век?",
-    options: ["Симеон Велики", "Борис I", "Крум"],
-    correct: 0
+    q: "При кого България е в Златния си век?",
+    correct: "Симеон Велики",
+    options: ["Борис I", "Симеон Велики", "Иван Асен II"]
   },
   {
-    q: "На чия страна е България през Първата световна война?",
-    options: ["Тройния съюз", "Антантата", "Неутрална"],
-    correct: 0
+    q: "На чия страна е България по време на Първата световна война?",
+    correct: "Тройния съюз",
+    options: ["Антантата", "Тройния съюз", "Неутрална"]
   },
   {
-    q: "Кой договор освобождава България през 1878 г.?",
-    options: ["Сан Стефанския", "Берлинския", "Ньойския"],
-    correct: 0
+    q: "Благодарение на кой договор България е освободена през 1878 г.?",
+    correct: "Санстефанския",
+    options: ["Берлинския", "Санстефанския", "Ньойския"]
   },
   {
-    q: "Кой управлява България 1944–1989?",
-    options: ["Тодор Живков", "Фердинанд I", "Борис III"],
-    correct: 0
+    q: "Кой е начело на България 1944–1989?",
+    correct: "Тодор Живков",
+    options: ["Тодор Живков", "Вълко Червенков", "Георги Димитров"]
   },
   {
-    q: "Кога започва демократичният преход?",
-    options: ["1989", "1991", "1978"],
-    correct: 0
+    q: "През коя година започва преходът към демокрация?",
+    correct: "1989",
+    options: ["1944", "1989", "1997"]
   },
   {
-    q: "Коя империя владяла България преди 1878 г.?",
-    options: ["Османската империя", "Римската империя", "Австро-Унгария"],
-    correct: 0
+    q: "Коя империя е владяла България преди 1878?",
+    correct: "Османската империя",
+    options: ["Астро-Унгария", "Османската империя", "Персия"]
   }
 ];
 
-// ====== Overlay за събития ======
+// ====== ГЕНЕРИРАНЕ НА ВЪПРОСИТЕ ======
+function showQuiz() {
+  const quizBox = document.getElementById("quiz-box");
+  quizBox.innerHTML = "";
 
+  quizQuestions.forEach((q, i) => {
+    const block = document.createElement("div");
+    block.className = "quiz-question";
+
+    let html = `<p>${i + 1}. ${q.q}</p>`;
+
+    q.options.forEach(opt => {
+      html += `
+        <label class="answer-option">
+          <input type="radio" name="q${i}" value="${opt}"> ${opt}
+        </label>
+      `;
+    });
+
+    block.innerHTML = html;
+    quizBox.appendChild(block);
+  });
+}
+
+// ====== ИЗЧИСЛЯВАНЕ НА РЕЗУЛТАТ ======
+function checkQuiz() {
+  let correct = 0;
+
+  quizQuestions.forEach((q, i) => {
+    const answer = document.querySelector(`input[name="q${i}"]:checked`);
+    if (answer && answer.value === q.correct) {
+      correct++;
+    }
+  });
+
+  const result = document.getElementById("quiz-result");
+
+  if (correct <= 2) result.style.color = "red";
+  else if (correct <= 4) result.style.color = "orange";
+  else result.style.color = "limegreen";
+
+  result.textContent = `Твоят резултат: ${correct} от ${quizQuestions.length}`;
+}
 
 function closeEvent() {
   document.getElementById('event-overlay').style.display = 'none';
@@ -139,37 +181,6 @@ function centerTimelineAndEvents() {
 }
 
 // ====== Квиз ======
-function generateQuiz() {
-  const container = document.getElementById('questions');
-  container.innerHTML = '';
-  const selected = quizQuestions.sort(() => 0.5 - Math.random()).slice(0,5);
-  selected.forEach((q,i) => {
-    const div = document.createElement('div');
-    div.innerHTML = `<p>${i+1}. ${q.q}</p><input type="text" id="ans${i}" />`;
-    container.appendChild(div);
-  });
-  document.getElementById('check-button').style.display = 'inline-block';
-}
-function normalizeAnswer(str) {
-  return str
-    .toLowerCase()
-    .replace(/година|г\.|г|год\./g, "")  // махаме думи като “година”, “г”, “г.”
-    .replace(/[^0-9a-zа-я]/g, "")       // махаме интервали, точки, запетаи, тирета
-    .trim();                            // чистим остатъчни интервали
-}
-
-
-
-function checkQuiz() {
-  const inputs = document.querySelectorAll('#questions input');
-  let score = 0;
-  inputs.forEach((inp,i) => {
-    if(inp.value.trim().toLowerCase() === quizQuestions[i].a.toLowerCase()) score++;
-  });
-  document.getElementById('result').innerText = `Точни отговори: ${score} от 5`;
-
-if (normalizeAnswer(userAnswer) === normalizeAnswer(correctAnswer));
-}
 
 
 // ====== Resize & Load ======
@@ -177,6 +188,7 @@ window.addEventListener('resize', centerTimelineAndEvents);
 window.addEventListener('load', () => {
   centerTimelineAndEvents();
 });
+
 
 
 
