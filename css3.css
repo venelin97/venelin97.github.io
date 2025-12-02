@@ -371,11 +371,17 @@ button:active {
     max-width: 600px;
     box-shadow: 0 0 8px rgba(0,0,0,0.15);
 }
-.answer-option {
-    display: block;
-    margin: 6px 0;
-    font-size: 17px;
+
 }
+.answer-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+    font-size: 18px;
+}
+
+
 
 
 
