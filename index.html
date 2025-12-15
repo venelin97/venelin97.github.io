@@ -1,7 +1,58 @@
-<!DOCTYPE html> <html lang="bg"> <head> <meta charset="UTF-8"> <link rel="stylesheet" href="css3.css"> <div id="cover"> </div> </div> </head> <body> <h1>Българска история в линия на времето</h1> <!-- Меню --> <div id="menu"> <button onclick="showSection('line')">Линия</button> <button onclick="showSection('howto')">Указания</button> <button onclick="showSection('quiz')">Въпроси</button> </div> <!-- Секции --> <div id="sections"> <!-- Линия с епохи --> <div id="line" class="section active"> <div id="timeline-container"> <div id="timeline-line"></div> <div id="timeline"> <button onclick="showEpoch('Ant')">Античност</button> <button onclick="showEpoch('Sredn')">Средновековие</button> <button onclick="showEpoch('Vazr')">Възраждане</button> <button onclick="showEpoch('NovoVr')">Новo време</button> </div> </div> <div id="events"></div> </div> <!-- Указания --> <div id="howto" class="section" style="display:none;"> <h2>Указания за работа със сайта</h2> <p>Натисни бутон за епоха и ще видиш главните събития за всяко едно от тях, като ще имаш възможност да го разгледаш подробно, като кликнеш върху него. След това можеш да видиш секцията "Въпроси" и да провериш какво си разбрал с въпроси за събитията от различните епохи.Цветът на обратната връзка (резултатът) зависи от това как сте се справили на теста .</p> </div> <!-- Въпроси --> <div id="quiz" class="section" style="display:none;"> <h2>Въпроси за усвоените знания</h2> <button onclick="showQuiz()" class="quiz-main-btn">Покажи въпросите</button> <div id="quiz-box"></div> <button onclick="checkQuiz()" id="check-button" class="quiz-main-btn" style="display:none;">Виж резултата</button> <div id="quiz-result"></div> </div> <div id="questions"></div> <button id="check-button" onclick="checkQuiz()" style="display:none;">Виж резултата</button> <p id="result"></p> </div> <div id="quiz-section" class="section" style="display:none;"> <div id="questions"></div> <button id="check-button" style="display:none;" onclick="checkQuiz()">Проверка</button> </div> <!-- Бутон за показване на въпроси --> <div id="result"></div> </div> <!-- Overlay за събития --> <div id="event-overlay" style="display:none;"> <div id="event-content"> <span id="close-overlay" onclick="closeEvent()">&times;</span> <h2 id="event-title"></h2> <p id="event-text"></p> </div> </div> </div>
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <title>Българска история</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<h1>Българска история в линия на времето</h1>
 
+<div id="menu">
+  <button onclick="showSection('line')">Линия</button>
+  <button onclick="showSection('howto')">Указания</button>
+  <button onclick="showSection('quiz')">Въпроси</button>
+</div>
 
+<!-- ЛИНИЯ -->
+<div id="line" class="section active">
+  <div id="timeline">
+    <button onclick="showEpoch('Ant')">Античност</button>
+    <button onclick="showEpoch('Sredn')">Средновековие</button>
+    <button onclick="showEpoch('Vazr')">Възраждане</button>
+    <button onclick="showEpoch('NovoVr')">Ново време</button>
+  </div>
+  <div id="events"></div>
+</div>
+
+<!-- УКАЗАНИЯ -->
+<div id="howto" class="section">
+  <h2>Указания</h2>
+  <p>Избери епоха и разгледай събитията. В секция „Въпроси“ можеш да провериш знанията си.</p>
+</div>
+
+<!-- ВЪПРОСИ -->
+<div id="quiz" class="section">
+  <h2>Въпроси</h2>
+  <button onclick="showQuiz()">Покажи въпросите</button>
+  <div id="quiz-box"></div>
+  <button onclick="checkQuiz()" id="check-btn" style="display:none;">Виж резултата</button>
+  <div id="quiz-result"></div>
+</div>
+
+<!-- OVERLAY -->
+<div id="overlay">
+  <div id="overlay-content">
+    <span onclick="closeEvent()">✖</span>
+    <h2 id="overlay-title"></h2>
+    <p id="overlay-text"></p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
 
 
 
