@@ -83,89 +83,40 @@ const quizQuestions = [
 ];
 
 // ====== ГЕНЕРИРАНЕ НА ВЪПРОСИТЕ ======
+let currentQuiz = [];
+
 function showQuiz() {
   const quizBox = document.getElementById("quiz-box");
+  const checkBtn = document.getElementById("check-button");
   quizBox.innerHTML = "";
-  document.getElementById("quiz-result-btn").style.display = "block";
-  function showQuiz() {
-  const quizBox = document.getElementById("quiz-box");
-  quizBox.innerHTML = "";
-
-  quizQuestions.forEach((q, i) => {
+  currentQuiz = shuffleArray([...quizQuestions]).slice(0,5); // 5 въпроса
+  currentQuiz.forEach((q,i) => {
+    const shuffledOptions = shuffleArray([...q.options]);
     const block = document.createElement("div");
     block.className = "quiz-question";
-
-    let html = `<p>${i + 1}. ${q.q}</p>`;
-
-    q.options.forEach(opt => {
-      html += `
-        <label class="answer-option">
-          <input type="radio" name="q${i}" value="${opt}"> ${opt}
-        </label>
-      `;
+    let html = `<p>${q.q}</p>`;
+    shuffledOptions.forEach(opt => {
+      html += `<label class="answer-option"><input type="radio" name="q${i}" value="${opt}"> ${opt}</label><br>`;
     });
-
     block.innerHTML = html;
     quizBox.appendChild(block);
   });
-
-  // ЕТО ТОВА Е ВАЖНО
-  document.getElementById("quiz-result-btn").style.display = "block";
+  checkBtn.style.display = "block";
 }
 
-
-
-  quizQuestions.forEach((q, i) => {
-    const block = document.createElement("div");
-    block.className = "quiz-question";
-
-    let html = `<p>${i + 1}. ${q.q}</p>`;
-
-    q.options.forEach(opt => {
-      html += `
-        <label class="answer-option">
-          <input type="radio" name="q${i}" value="${opt}"> ${opt}
-        </label>
-      `;
-    });
-
-    block.innerHTML = html;
-    quizBox.appendChild(block);
-  });
-}
-
-// ====== ИЗЧИСЛЯВАНЕ НА РЕЗУЛТАТ ======
 function checkQuiz() {
   let correct = 0;
-
-  quizQuestions.forEach((q, i) => {
-    const answer = document.querySelector(`input[name="q${i}"]:checked`);
-    if (answer && answer.value === q.correct) {
-      correct++;
-    }
+  currentQuiz.forEach((q,i)=>{
+    const picked = document.querySelector(`input[name="q${i}"]:checked`);
+    if(picked && picked.value === q.correct) correct++;
   });
-
   const result = document.getElementById("quiz-result");
-
-  if (correct <= 2) result.style.color = "red";
-  else if (correct <= 4) result.style.color = "orange";
+  if(correct <= 2) result.style.color = "red";
+  else if(correct <= 4) result.style.color = "orange";
   else result.style.color = "limegreen";
-
-  result.textContent = `Твоят резултат: ${correct} от ${quizQuestions.length}`;
+  result.textContent = `Твоят резултат: ${correct} от ${currentQuiz.length}`;
 }
 
-function closeEvent() {
-  document.getElementById('event-overlay').style.display = 'none';
- 
-}
-function openEvent(epoch, index) {
-  const ev = eventsData[epoch][index];
-  document.getElementById('event-title').innerText = ev.title;
-  document.getElementById('event-text').innerText = ev.text;
-  document.getElementById('event-overlay').style.display = 'flex';
-    
-   
-}
 
 
 // ====== Показване на бутоните за събития ======
@@ -208,7 +159,16 @@ function centerTimelineAndEvents() {
   eventsContainer.style.marginTop = '20px';
 }
 
-// ====== Квиз ======
+// ====== снимки ======
+function openEvent(epoch, index) {
+  const ev = eventsData[epoch][index];
+  document.getElementById('event-title').innerText = ev.title;
+  document.getElementById('event-text').innerText = ev.text;
+  const imgDiv = document.getElementById('event-image');
+  imgDiv.innerHTML = ev.image ? `<img src="${ev.image}" style="width:100%;border-radius:12px;">` : "";
+  document.getElementById('event-overlay').style.display = 'flex';
+}
+
 
 
 // ====== Resize & Load ======
@@ -298,6 +258,8 @@ function checkQuiz() {
 
   result.textContent = `Твоят резултат: ${correct} от 5`;
 }
+
+
 
 
 
