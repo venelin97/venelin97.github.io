@@ -103,6 +103,19 @@ function showQuiz() {
   });
   checkBtn.style.display = "block";
 }
+function checkQuiz() {
+  let correct = 0;
+  currentQuiz.forEach((q,i)=>{
+    const picked = document.querySelector(`input[name="q${i}"]:checked`);
+    if(picked && picked.value === q.correct) correct++;
+  });
+  const result = document.getElementById("quiz-result");
+  if(correct <= 2) result.style.color = "red";
+  else if(correct <= 4) result.style.color = "orange";
+  else result.style.color = "limegreen";
+  result.textContent = `Твоят резултат: ${correct} от ${currentQuiz.length}`;
+}
+
 
 
 
@@ -177,75 +190,7 @@ function shuffleArray(array) {
 }
 
 // ====== Генериране на тест с 5 произволни въпроса ======
-function showQuiz() {
-  const quizBox = document.getElementById("quiz-box");
-  const checkBtn = document.getElementById("check-button");
-  quizBox.innerHTML = "";
-  
-  // Скриваме резултата при нов тест
-  document.getElementById("quiz-result").textContent = "";
 
-  // 1) Копие на въпросите
-  let all = [...quizQuestions];
-
-  // 2) Разбъркваме ги
-  shuffleArray(all);
-
-  // 3) Вземаме само 5
-  let selected = all.slice(0, 5);
-
-  // 4) Показваме ги
-  selected.forEach((q, i) => {
-
-    // Разбъркваме опциите
-    const shuffledOptions = shuffleArray([...q.options]);
-
-    const block = document.createElement("div");
-    block.className = "quiz-question";
-
-    let html = `<p>${i + 1}. ${q.q}</p>`;
-
-    shuffledOptions.forEach(opt => {
-      html += `
-        <label class="answer-option">
-          <input type="radio" name="q${i}" value="${opt}">
-          ${opt}
-        </label><br>
-      `;
-    });
-
-    block.innerHTML = html;
-    quizBox.appendChild(block);
-  });
-
-  // Показваме бутона
-  checkBtn.style.display = "block";
-}
-
-
-// ====== Проверка на резултатите ======
-function checkQuiz() {
-  let correct = 0;
-
-  document.querySelectorAll(".quiz-question").forEach((block, i) => {
-    const picked = block.querySelector("input:checked");
-    const questionText = block.querySelector("p").innerText.slice(3); 
-
-    const real = quizQuestions.find(q => q.q === questionText);
-
-    if (picked && real && picked.value === real.correct) {
-      correct++;
-    }
-  });
-
-  const result = document.getElementById("quiz-result");
-
-  if (correct <= 2) result.style.color = "red";
-  else if (correct <= 4) result.style.color = "orange";
-  else result.style.color = "limegreen";
-
-  result.textContent = `Твоят резултат: ${correct} от 5`;
-}
 
 
 
