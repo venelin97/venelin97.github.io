@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8">
-  <title>Българска история</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Българска история</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h1>Българска история в линия на времето</h1>
+<!-- КОРИЦА -->
+<div id="cover"></div>
 
+<h1 class="main-title">Българска история в линия на времето</h1>
+
+<!-- МЕНЮ -->
 <div id="menu">
   <button onclick="showSection('line')">Линия</button>
   <button onclick="showSection('howto')">Указания</button>
@@ -17,11 +22,14 @@
 
 <!-- ЛИНИЯ -->
 <div id="line" class="section active">
-  <div id="timeline">
-    <button onclick="showEpoch('Ant')">Античност</button>
-    <button onclick="showEpoch('Sredn')">Средновековие</button>
-    <button onclick="showEpoch('Vazr')">Възраждане</button>
-    <button onclick="showEpoch('NovoVr')">Ново време</button>
+  <div id="timeline-container">
+    <div id="timeline-line"></div>
+    <div id="timeline">
+      <button onclick="showEpoch('Ant')">Античност</button>
+      <button onclick="showEpoch('Sredn')">Средновековие</button>
+      <button onclick="showEpoch('Vazr')">Възраждане</button>
+      <button onclick="showEpoch('NovoVr')">Ново време</button>
+    </div>
   </div>
   <div id="events"></div>
 </div>
@@ -29,37 +37,31 @@
 <!-- УКАЗАНИЯ -->
 <div id="howto" class="section">
   <h2>Указания</h2>
-  <p>Избери епоха и разгледай събитията. В секция „Въпроси“ можеш да провериш знанията си.</p>
+  <p>Избери епоха, разгледай събитията и след това провери знанията си във „Въпроси“.</p>
 </div>
 
-<!-- ВЪПРОСИ -->
+<!-- КВИЗ -->
 <div id="quiz" class="section">
-  <h2>Въпроси</h2>
-  <button onclick="showQuiz()">Покажи въпросите</button>
+  <h2>Тест</h2>
+  <button class="quiz-btn" onclick="generateQuiz()">Покажи въпросите</button>
   <div id="quiz-box"></div>
-  <button onclick="checkQuiz()" id="check-btn" style="display:none;">Виж резултата</button>
+  <button class="quiz-btn" id="check-btn" onclick="checkQuiz()" style="display:none;">Виж резултата</button>
   <div id="quiz-result"></div>
 </div>
 
 <!-- OVERLAY -->
-<div id="overlay">
-  <div id="overlay-content">
-    <span onclick="closeEvent()">✖</span>
-    <h2 id="overlay-title"></h2>
-    <p id="overlay-text"></p>
+<div id="event-overlay">
+  <div id="event-content">
+    <span id="close-overlay" onclick="closeEvent()">×</span>
+    <h2 id="event-title"></h2>
+    <p id="event-text"></p>
+    <img id="event-img">
   </div>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
 
 
 
