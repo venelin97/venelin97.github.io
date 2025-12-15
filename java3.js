@@ -82,92 +82,62 @@ const quizQuestions = [
   }
 ];
 
-// ====== ГЕНЕРИРАНЕ НА ВЪПРОСИТЕ ======
-let currentQuiz = [];
-
-function showSection(id){
-    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
+// ===== СЕКЦИИ =====
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
-// ====== Overlay ======
-function openEvent(epoch,i){
-    const ev = eventsData[epoch][i];
-    document.getElementById('event-title').innerText=ev.title;
-    document.getElementById('event-text').innerText=ev.text;
-    const img = document.getElementById('event-image');
-    if(ev.image){ img.src=ev.image; img.style.display='block'; }
-    else img.style.display='none';
-    document.getElementById('event-overlay').style.display='flex';
-}
-function closeEvent(){ document.getElementById('event-overlay').style.display='none'; }
 
-// ====== Timeline ======
-function showEpoch(epoch){
-    const container = document.getElementById('events');
-    container.innerHTML='';
-    eventsData[epoch].forEach((ev,i)=>{
-        const btn=document.createElement('button');
-        btn.textContent=ev.title;
-        btn.onclick=()=>openEvent(epoch,i);
-        container.appendChild(btn);
-    });
+function showEpoch(epoch) {
+  const box = document.getElementById("events");
+  box.innerHTML = "";
+  eventsData[epoch].forEach((e, i) => {
+    const btn = document.createElement("button");
+    btn.textContent = e.title;
+    btn.onclick = () => openEvent(e);
+    box.appendChild(btn);
+  });
 }
 
-// ====== Quiz ======
-function shuffle(a){return a.sort(()=>Math.random()-0.5);}
-function showQuiz(){
-    const quizBox = document.getElementById('quiz-box');
-    quizBox.innerHTML='';
-    document.getElementById('check-btn').style.display='block';
-    let selected = shuffle([...quizQuestions]).slice(0,5);
-    selected.forEach((q,i)=>{
-        let block = document.createElement('div'); block.className='quiz-question';
-        let html = `<p>${i+1}. ${q.q}</p>`;
-        shuffle([...q.options]).forEach(opt=>{
-            html+=`<label class="answer-option"><input type="radio" name="q${i}" value="${opt}"> ${opt}</label>`;
-        });
-        block.innerHTML=html;
-        quizBox.appendChild(block);
-    });
+// ===== OVERLAY =====
+function openEvent(e) {
+  document.getElementById("overlay-title").innerText = e.title;
+  document.getElementById("overlay-text").innerText = e.text;
+  document.getElementById("overlay").style.display = "flex";
 }
-function checkQuiz(){
-    let correct=0;
-    document.querySelectorAll('.quiz-question').forEach((block,i)=>{
-        const picked=block.querySelector('input:checked');
-        const text=block.querySelector('p').innerText.slice(3);
-        const real=quizQuestions.find(q=>q.q===text);
-        if(picked && real && picked.value===real.correct) correct++;
-    });
-    const res = document.getElementById('quiz-result');
-    if(correct<=2) res.style.color='red';
-    else if(correct<=4) res.style.color='orange';
-    else res.style.color='limegreen';
-    res.textContent=`Твоят резултат: ${correct} от 5`;
 
+function closeEvent() {
+  document.getElementById("overlay").style.display = "none";
+}
 
+// ===== КВИЗ =====
+const quizQuestions = [
+  { q: "Кой основава България?", a: "Аспарух" },
+  { q: "Кога е независимостта?", a: "1908" }
+];
 
+function showQuiz() {
+  const box = document.getElementById("quiz-box");
+  box.innerHTML = "";
+  quizQuestions.forEach((q, i) => {
+    box.innerHTML += `
+      <p>${q.q}</p>
+      <input type="text" id="q${i}">
+    `;
+  });
+  document.getElementById("check-btn").style.display = "inline-block";
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function checkQuiz() {
+  let score = 0;
+  quizQuestions.forEach((q, i) => {
+    const val = document.getElementById("q"+i).value.toLowerCase();
+    if (val.includes(q.a.toLowerCase())) score++;
+  });
+  document.getElementById("quiz-result").innerText =
+    `Резултат: ${score} / ${quizQuestions.length}`;
+}
 
 
 
