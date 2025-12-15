@@ -104,18 +104,6 @@ function showQuiz() {
   checkBtn.style.display = "block";
 }
 
-function checkQuiz() {
-  let correct = 0;
-  currentQuiz.forEach((q,i)=>{
-    const picked = document.querySelector(`input[name="q${i}"]:checked`);
-    if(picked && picked.value === q.correct) correct++;
-  });
-  const result = document.getElementById("quiz-result");
-  if(correct <= 2) result.style.color = "red";
-  else if(correct <= 4) result.style.color = "orange";
-  else result.style.color = "limegreen";
-  result.textContent = `Твоят резултат: ${correct} от ${currentQuiz.length}`;
-}
 
 
 
@@ -258,6 +246,7 @@ function checkQuiz() {
 
   result.textContent = `Твоят резултат: ${correct} от 5`;
 }
+
 
 
 
