@@ -1,6 +1,11 @@
 
 
 // ====== Данни за събитията ======
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+;
 const eventsData = {
   Ant: [
     {title:"Създаване на тракийските цивилизации", text:"Тракийските племена населяват територията на днешна България и създават свои култури и градове.", image:"images/traki.jpg"},
@@ -83,65 +88,63 @@ const quizQuestions = [
 ];
 
 // ===== СЕКЦИИ =====
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
 
 
-function showEpoch(epoch) {
+function showEpoch(e) {
   const box = document.getElementById("events");
   box.innerHTML = "";
-  eventsData[epoch].forEach((e, i) => {
-    const btn = document.createElement("button");
-    btn.textContent = e.title;
-    btn.onclick = () => openEvent(e);
-    box.appendChild(btn);
+  eventsData[e].forEach(ev => {
+    const b = document.createElement("button");
+    b.textContent = ev.t;
+    b.onclick = () => openEvent(ev);
+    box.appendChild(b);
   });
 }
 
-// ===== OVERLAY =====
-function openEvent(e) {
-  document.getElementById("overlay-title").innerText = e.title;
-  document.getElementById("overlay-text").innerText = e.text;
-  document.getElementById("overlay").style.display = "flex";
+function openEvent(ev) {
+  document.getElementById("event-title").textContent = ev.t;
+  document.getElementById("event-text").textContent = ev.d;
+  document.getElementById("event-img").src = ev.img;
+  document.getElementById("event-overlay").style.display = "flex";
 }
-
 function closeEvent() {
-  document.getElementById("overlay").style.display = "none";
+  document.getElementById("event-overlay").style.display = "none";
 }
 
-// ===== КВИЗ =====
-const quizQuestions = [
-  { q: "Кой основава България?", a: "Аспарух" },
-  { q: "Кога е независимостта?", a: "1908" }
+/* КВИЗ */
+const questions = [
+  {q:"Кой основава България?", a:"хан Аспарух", o:["хан Аспарух","Симеон","Крум"]},
+  {q:"Независимост?", a:"1908", o:["1878","1908","1944"]},
+  {q:"Живков?", a:"1944–1989", o:["1939–1944","1944–1989","1989–1997"]}
 ];
 
-function showQuiz() {
+function generateQuiz() {
   const box = document.getElementById("quiz-box");
   box.innerHTML = "";
-  quizQuestions.forEach((q, i) => {
-    box.innerHTML += `
-      <p>${q.q}</p>
-      <input type="text" id="q${i}">
-    `;
+  document.getElementById("check-btn").style.display = "block";
+  shuffle([...questions]).slice(0,3).forEach((q,i)=>{
+    const d=document.createElement("div");
+    d.className="quiz-question";
+    d.innerHTML=`<p>${q.q}</p>`+shuffle(q.o).map(o=>
+      `<label class="answer"><input type="radio" name="q${i}" value="${o}"> ${o}</label>`
+    ).join("");
+    d.dataset.correct=q.a;
+    box.appendChild(d);
   });
-  document.getElementById("check-btn").style.display = "inline-block";
 }
 
 function checkQuiz() {
-  let score = 0;
-  quizQuestions.forEach((q, i) => {
-    const val = document.getElementById("q"+i).value.toLowerCase();
-    if (val.includes(q.a.toLowerCase())) score++;
+  let c=0;
+  document.querySelectorAll(".quiz-question").forEach((q,i)=>{
+    const ch=q.querySelector("input:checked");
+    if(ch && ch.value===q.dataset.correct) c++;
   });
-  document.getElementById("quiz-result").innerText =
-    `Резултат: ${score} / ${quizQuestions.length}`;
+  const r=document.getElementById("quiz-result");
+  r.textContent=`Резултат: ${c}/3`;
+  r.style.color=c<=1?"red":c==2?"orange":"green";
 }
 
-
-
-
+function shuffle(a){return a.sort(()=>Math.random()-0.5);}
 
 
 
