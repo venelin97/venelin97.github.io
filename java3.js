@@ -85,112 +85,65 @@ const quizQuestions = [
 // ====== ГЕНЕРИРАНЕ НА ВЪПРОСИТЕ ======
 let currentQuiz = [];
 
-function showQuiz() {
-  const quizBox = document.getElementById("quiz-box");
-  const checkBtn = document.getElementById("check-button");
-  quizBox.innerHTML = "";
-  currentQuiz = shuffleArray([...quizQuestions]).slice(0,5); // 5 въпроса
-  currentQuiz.forEach((q,i) => {
-    const shuffledOptions = shuffleArray([...q.options]);
-    const block = document.createElement("div");
-    block.className = "quiz-question";
-    let html = `<p>${q.q}</p>`;
-    shuffledOptions.forEach(opt => {
-      html += `<label class="answer-option"><input type="radio" name="q${i}" value="${opt}"> ${opt}</label><br>`;
+function showSection(id){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+// ====== Overlay ======
+function openEvent(epoch,i){
+    const ev = eventsData[epoch][i];
+    document.getElementById('event-title').innerText=ev.title;
+    document.getElementById('event-text').innerText=ev.text;
+    const img = document.getElementById('event-image');
+    if(ev.image){ img.src=ev.image; img.style.display='block'; }
+    else img.style.display='none';
+    document.getElementById('event-overlay').style.display='flex';
+}
+function closeEvent(){ document.getElementById('event-overlay').style.display='none'; }
+
+// ====== Timeline ======
+function showEpoch(epoch){
+    const container = document.getElementById('events');
+    container.innerHTML='';
+    eventsData[epoch].forEach((ev,i)=>{
+        const btn=document.createElement('button');
+        btn.textContent=ev.title;
+        btn.onclick=()=>openEvent(epoch,i);
+        container.appendChild(btn);
     });
-    block.innerHTML = html;
-    quizBox.appendChild(block);
-  });
-  checkBtn.style.display = "block";
-}
-function checkQuiz() {
-  let correct = 0;
-  currentQuiz.forEach((q,i)=>{
-    const picked = document.querySelector(`input[name="q${i}"]:checked`);
-    if(picked && picked.value === q.correct) correct++;
-  });
-  const result = document.getElementById("quiz-result");
-  if(correct <= 2) result.style.color = "red";
-  else if(correct <= 4) result.style.color = "orange";
-  else result.style.color = "limegreen";
-  result.textContent = `Твоят резултат: ${correct} от ${currentQuiz.length}`;
 }
 
-
-
-
-
-// ====== Показване на бутоните за събития ======
-function showEpoch(epoch) {
-  const container = document.getElementById('events');
-  container.innerHTML = '';
-  eventsData[epoch].forEach((ev, idx) => {
-    const btn = document.createElement('button');
-    btn.textContent = ev.title;
-    btn.onclick = () => openEvent(epoch, idx);
-    container.appendChild(btn);
-  });
-  setTimeout(centerTimelineAndEvents, 10);
+// ====== Quiz ======
+function shuffle(a){return a.sort(()=>Math.random()-0.5);}
+function showQuiz(){
+    const quizBox = document.getElementById('quiz-box');
+    quizBox.innerHTML='';
+    document.getElementById('check-btn').style.display='block';
+    let selected = shuffle([...quizQuestions]).slice(0,5);
+    selected.forEach((q,i)=>{
+        let block = document.createElement('div'); block.className='quiz-question';
+        let html = `<p>${i+1}. ${q.q}</p>`;
+        shuffle([...q.options]).forEach(opt=>{
+            html+=`<label class="answer-option"><input type="radio" name="q${i}" value="${opt}"> ${opt}</label>`;
+        });
+        block.innerHTML=html;
+        quizBox.appendChild(block);
+    });
 }
-
-// ====== Менюта и смяна на секции ======
-function showSection(sectionId) {
-  document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-  const section = document.getElementById(sectionId);
-  section.style.display = 'flex';
-  section.style.flexDirection = 'column';
-  section.style.justifyContent = 'center';
-  section.style.alignItems = 'center';
-  if(sectionId === 'line') setTimeout(centerTimelineAndEvents, 10);
-}
-
-// ====== Центриране на линия и събития ======
-function centerTimelineAndEvents() {
-  const wrapper = document.getElementById('timeline-wrapper');
-  const eventsContainer = document.getElementById('events');
-  if(!wrapper || !eventsContainer) return;
-
-  wrapper.style.position = 'relative';
-  eventsContainer.style.position = 'relative';
-
-  const windowHeight = window.innerHeight;
-  const totalHeight = wrapper.offsetHeight + eventsContainer.offsetHeight + 20;
-  const topOffset = (windowHeight - totalHeight)/2;
-  wrapper.style.top = `${topOffset}px`;
-  eventsContainer.style.marginTop = '20px';
-}
-
-// ====== снимки ======
-function openEvent(epoch, index) {
-  const ev = eventsData[epoch][index];
-  document.getElementById('event-title').innerText = ev.title;
-  document.getElementById('event-text').innerText = ev.text;
-  const imgDiv = document.getElementById('event-image');
-  imgDiv.innerHTML = ev.image ? `<img src="${ev.image}" style="width:100%;border-radius:12px;">` : "";
-  document.getElementById('event-overlay').style.display = 'flex';
-}
-
-
-
-// ====== Resize & Load ======
-window.addEventListener('resize', centerTimelineAndEvents);
-window.addEventListener('load', () => {
-  centerTimelineAndEvents();
-});
-if (sectionId === "quiz") {
-    showQuiz();
-}
-// ====== Разбърква масив ======
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-// ====== Генериране на тест с 5 произволни въпроса ======
-
+function checkQuiz(){
+    let correct=0;
+    document.querySelectorAll('.quiz-question').forEach((block,i)=>{
+        const picked=block.querySelector('input:checked');
+        const text=block.querySelector('p').innerText.slice(3);
+        const real=quizQuestions.find(q=>q.q===text);
+        if(picked && real && picked.value===real.correct) correct++;
+    });
+    const res = document.getElementById('quiz-result');
+    if(correct<=2) res.style.color='red';
+    else if(correct<=4) res.style.color='orange';
+    else res.style.color='limegreen';
+    res.textContent=`Твоят резултат: ${correct} от 5`;
 
 
 
