@@ -106,6 +106,14 @@ function openEvent(epoch, index) {
     document.getElementById("event-title").textContent = ev.title;
     document.getElementById("event-text").textContent = ev.text;
     document.getElementById("event-overlay").style.display = "flex";
+  const img = document.getElementById("event-img");
+if(ev.image){
+  img.src = ev.image;
+  img.style.display="block";
+}else{
+  img.style.display="none";
+}
+
 }
 
 function closeEvent() {
@@ -113,7 +121,7 @@ function closeEvent() {
 }
 
 
-];
+
 
 function showQuiz() {
     const box = document.getElementById("quiz-box");
@@ -136,13 +144,7 @@ function checkQuiz() {
     });
     document.getElementById("quiz-result").textContent=`Резултат: ${c}`;
 }
-const img = document.getElementById("event-img");
-if(ev.image){
-  img.src = ev.image;
-  img.style.display="block";
-}else{
-  img.style.display="none";
-}
+
 
 
 
