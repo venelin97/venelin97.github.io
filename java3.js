@@ -90,59 +90,74 @@ const quizQuestions = [
 // ===== СЕКЦИИ =====
 
 
-function showEpoch(e) {
+function showEpoch(epoch) {
   const box = document.getElementById("events");
   box.innerHTML = "";
-  eventsData[e].forEach(ev => {
-    const b = document.createElement("button");
-    b.textContent = ev.t;
-    b.onclick = () => openEvent(ev);
-    box.appendChild(b);
+
+  eventsData[epoch].forEach(ev => {
+    const btn = document.createElement("button");
+    btn.textContent = ev.title;
+    btn.onclick = () => openEvent(ev);
+    box.appendChild(btn);
   });
 }
 
 function openEvent(ev) {
-  document.getElementById("event-title").textContent = ev.t;
-  document.getElementById("event-text").textContent = ev.d;
-  document.getElementById("event-img").src = ev.img;
+  document.getElementById("event-title").textContent = ev.title;
+  document.getElementById("event-text").textContent = ev.text;
+
+  const img = document.getElementById("event-img");
+  if (ev.image) {
+    img.src = ev.image;
+    img.style.display = "block";
+  } else {
+    img.style.display = "none";
+  }
+
   document.getElementById("event-overlay").style.display = "flex";
 }
+
 function closeEvent() {
   document.getElementById("event-overlay").style.display = "none";
 }
 
+/* ===== КВИЗ ===== */
 
-
-function generateQuiz() {
+function showQuiz() {
   const box = document.getElementById("quiz-box");
   box.innerHTML = "";
-  document.getElementById("check-btn").style.display = "block";
-  shuffle([...questions]).slice(0,3).forEach((q,i)=>{
-    const d=document.createElement("div");
-    d.className="quiz-question";
-    d.innerHTML=`<p>${q.q}</p>`+shuffle(q.o).map(o=>
-      `<label class="answer"><input type="radio" name="q${i}" value="${o}"> ${o}</label>`
-    ).join("");
-    d.dataset.correct=q.a;
+
+  quizQuestions.forEach((q, i) => {
+    const d = document.createElement("div");
+    d.className = "quiz-question";
+    d.dataset.correct = q.correct;
+
+    d.innerHTML =
+      `<p>${q.q}</p>` +
+      q.options.map(o =>
+        `<label class="answer">
+          <input type="radio" name="q${i}" value="${o}"> ${o}
+        </label>`
+      ).join("");
+
     box.appendChild(d);
   });
+
+  document.getElementById("check-btn").style.display = "block";
 }
 
 function checkQuiz() {
-  let c=0;
-  document.querySelectorAll(".quiz-question").forEach((q,i)=>{
-    const ch=q.querySelector("input:checked");
-    if(ch && ch.value===q.dataset.correct) c++;
+  let score = 0;
+
+  document.querySelectorAll(".quiz-question").forEach(q => {
+    const chosen = q.querySelector("input:checked");
+    if (chosen && chosen.value === q.dataset.correct) score++;
   });
-  const r=document.getElementById("quiz-result");
-  r.textContent=`Резултат: ${c}/3`;
-  r.style.color=c<=1?"red":c==2?"orange":"green";
+
+  const r = document.getElementById("quiz-result");
+  r.textContent = `Резултат: ${score}/${quizQuestions.length}`;
+  r.style.color = score <= 1 ? "red" : score == 2 ? "orange" : "green";
 }
-
-function shuffle(a){return a.sort(()=>Math.random()-0.5);}
-
-
-
 
 
 
