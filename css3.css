@@ -108,6 +108,44 @@ body {
     font-size: 50px;
     text-shadow: 0 0 10px black;
 }
+button {
+    border: none;
+    outline: none;
+}
+button:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+#menu button {
+    border: none;
+    background: linear-gradient(135deg, #ff4e50, #f9d423);
+    font-size: 16px;
+}
+#timeline button {
+    border: none;
+    background: crimson;
+    transition: 0.3s;
+}
+
+#timeline button:hover {
+    background: darkred;
+}
+#event-content {
+    animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
 
 
 
