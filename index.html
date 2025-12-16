@@ -1,70 +1,68 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-<meta charset="UTF-8">
-<title>Българска история</title>
-<link rel="stylesheet" href="css3.css">
+    <meta charset="UTF-8">
+    <title>Българска история в линия на времето</title>
+    <link rel="stylesheet" href="css3.css">
 </head>
-
 <body>
 
-<!-- КОРИЦА -->
-<div id="cover"></div>
+<div id="cover">
+    <div id="cover-title">Българска история</div>
+</div>
 
-<h1 class="main-title">Българска история в линия на времето</h1>
+<h1>Българска история в линия на времето</h1>
 
-<!-- МЕНЮ -->
 <div id="menu">
-  <button onclick="showSection('line')">Линия</button>
-  <button onclick="showSection('howto')">Указания</button>
-  <button onclick="showSection('quiz')">Въпроси</button>
+    <button onclick="showSection('line')">Линия</button>
+    <button onclick="showSection('howto')">Указания</button>
+    <button onclick="showSection('quiz')">Въпроси</button>
 </div>
 
-<!-- ЛИНИЯ -->
-<div id="line" class="section active">
-  <div id="timeline-container">
-    <div id="timeline-line"></div>
-    <div id="timeline">
-      <button onclick="showEpoch('Ant')">Античност</button>
-      <button onclick="showEpoch('Sredn')">Средновековие</button>
-      <button onclick="showEpoch('Vazr')">Възраждане</button>
-      <button onclick="showEpoch('NovoVr')">Ново време</button>
+<div id="sections">
+
+    <div id="line" class="section active">
+        <div id="timeline-container">
+            <div id="timeline-line"></div>
+            <div id="timeline">
+                <button onclick="showEpoch('Ant')">Античност</button>
+                <button onclick="showEpoch('Sredn')">Средновековие</button>
+                <button onclick="showEpoch('Vazr')">Възраждане</button>
+                <button onclick="showEpoch('NovoVr')">Ново време</button>
+            </div>
+        </div>
+        <div id="events"></div>
     </div>
-  </div>
-  <div id="events"></div>
+
+    <div id="howto" class="section">
+        <h2>Указания за работа със сайта</h2>
+        <p>
+            Натисни бутон за епоха и ще видиш главните събития.
+            След това можеш да провериш знанията си във „Въпроси“.
+        </p>
+    </div>
+
+    <div id="quiz" class="section">
+        <h2>Въпроси за усвоените знания</h2>
+        <button onclick="showQuiz()" class="quiz-main-btn">Покажи въпросите</button>
+        <div id="quiz-box"></div>
+        <div id="quiz-result"></div>
+        <button onclick="checkQuiz()" id="quiz-result-btn" class="quiz-main-btn">Виж резултата</button>
+    </div>
+
 </div>
 
-<!-- УКАЗАНИЯ -->
-<div id="howto" class="section">
-  <h2>Указания</h2>
-  <p>Избери епоха, разгледай събитията и след това провери знанията си във „Въпроси“.</p>
-</div>
-
-<!-- КВИЗ -->
-<div id="quiz" class="section">
-  <h2>Тест</h2>
-  <button class="quiz-btn" onclick="generateQuiz()">Покажи въпросите</button>
-  <div id="quiz-box"></div>
-  <button class="quiz-btn" id="check-btn" onclick="checkQuiz()" style="display:none;">Виж резултата</button>
-  <div id="quiz-result"></div>
-</div>
-
-<!-- OVERLAY -->
-<div id="event-overlay">
-  <div id="event-content">
-    <img id="event-img" style="max-width:100%; margin:15px 0;">
-
-    <span id="close-overlay" onclick="closeEvent()">×</span>
-    <h2 id="event-title"></h2>
-    <p id="event-text"></p>
-    <img id="event-img">
-  </div>
+<div id="event-overlay" style="display:none;">
+    <div id="event-content">
+        <span id="close-overlay" onclick="closeEvent()">&times;</span>
+        <h2 id="event-title"></h2>
+        <p id="event-text"></p>
+    </div>
 </div>
 
 <script src="java3.js"></script>
 </body>
 </html>
-
 
 
 
