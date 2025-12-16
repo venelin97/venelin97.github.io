@@ -91,73 +91,50 @@ const quizQuestions = [
 
 
 function showEpoch(epoch) {
-  const box = document.getElementById("events");
-  box.innerHTML = "";
-
-  eventsData[epoch].forEach(ev => {
-    const btn = document.createElement("button");
-    btn.textContent = ev.title;
-    btn.onclick = () => openEvent(ev);
-    box.appendChild(btn);
-  });
+    const box = document.getElementById("events");
+    box.innerHTML = "";
+    eventsData[epoch].forEach((ev, i) => {
+        const b = document.createElement("button");
+        b.textContent = ev.title;
+        b.onclick = () => openEvent(epoch, i);
+        box.appendChild(b);
+    });
 }
 
-function openEvent(ev) {
-  document.getElementById("event-title").textContent = ev.title;
-  document.getElementById("event-text").textContent = ev.text;
-
-  const img = document.getElementById("event-img");
-  if (ev.image) {
-    img.src = ev.image;
-    img.style.display = "block";
-  } else {
-    img.style.display = "none";
-  }
-
-  document.getElementById("event-overlay").style.display = "flex";
+function openEvent(epoch, index) {
+    const ev = eventsData[epoch][index];
+    document.getElementById("event-title").textContent = ev.title;
+    document.getElementById("event-text").textContent = ev.text;
+    document.getElementById("event-overlay").style.display = "flex";
 }
 
 function closeEvent() {
-  document.getElementById("event-overlay").style.display = "none";
+    document.getElementById("event-overlay").style.display = "none";
 }
 
-/* ===== КВИЗ ===== */
+const quizQuestions = [
+    {q:"Кой основава България?", correct:"хан Аспарух", options:["хан Аспарух","Крум","Симеон"]}
+];
 
 function showQuiz() {
-  const box = document.getElementById("quiz-box");
-  box.innerHTML = "";
-
-  quizQuestions.forEach((q, i) => {
-    const d = document.createElement("div");
-    d.className = "quiz-question";
-    d.dataset.correct = q.correct;
-
-    d.innerHTML =
-      `<p>${q.q}</p>` +
-      q.options.map(o =>
-        `<label class="answer">
-          <input type="radio" name="q${i}" value="${o}"> ${o}
-        </label>`
-      ).join("");
-
-    box.appendChild(d);
-  });
-
-  document.getElementById("check-btn").style.display = "block";
+    const box = document.getElementById("quiz-box");
+    box.innerHTML = "";
+    quizQuestions.forEach((q,i)=>{
+        const d=document.createElement("div");
+        d.innerHTML=`<p>${q.q}</p>`+q.options.map(o=>`
+            <label><input type="radio" name="q${i}" value="${o}"> ${o}</label>
+        `).join("");
+        box.appendChild(d);
+    });
+    document.getElementById("quiz-result-btn").style.display="block";
 }
 
 function checkQuiz() {
-  let score = 0;
-
-  document.querySelectorAll(".quiz-question").forEach(q => {
-    const chosen = q.querySelector("input:checked");
-    if (chosen && chosen.value === q.dataset.correct) score++;
-  });
-
-  const r = document.getElementById("quiz-result");
-  r.textContent = `Резултат: ${score}/${quizQuestions.length}`;
-  r.style.color = score <= 1 ? "red" : score == 2 ? "orange" : "green";
+    let c=0;
+    quizQuestions.forEach((q,i)=>{
+        const a=document.querySelector(`input[name="q${i}"]:checked`);
+        if(a && a.value===q.correct) c++;
+    });
+    document.getElementById("quiz-result").textContent=`Резултат: ${c}`;
 }
-
-
 
