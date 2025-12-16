@@ -112,8 +112,7 @@ function closeEvent() {
     document.getElementById("event-overlay").style.display = "none";
 }
 
-const quizQuestions = [
-    {q:"Кой основава България?", correct:"хан Аспарух", options:["хан Аспарух","Крум","Симеон"]}
+
 ];
 
 function showQuiz() {
@@ -137,4 +136,13 @@ function checkQuiz() {
     });
     document.getElementById("quiz-result").textContent=`Резултат: ${c}`;
 }
+const img = document.getElementById("event-img");
+if(ev.image){
+  img.src = ev.image;
+  img.style.display="block";
+}else{
+  img.style.display="none";
+}
+
+
 
