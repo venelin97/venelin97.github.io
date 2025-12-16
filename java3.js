@@ -111,12 +111,7 @@ function closeEvent() {
   document.getElementById("event-overlay").style.display = "none";
 }
 
-/* КВИЗ */
-const questions = [
-  {q:"Кой основава България?", a:"хан Аспарух", o:["хан Аспарух","Симеон","Крум"]},
-  {q:"Независимост?", a:"1908", o:["1878","1908","1944"]},
-  {q:"Живков?", a:"1944–1989", o:["1939–1944","1944–1989","1989–1997"]}
-];
+
 
 function generateQuiz() {
   const box = document.getElementById("quiz-box");
@@ -145,6 +140,7 @@ function checkQuiz() {
 }
 
 function shuffle(a){return a.sort(()=>Math.random()-0.5);}
+
 
 
 
