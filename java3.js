@@ -144,6 +144,44 @@ function checkQuiz() {
     });
     document.getElementById("quiz-result").textContent=`Резултат: ${c}`;
 }
+// highlight за епохи
+function showEpoch(epoch) {
+    const box = document.getElementById("events");
+    box.innerHTML = "";
+
+    // махни highlight от всички епохи
+    document.querySelectorAll("#timeline button").forEach(b => b.classList.remove("active-epoch"));
+
+    // highlight на натиснатия
+    document.querySelector(`#timeline button[onclick="showEpoch('${epoch}')"]`).classList.add("active-epoch");
+
+    eventsData[epoch].forEach((ev, i) => {
+        const b = document.createElement("button");
+        b.textContent = ev.title;
+        b.onclick = () => openEvent(epoch, i);
+        box.appendChild(b);
+    });
+}
+
+// highlight за събития
+function openEvent(epoch, index) {
+    const ev = eventsData[epoch][index];
+    document.getElementById("event-title").textContent = ev.title;
+    document.getElementById("event-text").textContent = ev.text;
+    const img = document.getElementById("event-img");
+    if(ev.image){
+        img.src = ev.image;
+        img.style.display = "block";
+    } else {
+        img.style.display = "none";
+    }
+    document.getElementById("event-overlay").style.display = "flex";
+
+    // highlight на бутона за събитие
+    document.querySelectorAll("#events button").forEach(b => b.classList.remove("active-event"));
+    document.querySelectorAll("#events button")[index].classList.add("active-event");
+}
+
 
 
 
