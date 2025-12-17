@@ -248,9 +248,17 @@ function showReward(points) {
 function shuffleArray(arr) {
     return arr.sort(() => Math.random() - 0.5);
 }
+document.getElementById("show-quiz-btn").addEventListener("click", showQuiz);
+document.getElementById("shuffle-btn").addEventListener("click", shuffleQuiz);
+document.getElementById("quiz-result-btn").addEventListener("click", checkQuiz);
+
+// първоначално скрий бутона за резултат
+document.getElementById("quiz-result-btn").style.display = "none";
+
 
 
   
+
 
 
 
