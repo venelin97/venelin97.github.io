@@ -289,7 +289,7 @@ button:hover {
 }
 #shuffle-btn:hover {
     background-color: #f0e68c; /* светло жълто, например */
-    cursor: pointer;
+    cursor: pointer;}
 /* Общ клас за всички квиз бутони */
 .quiz-btn {
     font-size: 18px !important;
@@ -322,6 +322,7 @@ button:hover {
     outline: none !important;
     box-shadow: 0 0 0 3px rgba(0, 80, 179, 0.5) !important;
 }
+
 
 
 
