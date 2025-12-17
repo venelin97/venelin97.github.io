@@ -291,45 +291,55 @@ button:hover {
     background-color: #f0e68c; /* светло жълто, например */
     cursor: pointer;
 }
-/* Стил за всички бутони за епохи и събития */
-#timeline button,
-#events button {
-    font-size: 18px;            /* голям текст */
-    padding: 12px 24px;         /* достатъчно разстояние около текста */
-    background-color: #007BFF;  /* основен син цвят */
-    color: white;               /* бял текст */
-    border: none;               /* без рамка */
-    border-radius: 12px;        /* заоблени ъгли */
-    margin: 6px;                /* разстояние между бутоните */
-    cursor: pointer;            /* показва ръка при hover */
-    transition: all 0.3s ease; /* плавен преход на цветове и размери */
+/* Общ стил за бутоните на квиза */
+.quiz-main-btn,
+.quiz-shuffle-btn {
+    font-size: 16px;             /* по-голям текст */
+    padding: 10px 20px;          /* повече пространство */
+    background-color: #003f7f;   /* тъмно син цвят */
+    color: white;                /* бял текст */
+    border: none;
+    border-radius: 12px;         /* заоблени ъгли */
+    margin: 5px;                 /* разстояние между бутоните */
+    cursor: pointer;
+    transition: all 0.3s ease;   /* плавни ефекти при hover */
     box-shadow: 0 3px 6px rgba(0,0,0,0.2); /* леко сянка */
 }
 
-/* Hover ефект – малко увеличаване и по-светъл син */
-#timeline button:hover,
-#events button:hover {
-    background-color: #339CFF;
-    transform: scale(1.05); /* леко уголемяване */
+/* Hover ефект – леко светлосиньо и уголемяване */
+.quiz-main-btn:hover,
+.quiz-shuffle-btn:hover {
+    background-color: #0050b3;
+    transform: scale(1.05);
 }
 
-/* Натиснат бутон / активен */
-#timeline button.active-epoch,
-#events button.active-event {
-    background-color: #0056b3;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.3); /* по-силна сянка */
+/* Натиснат бутон */
+.quiz-main-btn:active,
+.quiz-shuffle-btn:active {
+    background-color: #00295c;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
 }
 
-/* Когато бутонът е с фокус (например от клавиатурата) */
-#timeline button:focus,
-#events button:focus {
+/* Фокус при клавиатура */
+.quiz-main-btn:focus,
+.quiz-shuffle-btn:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0,123,255,0.5);
+    box-shadow: 0 0 0 3px rgba(0,64,127,0.5);
 }
 
-
-
-
+/* Подравни бутоните на едно ниво (shuffle до show questions) */
+#quiz .quiz-main-btn:first-of-type {
+    display: inline-block;
+}
+#shuffle-btn {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+#quiz-result-btn {
+    display: inline-block;
+    margin-top: 10px; /* отделен малко от останалите */
+}
 
 
 
