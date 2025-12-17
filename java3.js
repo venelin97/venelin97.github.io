@@ -90,7 +90,7 @@ let quizQuestions = [];
 function shuffleQuiz() {
     // добави нови въпроси
   quizQuestions = [...extraQuestions].sort(() => Math.random() - 0.5).slice(0,3);
-    showQuiz();
+    
 }
 
 // ===== СЕКЦИИ =====
@@ -170,6 +170,7 @@ function checkQuiz() {
 
 
   
+
 
 
 
