@@ -87,24 +87,6 @@ const extraQuestions = [
   }
 ];
 let quizQuestions = [];
-function shuffleQuiz() {
-    // разбъркване на масива
-    quizQuestions.sort(() => Math.random() - 0.5);
-
-    // ако вече са показани въпросите, обнови ги
-    const box = document.getElementById("quiz-box");
-    if (box.children.length > 0) {
-        box.innerHTML = ""; // изчисти старите
-        quizQuestions.forEach((q, i) => {
-            const d = document.createElement("div");
-            d.innerHTML = `<p>${q.q}</p>` + q.options.map(o => `
-                <label><input type="radio" name="q${i}" value="${o}"> ${o}</label>
-            `).join("");
-            box.appendChild(d);
-        });
-    }
-}
-
 
 
     
@@ -174,7 +156,7 @@ function showQuiz() {
         box.appendChild(d);
     });
     document.getElementById("quiz-result-btn").style.display="block";
-}
+  
 
 function checkQuiz() {
     let c=0;
@@ -184,9 +166,29 @@ function checkQuiz() {
     });
     document.getElementById("quiz-result").textContent=`Резултат: ${c}`;
 }
+const quizBox = document.getElementById("quiz-box");
+const showQuizBtn = document.getElementById("show-quiz-btn");
+const shuffleBtn = document.getElementById("shuffle-btn");
+const quizResultBtn = document.getElementById("quiz-result-btn");
+
+quizResultBtn.style.display = "none"; // първо скрий резултата
+
+
+function shuffleQuiz() {
+    quizQuestions.sort(() => Math.random() - 0.5);
+    if (quizBox.children.length > 0) showQuiz(); // ако вече са показани, обнови ги
+}
+
+
+// Свързваме бутоните
+showQuizBtn.addEventListener("click", showQuiz);
+shuffleBtn.addEventListener("click", shuffleQuiz);
+quizResultBtn.addEventListener("click", checkQuiz);
+
 
 
   
+
 
 
 
