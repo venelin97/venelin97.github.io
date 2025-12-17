@@ -101,7 +101,7 @@ function shuffleQuiz() {
 
 
     
-}
+
 
 // ===== СЕКЦИИ =====
 
@@ -180,6 +180,7 @@ function checkQuiz() {
 
 
   
+
 
 
 
