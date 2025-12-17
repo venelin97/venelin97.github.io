@@ -375,6 +375,52 @@ button:hover {
 .bronze-shield { background: #cd7f32; box-shadow: 0 0 15px #cd7f32; color: white; }
 .iron-shield { background: #555; box-shadow: 0 0 10px light brown; color: white; }
 
+#quiz-box input[type="radio"] {
+    display: none; /* скрива стандартния кръг */
+}
+
+/* стил за кастъм точката */
+#quiz-box input[type="radio"] + label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 16px;
+}
+
+/* кръг, който ще се пълни */
+#quiz-box input[type="radio"] + label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #8b5e3c; /* кафяв кант */
+    border-radius: 50%;
+    background: white;
+}
+
+/* когато е отбелязано */
+#quiz-box input[type="radio"]:checked + label::before {
+    background: #8b5e3c; /* кафяво пълнене */
+}
+#quiz-box div {
+    background: #f9f2ec; /* светло фонче за карето */
+    border: 2px solid #d2b48c; /* светло кафяво */
+    border-radius: 10px;
+    padding: 20px; /* увеличава карето */
+    margin-bottom: 2rem; /* ~2 см разстояние между въпросите */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* лек ефект на 3D */
+    font-size: 18px; /* по-голям текст */
+}
+#quiz-box p {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
 
 
 
