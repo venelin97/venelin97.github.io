@@ -86,7 +86,7 @@ const extraQuestions = [
     options: ["Астро-Унгария", "Османската империя", "Персия"]
   }
 ];
-let quizQuestions = [extraQuestions];
+let quizQuestions = [...extraQuestions];
 
 
     
@@ -190,6 +190,7 @@ quizResultBtn.addEventListener("click", checkQuiz);
 
 
   
+
 
 
 
