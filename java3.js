@@ -248,10 +248,36 @@ function showReward(points) {
 
     document.body.appendChild(rewardDiv);
 }
+.answer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.answer input[type="radio"] {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 3px solid #8b5e3c;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.answer input[type="radio"]:checked {
+    background-color: #8b5e3c;
+}
+
+.answer label {
+    cursor: pointer;
+    font-size: 16px;
+}
+
 
 
 
   
+
 
 
 
