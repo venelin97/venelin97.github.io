@@ -248,6 +248,41 @@ button:hover {
     border-radius: 10px;
     font-weight: bold;
 }
+.quiz-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#event-content {
+    position: relative; /* МНОГО ВАЖНО */
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 600px;
+}
+
+#close-overlay {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 26px;
+    cursor: pointer;
+    user-select: none;
+}
+#event-overlay {
+    z-index: 1000;
+}
+
+#timeline {
+    transition: opacity 0.3s;
+}
+
+.timeline-disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+
 
 
 
