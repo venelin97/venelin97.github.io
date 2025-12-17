@@ -99,29 +99,21 @@ function shuffleQuiz() {
 function showEpoch(epoch) {
     const box = document.getElementById("events");
     box.innerHTML = "";
-    eventsData[epoch].forEach((ev, i) => {
-        const b = document.createElement("button");
-        b.textContent = ev.title;
-        b.onclick = () => openEvent(epoch, i);
-        box.appendChild(b);
-      {
-    const box = document.getElementById("events");
-    box.innerHTML = "";
 
     // махни highlight от всички епохи
-    document.querySelectorAll("#timeline button").forEach(b => b.classList.remove("active-epoch"));
+    document.querySelectorAll("#timeline button")
+        .forEach(b => b.classList.remove("active-epoch"));
 
-    // highlight на натиснатия
-    document.querySelector(`#timeline button[onclick="showEpoch('${epoch}')"]`).classList.add("active-epoch");
+    // highlight на натиснатия бутон
+    document.querySelector(`#timeline button[onclick="showEpoch('${epoch}')"]`)
+        .classList.add("active-epoch");
 
+    // създай бутоните за събитията
     eventsData[epoch].forEach((ev, i) => {
-        const b = document.createElement("button");
-        b.textContent = ev.title;
-        b.onclick = () => openEvent(epoch, i);
-        box.appendChild(b);
-    });
-}
-
+        const btn = document.createElement("button");
+        btn.textContent = ev.title;
+        btn.onclick = () => openEvent(epoch, i);
+        box.appendChild(btn);
     });
 }
 
@@ -134,19 +126,15 @@ function openEvent(epoch, index) {
 if(ev.image){
   img.src = ev.image;
   img.style.display="block";
-  document.getElementById("quiz-result-btn").style.display="inline-block";
-  const ev = eventsData[epoch][index];
-    document.getElementById("event-title").textContent = ev.title;
-    document.getElementById("event-text").textContent = ev.text;
-    const img = document.getElementById("event-img");
-    if(ev.image){
-        img.src = ev.image;
-        img.style.display = "block";
-
+  
+  
 }
 else{
   img.style.display="none";
 }
+ document.querySelectorAll("#events button").forEach(b => b.classList.remove("active-event"));
+    document.querySelectorAll("#events button")[index].classList.add("active-event")
+   document.getElementById("quiz-result-btn").style.display="inline-block"
 
 }
 
@@ -179,11 +167,9 @@ function checkQuiz() {
     });
     document.getElementById("quiz-result").textContent=`Резултат: ${c}`;
 }
-// highlight за епохи
 
-    // highlight на бутона за събитие
-    document.querySelectorAll("#events button").forEach(b => b.classList.remove("active-event"));
-    document.querySelectorAll("#events button")[index].classList.add("active-event")
+
+  
 
 
 
