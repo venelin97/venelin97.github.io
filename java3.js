@@ -156,6 +156,7 @@ function showQuiz() {
         box.appendChild(d);
     });
     document.getElementById("quiz-result-btn").style.display="block";
+}
   
 
 function checkQuiz() {
@@ -188,6 +189,7 @@ quizResultBtn.addEventListener("click", checkQuiz);
 
 
   
+
 
 
 
