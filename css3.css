@@ -437,6 +437,12 @@ button:hover {
     cursor: pointer;
     font-size: 16px;
 }
+    #quiz-result-btn {
+    display: block;
+    margin: 30px auto 50px auto;
+}
+
+
 
 
 
