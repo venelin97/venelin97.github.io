@@ -207,6 +207,32 @@ button:hover {
     background-color: darkorange !important;
     color: white;
 }
+#timeline-line {
+    width: 100%;
+    height: 4px;
+    background: gold;
+    position: absolute;
+    top: 70px; /* отмести надолу, за да е под бутоните */
+    z-index: 0; /* линията под бутоните */
+}
+
+#timeline button {
+    position: relative;
+    z-index: 1; /* бутоните над линията */
+}
+#close-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none; /* няма да се маркира при клик */
+}
+
+#close-overlay:hover {
+    color: red;
+}
+
 
 
 
