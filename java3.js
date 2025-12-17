@@ -195,16 +195,12 @@ function openEvent(epoch, index) {
 document.getElementById("quiz-result-btn").style.display="inline-block";
 
 
-function shuffleQuiz() {
-    quizQuestions.sort(() => Math.random() - 0.5);
-    showQuiz(); // показва въпросите след разбъркване
-}
 
 
 
 
-function openEvent(epoch, index) {
-    const ev = eventsData[epoch][index];
+
+
 
     document.getElementById("event-title").textContent = ev.title;
     document.getElementById("event-text").textContent = ev.text;
@@ -225,6 +221,7 @@ function closeEvent() {
     document.getElementById("event-overlay").style.display = "none";
     document.getElementById("timeline").classList.remove("timeline-disabled");
 }
+
 
 
 
