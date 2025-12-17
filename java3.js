@@ -160,6 +160,28 @@ function showQuiz() {
         box.appendChild(d);
     });
     document.getElementById("quiz-result-btn").style.display="block";
+  {
+    const box = document.getElementById("quiz-box");
+    box.innerHTML = "";
+
+    quizQuestions.forEach((q, i) => {
+        const d = document.createElement("div");
+
+        d.innerHTML = `
+            <p>${q.q}</p>
+            ${q.options.map((o, j) => `
+                <div class="answer">
+                    <input type="radio" id="q${i}_${j}" name="q${i}" value="${o}">
+                    <label for="q${i}_${j}">${o}</label>
+                </div>
+            `).join("")}
+        `;
+
+        box.appendChild(d);
+    });
+
+    document.getElementById("quiz-result-btn").style.display = "block";
+}
 }
   
 
@@ -230,6 +252,7 @@ function showReward(points) {
 
 
   
+
 
 
 
