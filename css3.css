@@ -290,55 +290,53 @@ button:hover {
 #shuffle-btn:hover {
     background-color: #f0e68c; /* светло жълто, например */
     cursor: pointer;
-}
-/* Общ стил за бутоните на квиза */
-.quiz-main-btn,
-.quiz-shuffle-btn {
-    font-size: 16px;             /* по-голям текст */
-    padding: 10px 20px;          /* повече пространство */
-    background-color: #003f7f;   /* тъмно син цвят */
-    color: white;                /* бял текст */
+/* Основен стил на бутоните за квиз */
+#show-quiz-btn,
+#shuffle-btn,
+#quiz-result-btn {
+    font-size: 18px;            /* по-голям текст */
+    padding: 15px 25px;         /* повече пространство */
+    background-color: #002f6c;  /* тъмносин фон */
+    color: white;               /* бял текст */
     border: none;
-    border-radius: 12px;         /* заоблени ъгли */
-    margin: 5px;                 /* разстояние между бутоните */
+    border-radius: 12px;        /* заоблени ъгли */
     cursor: pointer;
-    transition: all 0.3s ease;   /* плавни ефекти при hover */
-    box-shadow: 0 3px 6px rgba(0,0,0,0.2); /* леко сянка */
+    transition: all 0.3s ease;  /* плавни ефекти */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-/* Hover ефект – леко светлосиньо и уголемяване */
-.quiz-main-btn:hover,
-.quiz-shuffle-btn:hover {
-    background-color: #0050b3;
-    transform: scale(1.05);
+/* Hover ефект */
+#show-quiz-btn:hover,
+#shuffle-btn:hover,
+#quiz-result-btn:hover {
+    background-color: #0050b3;  /* светлосин при hover */
+    transform: scale(1.05);     /* леко уголемяване */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
 }
 
-/* Натиснат бутон */
-.quiz-main-btn:active,
-.quiz-shuffle-btn:active {
-    background-color: #00295c;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+/* Активен бутон (натиснат) */
+#show-quiz-btn:active,
+#shuffle-btn:active,
+#quiz-result-btn:active {
+    background-color: #001f4c;
+    transform: scale(0.97);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
 
 /* Фокус при клавиатура */
-.quiz-main-btn:focus,
-.quiz-shuffle-btn:focus {
+#show-quiz-btn:focus,
+#shuffle-btn:focus,
+#quiz-result-btn:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0,64,127,0.5);
+    box-shadow: 0 0 0 3px rgba(0, 80, 179, 0.5);
 }
 
-/* Подравни бутоните на едно ниво (shuffle до show questions) */
-#quiz .quiz-main-btn:first-of-type {
-    display: inline-block;
-}
-#shuffle-btn {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 10px;
-}
-#quiz-result-btn {
-    display: inline-block;
-    margin-top: 10px; /* отделен малко от останалите */
+/* Подравняване на бутоните на един ред */
+.quiz-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 
