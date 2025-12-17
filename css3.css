@@ -291,6 +291,42 @@ button:hover {
     background-color: #f0e68c; /* светло жълто, например */
     cursor: pointer;
 }
+/* Стил за всички бутони за епохи и събития */
+#timeline button,
+#events button {
+    font-size: 18px;            /* голям текст */
+    padding: 12px 24px;         /* достатъчно разстояние около текста */
+    background-color: #007BFF;  /* основен син цвят */
+    color: white;               /* бял текст */
+    border: none;               /* без рамка */
+    border-radius: 12px;        /* заоблени ъгли */
+    margin: 6px;                /* разстояние между бутоните */
+    cursor: pointer;            /* показва ръка при hover */
+    transition: all 0.3s ease; /* плавен преход на цветове и размери */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2); /* леко сянка */
+}
+
+/* Hover ефект – малко увеличаване и по-светъл син */
+#timeline button:hover,
+#events button:hover {
+    background-color: #339CFF;
+    transform: scale(1.05); /* леко уголемяване */
+}
+
+/* Натиснат бутон / активен */
+#timeline button.active-epoch,
+#events button.active-event {
+    background-color: #0056b3;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3); /* по-силна сянка */
+}
+
+/* Когато бутонът е с фокус (например от клавиатурата) */
+#timeline button:focus,
+#events button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.5);
+}
+
 
 
 
