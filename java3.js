@@ -181,6 +181,14 @@ function openEvent(epoch, index) {
     document.querySelectorAll("#events button").forEach(b => b.classList.remove("active-event"));
     document.querySelectorAll("#events button")[index].classList.add("active-event");
 }
+document.getElementById("quiz-result-btn").style.display="inline-block";
+
+
+function shuffleQuiz() {
+    quizQuestions.sort(() => Math.random() - 0.5);
+    showQuiz(); // показва въпросите след разбъркване
+}
+
 
 
 
