@@ -86,6 +86,17 @@ const quizQuestions = [
     options: ["Астро-Унгария", "Османската империя", "Персия"]
   }
 ];
+function shuffleQuiz() {
+    // добави нови въпроси
+    quizQuestions.push(
+        extraQuestions[Math.floor(Math.random() * extraQuestions.length)]
+    );
+
+    // разбъркай
+    quizQuestions.sort(() => Math.random() - 0.5);
+
+    showQuiz();
+}
 
 // ===== СЕКЦИИ =====
 
@@ -188,6 +199,42 @@ function shuffleQuiz() {
     quizQuestions.sort(() => Math.random() - 0.5);
     showQuiz(); // показва въпросите след разбъркване
 }
+#event-overlay {
+    z-index: 1000;
+}
+
+#timeline {
+    transition: opacity 0.3s;
+}
+
+.timeline-disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+function openEvent(epoch, index) {
+    const ev = eventsData[epoch][index];
+
+    document.getElementById("event-title").textContent = ev.title;
+    document.getElementById("event-text").textContent = ev.text;
+
+    const img = document.getElementById("event-img");
+    if (ev.image) {
+        img.src = ev.image;
+        img.style.display = "block";
+    } else {
+        img.style.display = "none";
+    }
+
+    document.getElementById("event-overlay").style.display = "flex";
+    document.getElementById("timeline").classList.add("timeline-disabled");
+}
+
+function closeEvent() {
+    document.getElementById("event-overlay").style.display = "none";
+    document.getElementById("timeline").classList.remove("timeline-disabled");
+}
+
+
 
 
 
