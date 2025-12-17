@@ -39,7 +39,7 @@ const eventsData = {
 
 // ====== Данни за квиза ======
 // ====== ВЪПРОСИ С ВАРИАНТИ ======
-const quizQuestions = [
+const extraQuestions = [
   {
     q: "Кой е основателят на Първото българско царство?",
     correct: "хан Аспарух",
@@ -121,7 +121,10 @@ function openEvent(epoch, index) {
 if(ev.image){
   img.src = ev.image;
   img.style.display="block";
-}else{
+  document.getElementById("quiz-result-btn").style.display="inline-block";
+
+}
+else{
   img.style.display="none";
 }
 
@@ -221,6 +224,7 @@ function closeEvent() {
     document.getElementById("event-overlay").style.display = "none";
     document.getElementById("timeline").classList.remove("timeline-disabled");
 }
+
 
 
 
