@@ -285,8 +285,8 @@ button:hover {
     display: flex;           /* бутоните са на един ред */
     gap: 10px;               /* разстояние между тях */
     align-items: center;     /* вертикално центриране */
-    margin-bottom: 15px;     /* малко пространство под бутоните */
-}
+    margin-bottom: 15px; 
+ margin: 30px auto 50px auto;
 #shuffle-btn:hover {
     background-color: #f0e68c; /* светло жълто, например */
     cursor: pointer;}
@@ -324,14 +324,7 @@ button:hover {
 }
 /* Премахва бежавите точки в квиза */
 
-#quiz-box, 
-#quiz-box div, 
-#quiz-box p, 
-#quiz-box label {
-    list-style: none;   /* маха точките */
-    margin: 0;          /* премахва нежелани отстояния */
-    padding: 0;         /* премахва нежелани отстояния */
-}
+
 /* Замъглен background */
 .reward-background {
     position: fixed;
@@ -444,6 +437,7 @@ button:hover {
     cursor: pointer;
     font-size: 16px;
 }
+
 
 
 
