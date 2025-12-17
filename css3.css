@@ -290,66 +290,38 @@ button:hover {
 #shuffle-btn:hover {
     background-color: #f0e68c; /* светло жълто, например */
     cursor: pointer;
-/* Основен стил на бутоните за квиз */
-#show-quiz-btn,
-#shuffle-btn,
-#quiz-result-btn {
-    font-size: 18px;            /* по-голям текст */
-    padding: 15px 25px;         /* повече пространство */
-    background-color: #002f6c;  /* тъмносин фон */
-    color: white;               /* бял текст */
-    border: none;
-    border-radius: 12px;        /* заоблени ъгли */
-    cursor: pointer;
-    transition: all 0.3s ease;  /* плавни ефекти */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+/* Общ клас за всички квиз бутони */
+.quiz-btn {
+    font-size: 18px !important;
+    padding: 15px 25px !important;
+    background-color: #002f6c !important; /* тъмносин */
+    color: white !important;
+    border: none !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
 }
 
 /* Hover ефект */
-#show-quiz-btn:hover,
-#shuffle-btn:hover,
-#quiz-result-btn:hover {
-    background-color: #0050b3;  /* светлосин при hover */
-    transform: scale(1.05);     /* леко уголемяване */
-    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+.quiz-btn:hover {
+    background-color: #0050b3 !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
 }
 
-/* Активен бутон (натиснат) */
-#show-quiz-btn:active,
-#shuffle-btn:active,
-#quiz-result-btn:active {
-    background-color: #001f4c;
-    transform: scale(0.97);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+/* Активен бутон */
+.quiz-btn:active {
+    background-color: #001f4c !important;
+    transform: scale(0.97) !important;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2) !important;
 }
 
 /* Фокус при клавиатура */
-#show-quiz-btn:focus,
-#shuffle-btn:focus,
-#quiz-result-btn:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 80, 179, 0.5);
+.quiz-btn:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(0, 80, 179, 0.5) !important;
 }
-
-/* Подравняване на бутоните на един ред */
-.quiz-buttons {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
