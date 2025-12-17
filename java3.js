@@ -170,6 +170,17 @@ function checkQuiz() {
         if(a && a.value===q.correct) c++;
     });
     document.getElementById("quiz-result").textContent=`Резултат: ${c}`;
+  {
+    let c = 0;
+    quizQuestions.forEach((q,i) => {
+        const a = document.querySelector(`input[name="q${i}"]:checked`);
+        if(a && a.value === q.correct) c++;
+    });
+    document.getElementById("quiz-result").textContent = `Резултат: ${c}`;
+
+    // Показваме щит според точките
+    showReward(c);
+}
 }
 const quizBox = document.getElementById("quiz-box");
 const showQuizBtn = document.getElementById("show-quiz-btn");
@@ -187,9 +198,39 @@ showQuizBtn.addEventListener("click", showQuiz);
 shuffleBtn.addEventListener("click", shuffleQuiz);
 quizResultBtn.addEventListener("click", checkQuiz);
 
+// Функция за показване на щит според точките
+function showReward(points) {
+    // Премахваме стария reward, ако има
+    const oldReward = document.querySelector('.reward-background');
+    if(oldReward) oldReward.remove();
+
+    // Избираме щит според точките
+    let shieldClass = '';
+    if(points >= 9) {
+        shieldClass = 'gold-shield';
+    } else if(points >= 7) {
+        shieldClass = 'silver-shield';
+    } else if(points >= 5) {
+        shieldClass = 'bronze-shield';
+    } else {
+        shieldClass = 'iron-shield';
+    }
+
+    // Създаваме overlay
+    const rewardDiv = document.createElement('div');
+    rewardDiv.className = 'reward-background';
+    rewardDiv.innerHTML = `<div class="shield ${shieldClass}">${points} точки</div>`;
+
+    // Клик върху overlay за затваряне
+    rewardDiv.onclick = () => rewardDiv.remove();
+
+    document.body.appendChild(rewardDiv);
+}
+
 
 
   
+
 
 
 
