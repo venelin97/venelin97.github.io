@@ -86,10 +86,14 @@ const extraQuestions = [
     options: ["Астро-Унгария", "Османската империя", "Персия"]
   }
 ];
-let quizQuestions = [];
+let quizQuestions = [const extraQuestions];
 
 
     
+function shuffleQuiz() {
+    quizQuestions.sort(() => Math.random() - 0.5);
+    showQuiz(); // винаги обновява видимите въпроси
+}
 
 
 // ===== СЕКЦИИ =====
@@ -175,10 +179,7 @@ const quizResultBtn = document.getElementById("quiz-result-btn");
 quizResultBtn.style.display = "none"; // първо скрий резултата
 
 
-function shuffleQuiz() {
-    quizQuestions.sort(() => Math.random() - 0.5);
-    if (quizBox.children.length > 0) showQuiz(); // ако вече са показани, обнови ги
-}
+
 
 
 // Свързваме бутоните
@@ -189,6 +190,7 @@ quizResultBtn.addEventListener("click", checkQuiz);
 
 
   
+
 
 
 
