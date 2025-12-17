@@ -375,7 +375,8 @@ button:hover {
 .gold-shield { background: gold; box-shadow: 0 0 30px gold; color: black; }
 .silver-shield { background: silver; box-shadow: 0 0 20px silver; color: black; }
 .bronze-shield { background: #cd7f32; box-shadow: 0 0 15px #cd7f32; color: white; }
-.iron-shield { background: #555; box-shadow: 0 0 10px #333; color: white; }
+.iron-shield { background: #555; box-shadow: 0 0 10px light brown; color: white; }
+
 
 
 
