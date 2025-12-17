@@ -332,6 +332,49 @@ button:hover {
     margin: 0;          /* премахва нежелани отстояния */
     padding: 0;         /* премахва нежелани отстояния */
 }
+/* Замъглен background */
+.reward-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(6px);
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Общи стилове на щита */
+.shield {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    box-shadow: 0 0 20px #fff;
+    animation: pop 0.5s ease-out;
+}
+
+/* Анимация за появяване */
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Цветове на щитовете */
+.gold-shield { background: gold; box-shadow: 0 0 30px gold; color: black; }
+.silver-shield { background: silver; box-shadow: 0 0 20px silver; color: black; }
+.bronze-shield { background: #cd7f32; box-shadow: 0 0 15px #cd7f32; color: white; }
+.iron-shield { background: #555; box-shadow: 0 0 10px #333; color: white; }
+
 
 
 
