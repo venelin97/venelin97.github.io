@@ -88,15 +88,23 @@ const extraQuestions = [
 ];
 let quizQuestions = [];
 function shuffleQuiz() {
-    // разбърква текущите въпроси
+    // разбъркване на масива
     quizQuestions.sort(() => Math.random() - 0.5);
 
-    // ако въпросите вече са показани, обнови ги
+    // ако вече са показани въпросите, обнови ги
     const box = document.getElementById("quiz-box");
     if (box.children.length > 0) {
-        showQuiz(); // просто обновява показаните въпроси
+        box.innerHTML = ""; // изчисти старите
+        quizQuestions.forEach((q, i) => {
+            const d = document.createElement("div");
+            d.innerHTML = `<p>${q.q}</p>` + q.options.map(o => `
+                <label><input type="radio" name="q${i}" value="${o}"> ${o}</label>
+            `).join("");
+            box.appendChild(d);
+        });
     }
 }
+
 
     
 }
@@ -178,6 +186,7 @@ function checkQuiz() {
 
 
   
+
 
 
 
