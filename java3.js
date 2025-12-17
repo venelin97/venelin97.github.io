@@ -89,13 +89,7 @@ const extraQuestions = [
 let quizQuestions = [];
 function shuffleQuiz() {
     // добави нови въпроси
-    quizQuestions.push(
-        extraQuestions[Math.floor(Math.random() * extraQuestions.length)]
-    );
-
-    // разбъркай
-    quizQuestions.sort(() => Math.random() - 0.5);
-
+  quizQuestions = [...extraQuestions].sort(() => Math.random() - 0.5).slice(0,3);
     showQuiz();
 }
 
@@ -110,6 +104,24 @@ function showEpoch(epoch) {
         b.textContent = ev.title;
         b.onclick = () => openEvent(epoch, i);
         box.appendChild(b);
+      {
+    const box = document.getElementById("events");
+    box.innerHTML = "";
+
+    // махни highlight от всички епохи
+    document.querySelectorAll("#timeline button").forEach(b => b.classList.remove("active-epoch"));
+
+    // highlight на натиснатия
+    document.querySelector(`#timeline button[onclick="showEpoch('${epoch}')"]`).classList.add("active-epoch");
+
+    eventsData[epoch].forEach((ev, i) => {
+        const b = document.createElement("button");
+        b.textContent = ev.title;
+        b.onclick = () => openEvent(epoch, i);
+        box.appendChild(b);
+    });
+}
+
     });
 }
 
@@ -123,6 +135,13 @@ if(ev.image){
   img.src = ev.image;
   img.style.display="block";
   document.getElementById("quiz-result-btn").style.display="inline-block";
+  const ev = eventsData[epoch][index];
+    document.getElementById("event-title").textContent = ev.title;
+    document.getElementById("event-text").textContent = ev.text;
+    const img = document.getElementById("event-img");
+    if(ev.image){
+        img.src = ev.image;
+        img.style.display = "block";
 
 }
 else{
@@ -133,6 +152,7 @@ else{
 
 function closeEvent() {
     document.getElementById("event-overlay").style.display = "none";
+    document.getElementById("timeline").classList.remove("timeline-disabled");
 }
 
 
@@ -160,47 +180,13 @@ function checkQuiz() {
     document.getElementById("quiz-result").textContent=`Резултат: ${c}`;
 }
 // highlight за епохи
-function showEpoch(epoch) {
-    const box = document.getElementById("events");
-    box.innerHTML = "";
-
-    // махни highlight от всички епохи
-    document.querySelectorAll("#timeline button").forEach(b => b.classList.remove("active-epoch"));
-
-    // highlight на натиснатия
-    document.querySelector(`#timeline button[onclick="showEpoch('${epoch}')"]`).classList.add("active-epoch");
-
-    eventsData[epoch].forEach((ev, i) => {
-        const b = document.createElement("button");
-        b.textContent = ev.title;
-        b.onclick = () => openEvent(epoch, i);
-        box.appendChild(b);
-    });
-}
-
-// highlight за събития
-function openEvent(epoch, index) {
-    const ev = eventsData[epoch][index];
-    document.getElementById("event-title").textContent = ev.title;
-    document.getElementById("event-text").textContent = ev.text;
-    const img = document.getElementById("event-img");
-    if(ev.image){
-        img.src = ev.image;
-        img.style.display = "block";
-    } 
-    else {
-        img.style.display = "none";
-    }
-  
 
     // highlight на бутона за събитие
     document.querySelectorAll("#events button").forEach(b => b.classList.remove("active-event"));
     document.querySelectorAll("#events button")[index].classList.add("active-event")
 
-function closeEvent() {
-    document.getElementById("event-overlay").style.display = "none";
-    document.getElementById("timeline").classList.remove("timeline-disabled");
-}
+
+
 
 
 
