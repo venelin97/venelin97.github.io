@@ -349,21 +349,19 @@ button:hover {
 
 /* Общи стилове на щита */
 .shield {
-    position: relative;
-    width: 120px;
-    height: 160px;
-    background: gold;
-    border: 3px solid #fff;
-    border-radius: 50% 50% 45% 45% / 40% 40% 60% 60%; /* оформя щит със заоблени горни краища */
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
-    color: black;
-    box-shadow: 0 0 20px gold;
+    color: white;
+    text-align: center;
+    box-shadow: 0 0 20px #fff;
+    animation: pop 0.5s ease-out;
 }
-
 
 /* Анимация за появяване */
 @keyframes pop {
@@ -376,6 +374,7 @@ button:hover {
 .silver-shield { background: silver; box-shadow: 0 0 20px silver; color: black; }
 .bronze-shield { background: #cd7f32; box-shadow: 0 0 15px #cd7f32; color: white; }
 .iron-shield { background: #555; box-shadow: 0 0 10px light brown; color: white; }
+
 
 
 
