@@ -192,7 +192,7 @@ function checkQuiz() {
         const a=document.querySelector(`input[name="q${i}"]:checked`);
         if(a && a.value===q.correct) c++;
     });
-    document.getElementById("quiz-result").textContent=`Резултат: ${c}`;
+   
   {
     let c = 0;
     quizQuestions.forEach((q,i) => {
@@ -255,6 +255,7 @@ function shuffleArray(arr) {
 
 
   
+
 
 
 
