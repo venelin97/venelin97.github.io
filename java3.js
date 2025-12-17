@@ -88,8 +88,16 @@ const extraQuestions = [
 ];
 let quizQuestions = [];
 function shuffleQuiz() {
-    // добави нови въпроси
-  quizQuestions = [...extraQuestions].sort(() => Math.random() - 0.5).slice(0,3);
+    // разбърква текущите въпроси
+    quizQuestions.sort(() => Math.random() - 0.5);
+
+    // ако въпросите вече са показани, обнови ги
+    const box = document.getElementById("quiz-box");
+    if (box.children.length > 0) {
+        showQuiz(); // просто обновява показаните въпроси
+    }
+}
+
     
 }
 
@@ -170,6 +178,7 @@ function checkQuiz() {
 
 
   
+
 
 
 
