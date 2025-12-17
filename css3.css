@@ -324,24 +324,14 @@ button:hover {
 }
 /* Премахва бежавите точки в квиза */
 
-#quiz-box p {
-    margin: 0 0 10px 0; /* маха излишни точки или разстояния */
-    padding: 0;
-}
-
+#quiz-box, 
+#quiz-box div, 
+#quiz-box p, 
 #quiz-box label {
-    display: block;    /* радиобутоните подредени вертикално */
-    margin: 5px 0;
-    padding: 0;
-    list-style: none;  /* допълнително, за всеки случай */
+    list-style: none;   /* маха точките */
+    margin: 0;          /* премахва нежелани отстояния */
+    padding: 0;         /* премахва нежелани отстояния */
 }
-
-
-
-
-
-
-
 
 
 
