@@ -199,18 +199,10 @@ function shuffleQuiz() {
     quizQuestions.sort(() => Math.random() - 0.5);
     showQuiz(); // показва въпросите след разбъркване
 }
-#event-overlay {
-    z-index: 1000;
-}
 
-#timeline {
-    transition: opacity 0.3s;
-}
 
-.timeline-disabled {
-    opacity: 0.3;
-    pointer-events: none;
-}
+
+
 function openEvent(epoch, index) {
     const ev = eventsData[epoch][index];
 
@@ -233,6 +225,7 @@ function closeEvent() {
     document.getElementById("event-overlay").style.display = "none";
     document.getElementById("timeline").classList.remove("timeline-disabled");
 }
+
 
 
 
