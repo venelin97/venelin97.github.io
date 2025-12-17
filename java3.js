@@ -202,7 +202,7 @@ function checkQuiz() {
     // Показваме щит според точките
     showReward(c);
 }
-}
+
 
 const shuffleBtn = document.getElementById("shuffle-btn");
 const quizResultBtn = document.getElementById("quiz-result-btn");
@@ -258,6 +258,7 @@ document.getElementById("quiz-result-btn").style.display = "none";
 
 
   
+
 
 
 
