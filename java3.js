@@ -91,9 +91,13 @@ let quizQuestions = [...extraQuestions];
 
     
 function shuffleQuiz() {
-    quizQuestions.sort(() => Math.random() - 0.5);
-    showQuiz(); // винаги обновява видимите въпроси
-    options: shuffleArray([...q.options]) 
+    quizQuestions = quizQuestions.map(q => ({
+        ...q,
+        options: shuffleArray([...q.options])
+    }));
+
+    quizQuestions = shuffleArray(quizQuestions);
+    showQuiz();
 }
 
 
@@ -153,20 +157,10 @@ function closeEvent() {
 function showQuiz() {
     const box = document.getElementById("quiz-box");
     box.innerHTML = "";
-    quizQuestions.forEach((q,i)=>{
-        const d=document.createElement("div");
-        d.innerHTML=`<p>${q.q}</p>`+q.options.map(o=>`
-            <label><input type="radio" name="q${i}" value="${o}"> ${o}</label>
-        `).join("");
-        box.appendChild(d);
-    });
-    document.getElementById("quiz-result-btn").style.display="block";
-  {
-    const box = document.getElementById("quiz-box");
-    box.innerHTML = "";
 
     quizQuestions.forEach((q, i) => {
         const d = document.createElement("div");
+        d.className = "quiz-question";
 
         d.innerHTML = `
             <p>${q.q}</p>
@@ -183,15 +177,19 @@ function showQuiz() {
 
     document.getElementById("quiz-result-btn").style.display = "block";
 }
-}
-  
+
 
 function checkQuiz() {
-    let c=0;
-    quizQuestions.forEach((q,i)=>{
-        const a=document.querySelector(`input[name="q${i}"]:checked`);
-        if(a && a.value===q.correct) c++;
+    let points = 0;
+
+    quizQuestions.forEach((q, i) => {
+        const a = document.querySelector(`input[name="q${i}"]:checked`);
+        if (a && a.value === q.correct) points++;
     });
+
+    showReward(points);
+}
+
    
   {
     let c = 0;
@@ -205,8 +203,7 @@ function checkQuiz() {
     showReward(c);
 }
 }
-const quizBox = document.getElementById("quiz-box");
-const showQuizBtn = document.getElementById("show-quiz-btn");
+
 const shuffleBtn = document.getElementById("shuffle-btn");
 const quizResultBtn = document.getElementById("quiz-result-btn");
 
@@ -217,7 +214,6 @@ quizResultBtn.style.display = "none"; // първо скрий резултат�
 
 
 // Свързваме бутоните
-showQuizBtn.addEventListener("click", showQuiz);
 shuffleBtn.addEventListener("click", shuffleQuiz);
 quizResultBtn.addEventListener("click", checkQuiz);
 
@@ -255,6 +251,7 @@ function shuffleArray(arr) {
 
 
   
+
 
 
 
