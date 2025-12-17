@@ -86,6 +86,7 @@ const extraQuestions = [
     options: ["Астро-Унгария", "Османската империя", "Персия"]
   }
 ];
+let quizQuestions = [];
 function shuffleQuiz() {
     // добави нови въпроси
     quizQuestions.push(
@@ -186,44 +187,21 @@ function openEvent(epoch, index) {
     if(ev.image){
         img.src = ev.image;
         img.style.display = "block";
-    } else {
+    } 
+    else {
         img.style.display = "none";
     }
-    document.getElementById("event-overlay").style.display = "flex";
+  
 
     // highlight на бутона за събитие
     document.querySelectorAll("#events button").forEach(b => b.classList.remove("active-event"));
-    document.querySelectorAll("#events button")[index].classList.add("active-event");
-}
-document.getElementById("quiz-result-btn").style.display="inline-block";
-
-
-
-
-
-
-
-
-
-    document.getElementById("event-title").textContent = ev.title;
-    document.getElementById("event-text").textContent = ev.text;
-
-    const img = document.getElementById("event-img");
-    if (ev.image) {
-        img.src = ev.image;
-        img.style.display = "block";
-    } else {
-        img.style.display = "none";
-    }
-
-    document.getElementById("event-overlay").style.display = "flex";
-    document.getElementById("timeline").classList.add("timeline-disabled");
-}
+    document.querySelectorAll("#events button")[index].classList.add("active-event")
 
 function closeEvent() {
     document.getElementById("event-overlay").style.display = "none";
     document.getElementById("timeline").classList.remove("timeline-disabled");
 }
+
 
 
 
