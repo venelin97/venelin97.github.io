@@ -234,8 +234,51 @@ document.addEventListener("DOMContentLoaded", () => {
     // първоначално скрий бутона за резултат
     document.getElementById("quiz-result-btn").style.display = "none";
 });
+function showReward(points) {
+    // Премахваме стария reward, ако има
+    const oldReward = document.querySelector('.reward-background');
+    if(oldReward) oldReward.remove();
+
+    // Избираме щит според точките
+    let shieldClass = '';
+    if(points >= 8) {
+        shieldClass = 'gold-shield';
+    } else if(points >= 5) {
+        shieldClass = 'silver-shield';
+    } else {
+        shieldClass = 'iron-shield';
+    }
+
+    // Определяме текстовата оценка
+    let gradeText = '';
+    if(points >= 8) {
+        gradeText = 'Отлично';
+    } else if(points >= 5) {
+        gradeText = 'Много добре';
+    } else if(points < 4) {
+        gradeText = 'Погледни отново, за да се справиш по-добре';
+    }
+
+    // Създаваме overlay
+    const rewardDiv = document.createElement('div');
+    rewardDiv.className = 'reward-background';
+    rewardDiv.innerHTML = `
+        <div class="shield ${shieldClass}">
+            ${points}<span style="font-size:0.5em">/9</span>
+        </div>
+        <div class="grade-text" style="margin-top:10px; font-size:1.2em; text-align:center; color:white;">
+            ${gradeText}
+        </div>
+    `;
+
+    // Клик върху overlay за затваряне
+    rewardDiv.onclick = () => rewardDiv.remove();
+
+    document.body.appendChild(rewardDiv);
+}
 
   
+
 
 
 
