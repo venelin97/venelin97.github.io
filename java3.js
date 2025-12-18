@@ -249,58 +249,7 @@ function showReward(points) {
         shieldClass = 'iron-shield';
     }
 
-  function showReward(points) {
-    // Премахваме стария reward, ако има
-    const oldReward = document.querySelector('.reward-background');
-    if (oldReward) oldReward.remove();
-
-    // Избираме клас за щита според точките
-    let shieldClass = '';
-    let gradeText = '';
-    if(points >= 8) {
-        shieldClass = 'gold-shield';
-        gradeText = 'Отлично';
-    } else if(points >= 5) {
-        shieldClass = 'silver-shield';
-        gradeText = 'Много добре';
-    } else {
-        shieldClass = 'iron-shield';
-        gradeText = 'Погледни отново';
-    }
-
-    // Създаваме overlay
-    const rewardDiv = document.createElement('div');
-    rewardDiv.className = 'reward-background';
-    rewardDiv.innerHTML = `
-        <div style="text-align:center;">
-            <div class="shield ${shieldClass}" style="font-size:2em; letter-spacing:2px;">
-                ${points} / 9
-            </div>
-            <div style="margin-top:10px; font-size:1.2em; color:#fff;">
-                ${gradeText}
-            </div>
-        </div>
-    `;
-
-    // Клик върху overlay за затваряне
-    rewardDiv.onclick = () => rewardDiv.remove();
-
-    document.body.appendChild(rewardDiv);
-}
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
