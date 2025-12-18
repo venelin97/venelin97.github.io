@@ -183,9 +183,9 @@ function checkQuiz() {
     let points = 0;
 
     quizQuestions.forEach((q, i) => {
-        const a = document.querySelector(`input[name="q${i}"]:checked`);
+        const a = document.querySelector(`input[name="q${i}"]:checked`);}
         if (a && a.value === q.correct) points++;
-    });
+    };
 
     showReward(points);
 }
@@ -199,7 +199,7 @@ function checkQuiz() {
 function showReward(points) {
     // Премахваме стария reward, ако има
     const oldReward = document.querySelector('.reward-background');
-    if(oldReward) oldReward.remove();
+    if(oldReward) oldReward.remove();}
 
     // Избираме щит според точките
     let shieldClass = '';
@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function showReward(points) {
     // Премахваме стария reward, ако има
     const oldReward = document.querySelector('.reward-background');
-    if(oldReward) oldReward.remove();
+    if(oldReward) oldReward.remove();}
 
     // Избираме щит според точките
     let shieldClass = '';
@@ -250,6 +250,7 @@ function showReward(points) {
     }
 
  
+
 
 
 
