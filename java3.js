@@ -99,7 +99,7 @@ function shuffleQuiz() {
     quizQuestions = shuffleArray(quizQuestions);
     showQuiz();
 }
-
+;
 
 // ===== СЕКЦИИ =====
 
@@ -247,6 +247,7 @@ function showReward(points) {
     rewardDiv.onclick = () => rewardDiv.remove();
     document.body.appendChild(rewardDiv);
 }
+
 
 
 
