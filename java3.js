@@ -91,7 +91,7 @@ let quizQuestions = [...extraQuestions];
 
     
 function shuffleQuiz() {
-    quizQuestions = quizQuestions.map(q => ({
+    quizQuestions = extraQuestions.map(q => ({
         ...q,
         options: shuffleArray([...q.options])
     }));
@@ -247,6 +247,7 @@ function showReward(points) {
     rewardDiv.onclick = () => rewardDiv.remove();
     document.body.appendChild(rewardDiv);
 }
+
 
 
 
