@@ -47,6 +47,7 @@ body {
     justify-content: space-between;
 }
 
+
 #timeline button {
     background: red;
     color: white;
@@ -438,11 +439,13 @@ button:hover {
     font-size: 16px;
 }
 #quiz-result-btn {
-    display: block;
+    display: none;
     margin: 30px auto 50px auto;
 }
 
+
    
+
 
 
 
