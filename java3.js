@@ -191,31 +191,9 @@ function checkQuiz() {
 }
 
    
-  {
-    let c = 0;
-    quizQuestions.forEach((q,i) => {
-        const a = document.querySelector(`input[name="q${i}"]:checked`);
-        if(a && a.value === q.correct) c++;
-    });
-    document.getElementById("quiz-result").textContent = `Резултат: ${c}`;
-
-    // Показваме щит според точките
-    showReward(c);
-}
-
-
-const shuffleBtn = document.getElementById("shuffle-btn");
-const quizResultBtn = document.getElementById("quiz-result-btn");
-
-quizResultBtn.style.display = "none"; // първо скрий резултата
 
 
 
-
-
-// Свързваме бутоните
-shuffleBtn.addEventListener("click", shuffleQuiz);
-quizResultBtn.addEventListener("click", checkQuiz);
 
 // Функция за показване на щит според точките
 function showReward(points) {
@@ -258,6 +236,7 @@ document.getElementById("quiz-result-btn").style.display = "none";
 
 
   
+
 
 
 
