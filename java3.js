@@ -142,8 +142,7 @@ else{
 }
  document.querySelectorAll("#events button").forEach(b => b.classList.remove("active-event"));
     document.querySelectorAll("#events button")[index].classList.add("active-event")
-   document.getElementById("quiz-result-btn").style.display="inline-block"
-
+ 
 }
 
 function closeEvent() {
@@ -176,6 +175,8 @@ function showQuiz() {
     });
 
     document.getElementById("quiz-result-btn").style.display = "block";
+
+
 }
 
 
@@ -247,6 +248,7 @@ function showReward(points) {
     rewardDiv.onclick = () => rewardDiv.remove();
     document.body.appendChild(rewardDiv);
 }
+
 
 
 
