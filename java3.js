@@ -183,9 +183,11 @@ function checkQuiz() {
     let points = 0;
 
     quizQuestions.forEach((q, i) => {
-        const a = document.querySelector(`input[name="q${i}"]:checked`);}
-        if (a && a.value === q.correct) points++;
-    };
+        const a = document.querySelector(`input[name="q${i}"]:checked`);
+        if (a && a.value === q.correct) {
+            points++;
+        }
+    });
 
     showReward(points);
 }
@@ -196,22 +198,6 @@ function checkQuiz() {
 
 
 // Функция за показване на щит според точките
-function showReward(points) {
-    // Премахваме стария reward, ако има
-    const oldReward = document.querySelector('.reward-background');
-    if(oldReward) oldReward.remove();}
-
-    // Избираме щит според точките
-    let shieldClass = '';
-    if(points >= 9) {
-        shieldClass = 'gold-shield';
-    } else if(points >= 7) {
-        shieldClass = 'silver-shield';
-    } else if(points >= 5) {
-        shieldClass = 'bronze-shield';
-    } else {
-        shieldClass = 'iron-shield';
-    }
 
     // Създаваме overlay
     const rewardDiv = document.createElement('div');
@@ -235,21 +221,41 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("quiz-result-btn").style.display = "none";
 });
 function showReward(points) {
-    // Премахваме стария reward, ако има
     const oldReward = document.querySelector('.reward-background');
-    if(oldReward) oldReward.remove();}
+    if (oldReward) oldReward.remove();
 
-    // Избираме щит според точките
     let shieldClass = '';
-    if(points >= 8) {
+    let gradeText = '';
+
+    if (points >= 8) {
         shieldClass = 'gold-shield';
-    } else if(points >= 5) {
+        gradeText = 'Отлично';
+    } else if (points >= 5) {
         shieldClass = 'silver-shield';
+        gradeText = 'Много добре';
     } else {
         shieldClass = 'iron-shield';
+        gradeText = 'Погледни отново';
     }
 
- 
+    const rewardDiv = document.createElement('div');
+    rewardDiv.className = 'reward-background';
+    rewardDiv.innerHTML = `
+        <div style="text-align:center;">
+            <div class="shield ${shieldClass}">
+                ${points} / 9
+            </div>
+            <div style="margin-top:10px;">
+                ${gradeText}
+            </div>
+        </div>
+    `;
+
+    rewardDiv.onclick = () => rewardDiv.remove();
+    document.body.appendChild(rewardDiv);
+}
+
+
 
 
 
