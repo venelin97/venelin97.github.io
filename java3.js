@@ -199,16 +199,9 @@ function checkQuiz() {
 
 // Функция за показване на щит според точките
 
-    // Създаваме overlay
-    const rewardDiv = document.createElement('div');
-    rewardDiv.className = 'reward-background';
-    rewardDiv.innerHTML = `<div class="shield ${shieldClass}">${points} точки</div>`;
-
-    // Клик върху overlay за затваряне
-    rewardDiv.onclick = () => rewardDiv.remove();
-
-    document.body.appendChild(rewardDiv);
-}
+   
+ 
+    
 function shuffleArray(arr) {
     return arr.sort(() => Math.random() - 0.5);
 }
@@ -254,6 +247,7 @@ function showReward(points) {
     rewardDiv.onclick = () => rewardDiv.remove();
     document.body.appendChild(rewardDiv);
 }
+
 
 
 
