@@ -224,10 +224,10 @@ function showReward(points) {
         shieldClass = 'gold-shield';
         gradeText = 'Отлично';
     } else if (points >= 5) {
-        shieldClass = 'silver-shield';
+        shieldClass = 'bronze-shield';
         gradeText = 'Много добре';
     } else {
-        shieldClass = 'iron-shield';
+        shieldClass = 'silver-shield';
         gradeText = 'Погледни отново';
     }
 
@@ -247,6 +247,7 @@ function showReward(points) {
     rewardDiv.onclick = () => rewardDiv.remove();
     document.body.appendChild(rewardDiv);
 }
+
 
 
 
