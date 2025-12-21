@@ -92,35 +92,31 @@ body {
 /* ========== Бутоните за събитията ========== */
 #events {
     display: flex;
-    flex-wrap: nowrap;       
-    justify-content: center; 
-    gap: 14px;               
-    margin-top: 6rem;        
-    margin-bottom: 5rem;     
-    overflow-x: auto;        
-    padding: 0 40px;  /* добавя разстояние от двата края */
+    flex-wrap: nowrap;        /* всички на един ред */
+    justify-content: space-between; /* равномерно разпределение */
+    margin-top: 6rem;         /* разстояние над линията */
+    margin-bottom: 5rem;      /* разстояние от долния край */
+    padding: 0 5%;            /* разстояние от ляво и дясно, вместо твърди пиксели */
 }
 
 #events button {
-    
-    background: #C46B00;     /* кафяво-оранжев */
+    flex: 1;                  /* всеки бутон заема еднакво място */
+    margin: 0 5px;            /* малко разстояние между бутоните */
+    height: 70px;             /* еднаква височина */
+    font-size: 16px;          
+    border-radius: 20px;      /* заоблени */
+    border: none;             /* няма граници */
+    background: #E3B800;      /* кафяво-оранжев */
     color: white;
-    font-size: 16px;
-    padding: 20px;           /* повече място за текста */
-    width: 250px;             /* фиксирана ширина */
-    min-height: 60px;         /* минимална височина */
-    border-radius: 20px;
     cursor: pointer;
-    border: none;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    text-align: center;      /* центриране на текста */
-    white-space: normal;   
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
 #events button:hover {
-    background: #D07A2A; /* по-светъл при hover */
-    transform: scale(1.03); /* по-малко уголемяване */
+    transform: scale(1.05);   /* леко уголемяване */
+    background: #F0C400;      /* по-светъл тон при hover */
 }
+
 
 /* ========== Секция и overlay ========== */
 .section {
@@ -277,6 +273,7 @@ body {
     align-items: center;
     z-index: 1000;
 }
+
 
 
 
