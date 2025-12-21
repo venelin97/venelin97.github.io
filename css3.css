@@ -95,26 +95,23 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 14px;
-    margin-top: 8rem;
+    margin-top: 6rem;
+    margin-bottom: 5rem;
 }
 
 #events button {
-    background: #C56B1F; /* кафяво-оранжев */
+    
+    background: #C46B00; /* кафяво-оранжев */
     color: white;
     font-size: 16px;
-    padding: 18px 28px;
-    width: 250px; 
-    height: 60px;
-    padding: 10px 15px;       
-    width: 220px;            
-    height: auto;            
-    min-height: 70px;       
-    border: none;
-    border-radius: 10px;
+    padding: 20px 40px; /* по-голям padding за повече дължина */
+    width: 300px;        /* фиксирана ширина за всички бутони */
+    min-height: 60px;    /* минимална височина, за да се побере текстът */
+    border-radius: 20px;
     cursor: pointer;
-    transition: transform 0.2s ease;
-    white-space: normal;     
-    text-align: center;     
+    border: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    text-align: center;  /* текстът центриран */
 }
 
 #events button:hover {
@@ -277,6 +274,7 @@ body {
     align-items: center;
     z-index: 1000;
 }
+
 
 
 
