@@ -458,10 +458,18 @@ button:hover {
     box-shadow: 0 0 20px silver;
     color: black;
 }
+#title {
+    text-align: center;
+    font-size: 38px;
+    font-weight: bold;
+    margin: 30px 0 20px 0; /* разстояние от cover и менюто */
+    color: #002f6c;       /* тъмносин – сериозен вид */
+}
 
 
 
    
+
 
 
 
