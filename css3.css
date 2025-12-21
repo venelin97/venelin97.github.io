@@ -92,13 +92,13 @@ body {
 /* ========== Бутоните за събитията ========== */
 #events {
     display: flex;
-    flex-wrap: nowrap;       /* Всички бутони на един ред */
-    justify-content: center; /* Центриране по хоризонтала */
-    gap: 14px;               /* Разстояние между бутоните */
-    margin-top: 6rem;        /* Разстояние от линията */
-    margin-bottom: 5rem;     /* Разстояние от долния край */
-    overflow-x: auto;        /* Ако не се събират, да има хоризонтално скролване */
-    padding-bottom: 10px;    /* малко разстояние за скрол бара, ако се появи */
+    flex-wrap: nowrap;       
+    justify-content: center; 
+    gap: 14px;               
+    margin-top: 6rem;        
+    margin-bottom: 5rem;     
+    overflow-x: auto;        
+    padding: 0 40px;  /* добавя разстояние от двата края */
 }
 
 #events button {
@@ -118,8 +118,8 @@ body {
 }
 
 #events button:hover {
-    transform: scale(1.05);
     background: #D07A2A; /* по-светъл при hover */
+    transform: scale(1.03); /* по-малко уголемяване */
 }
 
 /* ========== Секция и overlay ========== */
@@ -277,6 +277,7 @@ body {
     align-items: center;
     z-index: 1000;
 }
+
 
 
 
