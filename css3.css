@@ -92,26 +92,29 @@ body {
 /* ========== Бутоните за събитията ========== */
 #events {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 14px;
-    margin-top: 6rem;
-    margin-bottom: 5rem;
+    flex-wrap: nowrap;       /* Всички бутони на един ред */
+    justify-content: center; /* Центриране по хоризонтала */
+    gap: 14px;               /* Разстояние между бутоните */
+    margin-top: 6rem;        /* Разстояние от линията */
+    margin-bottom: 5rem;     /* Разстояние от долния край */
+    overflow-x: auto;        /* Ако не се събират, да има хоризонтално скролване */
+    padding-bottom: 10px;    /* малко разстояние за скрол бара, ако се появи */
 }
 
 #events button {
     
-    background: #C46B00; /* кафяво-оранжев */
+    background: #C46B00;     /* кафяво-оранжев */
     color: white;
     font-size: 16px;
-    padding: 20px 40px; /* по-голям padding за повече дължина */
-    width: 300px;        /* фиксирана ширина за всички бутони */
-    min-height: 60px;    /* минимална височина, за да се побере текстът */
+    padding: 20px;           /* повече място за текста */
+    width: 250px;             /* фиксирана ширина */
+    min-height: 60px;         /* минимална височина */
     border-radius: 20px;
     cursor: pointer;
     border: none;
     transition: transform 0.3s ease, background-color 0.3s ease;
-    text-align: center;  /* текстът центриран */
+    text-align: center;      /* центриране на текста */
+    white-space: normal;   
 }
 
 #events button:hover {
@@ -274,6 +277,7 @@ body {
     align-items: center;
     z-index: 1000;
 }
+
 
 
 
