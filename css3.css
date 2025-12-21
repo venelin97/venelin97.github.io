@@ -103,12 +103,18 @@ body {
     color: white;
     font-size: 16px;
     padding: 18px 28px;
-     width: 180px; 
-    height: 60px;  
+    width: 180px; 
+    height: 60px;
+    padding: 10px 15px;       
+    width: 220px;            
+    height: auto;            
+    min-height: 70px;       
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.2s ease;
+    white-space: normal;     
+    text-align: center;     
 }
 
 #events button:hover {
@@ -271,6 +277,7 @@ body {
     align-items: center;
     z-index: 1000;
 }
+
 
 
 
