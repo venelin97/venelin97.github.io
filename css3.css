@@ -4,6 +4,14 @@ body {
     background-color: aliceblue;
     color: dimgray;
 }
+#title {
+    text-align: center;
+    font-size: 38px;
+    font-weight: bold;
+    margin: 30px 0 20px 0; 
+    color: #002f6c;       
+}
+
 
 #menu {
     display: flex;
@@ -101,14 +109,7 @@ body {
     font-size: 50px;
     text-shadow: 0 0 10px black;
 }
-button {
-    border: none;
-    outline: none;
-}
-button:hover {
-    transform: scale(1.05);
-    transition: 0.2s;
-}
+
 #menu button {
     border: none;
     background: linear-gradient(135deg, #ff4e50, #f9d423);
@@ -458,17 +459,10 @@ button:hover {
     box-shadow: 0 0 20px silver;
     color: black;
 }
-#title {
-    text-align: center;
-    font-size: 38px;
-    font-weight: bold;
-    margin: 30px 0 20px 0; /* разстояние от cover и менюто */
-    color: #002f6c;       /* тъмносин – сериозен вид */
-}
-
 
 
    
+
 
 
 
