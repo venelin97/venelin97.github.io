@@ -451,9 +451,78 @@ body {
     box-shadow: 0 0 20px silver;
     color: black;
 }
+#menu {
+    display: flex;
+    justify-content: space-between; /* равномерно разпределяне */
+    margin-top: 5rem; /* разстояние надолу от корицата */
+}
+
+#menu button {
+    flex: 1; /* всеки бутон заема еднакво място */
+    margin: 0 5px; /* малка дистанция между бутоните */
+    padding: 15px 0;
+    border-radius: 20px; /* по-заоблени */
+    background: linear-gradient(135deg, #D1D1C7, #BFC0B3); /* RAL 1001/1002/1004 */
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    border: none; /* махаме черната линия по default */
+    transition: all 0.3s ease;
+}
+
+#menu button:hover {
+    transform: scale(1.1); /* по-голям при hover */
+    /* оставяме цвета същия */
+}
+#timeline {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem; /* разстояние под менюто */
+    gap: 15px; /* разстояние между бутоните за епохите */
+}
+
+#timeline button {
+    background: #8A1E1E; /* RAL 3011 */
+    color: white;
+    font-size: 18px;
+    padding: 12px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none; /* махаме черна рамка */
+    transition: transform 0.3s ease;
+}
+
+#timeline button:hover {
+    transform: scale(1.1); /* увеличаваме леко при hover */
+}
+#events {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 3rem; /* разстояние от епохите */
+}
+
+#events button {
+    background: #E3B800; /* RAL 1004 */
+    color: white;
+    font-size: 16px;
+    padding: 18px 28px;
+    border-radius: 20px; /* заоблени */
+    cursor: pointer;
+    border: none; /* няма черна линия */
+    transition: transform 0.3s ease;
+}
+
+#events button:hover {
+    transform: scale(1.05); /* леко увеличаване при hover */
+}
+
 
 
    
+
 
 
 
