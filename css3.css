@@ -14,18 +14,17 @@ body {
 }
 
 /* ===== Менюта ===== */
+/* ===== Менюта ===== */
 #menu {
     display: flex;
-    justify-content: space-between;
     margin-top: 5rem;
 }
 
 #menu button {
-    flex: 1;
-    margin: 0 5px;
+    flex: 1; /* всички заемат еднакво място */
     padding: 15px 0;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #D1D1C7, #BFC0B3); /* RAL 1001/1002/1004 */
+    border-radius: 0; /* свързани без разстояние */
+    background: linear-gradient(135deg, #C2B078, #C6A664, #E1A300); /* RAL 1001/1002/1004 */
     color: white;
     font-weight: bold;
     font-size: 16px;
@@ -34,19 +33,19 @@ body {
     transition: all 0.3s ease;
 }
 
+#menu button:first-child {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#menu button:last-child {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
 #menu button:hover {
-    transform: scale(1.1);
-}
-
-/* ===== Секции ===== */
-.section {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-}
-
-.section.active {
-    display: flex;
+    transform: scale(1.1); /* увеличаваме */
+    background: linear-gradient(135deg, #D1C07B, #C9B160, #F0B000); /* малко по-светъл градиент */
 }
 
 /* ===== Линия на времето ===== */
@@ -55,6 +54,17 @@ body {
     justify-content: center;
     margin-top: 3rem;
     gap: 15px;
+    position: relative;
+}
+
+#timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #F0E6C8; /* RAL 1015 */
+    z-index: 0;
 }
 
 #timeline button {
@@ -65,20 +75,13 @@ body {
     border-radius: 20px;
     cursor: pointer;
     border: none;
+    position: relative;
+    z-index: 1; /* бутоните над линията */
     transition: transform 0.3s ease;
 }
 
 #timeline button:hover {
     transform: scale(1.1);
-}
-
-#timeline-line {
-    background: #F0E6C8; /* RAL 1015 */
-    height: 4px;
-    width: 100%;
-    position: absolute;
-    top: 70px;
-    z-index: 0;
 }
 
 /* ===== Бутоните за събития ===== */
@@ -91,7 +94,7 @@ body {
 }
 
 #events button {
-    background: #E3B800; /* RAL 1004 */
+    background: linear-gradient(135deg, #A0522D, #D2691E); /* кафяво-оранжев градиент */
     color: white;
     font-size: 16px;
     padding: 18px 28px;
@@ -103,7 +106,9 @@ body {
 
 #events button:hover {
     transform: scale(1.05);
+    background: linear-gradient(135deg, #C4673B, #E0803D); /* по-светъл при hover */
 }
+
 
 /* ===== Overlay за събития ===== */
 #event-overlay {
@@ -270,6 +275,7 @@ body {
     0% { transform: scale(0.5); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
+
 
 
 
