@@ -95,7 +95,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 14px;
-    margin-top: 2rem;
+    margin-top: 4rem;
 }
 
 #events button {
@@ -103,6 +103,8 @@ body {
     color: white;
     font-size: 16px;
     padding: 18px 28px;
+     width: 180px; 
+    height: 60px;  
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -111,6 +113,7 @@ body {
 
 #events button:hover {
     transform: scale(1.05);
+    background: #D07A2A; /* по-светъл при hover */
 }
 
 /* ========== Секция и overlay ========== */
@@ -135,6 +138,7 @@ body {
 }
 
 #event-content {
+    position: relative; 
     background: white;
     padding: 30px;
     border-radius: 12px;
@@ -160,6 +164,32 @@ body {
 }
 
 /* ========== Квиз ========== */
+.quiz-btn, #quiz-result-btn {
+    background: #002f6c;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quiz-btn:hover, #quiz-result-btn:hover {
+    background: #0050b3;
+    transform: scale(1.05);
+}
+
+#quiz-box {
+    margin-top: 2rem;
+}
+
+#quiz-result-btn {
+    display: none; /* показва се само след showQuiz() */
+}
+
 #quiz-box div {
     background: #f9f2ec;
     border: 2px solid #d2b48c;
@@ -241,6 +271,7 @@ body {
     align-items: center;
     z-index: 1000;
 }
+
 
 
 
