@@ -1,3 +1,4 @@
+/* ========== Основни стилове ========== */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -5,78 +6,71 @@ body {
     color: dimgray;
 }
 
+#cover {
+    width: 100%;
+    height: 350px;
+    background-image: url("logo.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
 #title {
     text-align: center;
     font-size: 42px;
     font-weight: bold;
-    margin: 40px 0 30px 0;
-    color: #002f6c; /* тъмносин */
+    margin: 20px 0;
+    color: #002f6c;
 }
 
-/* ===== Менюта ===== */
-/* ===== Менюта ===== */
+/* ========== Менюто ========== */
 #menu {
     display: flex;
-    margin-top: 5rem;
+    justify-content: space-between;
+    margin-top: 2rem;
+    width: 100%;
 }
 
 #menu button {
-    flex: 1; /* всички заемат еднакво място */
+    flex: 1;
+    border: none;
+    margin: 0;
     padding: 15px 0;
-    border-radius: 0; /* свързани без разстояние */
-    background: linear-gradient(135deg, #C2B078, #C6A664, #E1A300); /* RAL 1001/1002/1004 */
+    background: linear-gradient(135deg, #C2B078, #C6A664, #E1A300); /* RAL 1001,1002,1004 */
     color: white;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 17px;
     cursor: pointer;
-    border: none;
     transition: all 0.3s ease;
 }
 
-#menu button:first-child {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-}
-
-#menu button:last-child {
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
-
 #menu button:hover {
-    transform: scale(1.1); /* увеличаваме */
-    background: linear-gradient(135deg, #D1C07B, #C9B160, #F0B000); /* малко по-светъл градиент */
+    transform: scale(1.05);
 }
 
-/* ===== Линия на времето ===== */
-#timeline {
-    display: flex;
-    justify-content: center;
-    margin-top: 3rem;
-    gap: 15px;
+/* ========== Линия на времето ========== */
+#timeline-container {
+    width: 80%;
+    margin: 3rem auto 0 auto;
     position: relative;
 }
 
-#timeline-line {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: #F0E6C8; /* RAL 1015 */
-    z-index: 0;
+#timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+    gap: 15px;
 }
 
 #timeline button {
     background: #8A1E1E; /* RAL 3011 */
     color: white;
     font-size: 18px;
+    font-weight: bold;
     padding: 12px 25px;
-    border-radius: 20px;
-    cursor: pointer;
     border: none;
-    position: relative;
-    z-index: 1; /* бутоните над линията */
+    cursor: pointer;
+    border-radius: 10px;
     transition: transform 0.3s ease;
 }
 
@@ -84,33 +78,52 @@ body {
     transform: scale(1.1);
 }
 
-/* ===== Бутоните за събития ===== */
+/* Линията между бутоните за епохите */
+#timeline-line {
+    position: absolute;
+    top: 50%; /* под бутоните */
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #F0E6C8; /* RAL 1015 */
+    z-index: 0;
+}
+
+/* ========== Бутоните за събитията ========== */
 #events {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 14px;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 #events button {
-    background: linear-gradient(135deg, #A0522D, #D2691E); /* кафяво-оранжев градиент */
+    background: #C56B1F; /* кафяво-оранжев */
     color: white;
     font-size: 16px;
     padding: 18px 28px;
-    border-radius: 20px;
-    cursor: pointer;
     border: none;
-    transition: transform 0.3s ease;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 #events button:hover {
     transform: scale(1.05);
-    background: linear-gradient(135deg, #C4673B, #E0803D); /* по-светъл при hover */
 }
 
+/* ========== Секция и overlay ========== */
+.section {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
 
-/* ===== Overlay за събития ===== */
+.section.active {
+    display: flex;
+}
+
 #event-overlay {
     position: fixed;
     inset: 0;
@@ -122,7 +135,6 @@ body {
 }
 
 #event-content {
-    position: relative;
     background: white;
     padding: 30px;
     border-radius: 12px;
@@ -131,9 +143,9 @@ body {
     flex-direction: column;
     align-items: center;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    animation: pop 0.3s ease;
 }
 
+/* Затваряне на overlay */
 #close-overlay {
     position: absolute;
     top: 10px;
@@ -147,45 +159,14 @@ body {
     color: red;
 }
 
-/* ===== Квиз ===== */
+/* ========== Квиз ========== */
 #quiz-box div {
     background: #f9f2ec;
     border: 2px solid #d2b48c;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     font-size: 18px;
-}
-
-#quiz-box p {
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-.answer {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-}
-
-.answer input[type="radio"] {
-    appearance: none;
-    width: 22px;
-    height: 22px;
-    border: 3px solid #8b5e3c;
-    border-radius: 50%;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.answer input[type="radio"]:checked {
-    background-color: #8b5e3c;
-}
-
-.answer label {
-    cursor: pointer;
-    font-size: 16px;
 }
 
 #quiz-box input[type="radio"] {
@@ -195,9 +176,10 @@ body {
 #quiz-box input[type="radio"] + label {
     position: relative;
     padding-left: 30px;
+    cursor: pointer;
     display: inline-block;
     margin-right: 20px;
-    cursor: pointer;
+    font-size: 16px;
 }
 
 #quiz-box input[type="radio"] + label::before {
@@ -222,21 +204,7 @@ body {
     margin: 30px auto 50px auto;
 }
 
-/* ===== Щитове ===== */
-.reward-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(6px);
-    background: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
+/* Щитове за резултат */
 .shield {
     width: 150px;
     height: 150px;
@@ -251,58 +219,28 @@ body {
     animation: pop 0.5s ease-out;
 }
 
-/* Цветове на щитовете */
-.gold-shield {
-    background: linear-gradient(135deg, gold, #ffcc00);
-    box-shadow: 0 0 30px gold;
-    color: black;
-}
+.gold-shield { background: linear-gradient(135deg, gold, #ffcc00); color: black; }
+.bronze-shield { background: linear-gradient(135deg, #cd7f32, #a97142); color: white; }
+.silver-shield { background: linear-gradient(135deg, silver, #dcdcdc); color: black; }
 
-.bronze-shield {
-    background: linear-gradient(135deg, #cd7f32, #a97142);
-    box-shadow: 0 0 20px #cd7f32;
-    color: white;
-}
-
-.silver-shield {
-    background: linear-gradient(135deg, silver, #dcdcdc);
-    box-shadow: 0 0 20px silver;
-    color: black;
-}
-
-/* ===== Анимация ===== */
+/* Анимация на щита */
 @keyframes pop {
     0% { transform: scale(0.5); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Замъглен background */
+.reward-background {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    backdrop-filter: blur(6px);
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
 
 
 
