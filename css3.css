@@ -101,6 +101,7 @@ body {
 
 #events button {
     background: #C56B1F; /* кафяво-оранжев */
+    
     flex: 1;                  /* всеки бутон заема еднакво място */
     margin: 0 5px;            /* малко разстояние между бутоните */
     height: 70px;             /* еднаква височина */
@@ -274,6 +275,7 @@ body {
     align-items: center;
     z-index: 1000;
 }
+
 
 
 
