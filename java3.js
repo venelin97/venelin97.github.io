@@ -16,9 +16,8 @@ const eventsData = {
   ],
   Sredn: [
     {title:"Създаване на Първото българско царство", text:"Аспарух основава Първото българско царство около 681 година.",  image:"images/1vo bg charstvo.jpg"},
-    {title:"Борби с Византия", text:"Българите воюват и подписват мирни договори с Византийската империя.",  image:"images/bitkisvisanyia.jpg"},
-   
-    {title:"Златен век на България", text:"Цар Симеон развива култура, литература и укрепва империята.", image:"images/bgpismenost.jpg"},
+    {title:"Борби с Византия", text:"Българите воюват и подписват мирни договори с Византийската империя.",  image:"images/bitkisvisantiq.jpg"},
+    {title:"Златен век на България", text:"Цар Симеон развива култура, литература и укрепва империята.", image:"images/zlatenvek.jpg"},
     {title:"Падането на Първото царство", text:"През 1018 България е подчинена на Византия.", image:"images/padane.jpg"}
   ],
   Vazr: [
@@ -248,6 +247,7 @@ function showReward(points) {
     rewardDiv.onclick = () => rewardDiv.remove();
     document.body.appendChild(rewardDiv);
 }
+
 
 
 
