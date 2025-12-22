@@ -92,24 +92,26 @@ body {
 /* ========== Бутоните за събитията ========== */
 #events {
     display: flex;
-    flex-wrap: nowrap;      /* всички на един ред */
-    justify-content: space-between;
-    gap: 10px;              /* ✅ 1 см разстояние между бутоните */
+    flex-wrap: nowrap;      /* един ред */
+    justify-content: center;
     margin-top: 6rem;
     margin-bottom: 5rem;
     padding: 0 5%;
 }
 
 #events button {
-    flex: 1;
-    height: 72px;         
+    width: 260px;           /* фиксирана дължина */
+    height: 72px;
+    margin: 0 5px;          /* ✅ 1 см между бутоните (5 + 5) */
     font-size: 16px;
     border-radius: 20px;
-    border: none;          
+    border: none;
     background: #C68642;    /* кафяво-оранжево */
     color: white;
     cursor: pointer;
     transition: transform 0.25s ease, background 0.25s ease;
+    white-space: normal;    /* текстът се побира */
+    text-align: center;
 }
 
 #events button:hover {
@@ -274,6 +276,7 @@ body {
     align-items: center;
     z-index: 1000;
 }
+
 
 
 
