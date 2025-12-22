@@ -92,32 +92,31 @@ body {
 /* ========== Бутоните за събитията ========== */
 #events {
     display: flex;
-    flex-wrap: nowrap;        /* всички на един ред */
-    justify-content: space-between; /* равномерно разпределение */
-    margin-top: 6rem;         /* разстояние над линията */
-    margin-bottom: 5rem;      /* разстояние от долния край */
-    padding: 0 5%;            /* разстояние от ляво и дясно, вместо твърди пиксели */
+    flex-wrap: nowrap;      /* всички на един ред */
+    justify-content: space-between;
+    gap: 10px;              /* ✅ 1 см разстояние между бутоните */
+    margin-top: 6rem;
+    margin-bottom: 5rem;
+    padding: 0 5%;
 }
 
 #events button {
-    background: #C56B1F; /* кафяво-оранжев */
-    
-    flex: 1;                  /* всеки бутон заема еднакво място */
-    margin: 0 5px;            /* малко разстояние между бутоните */
-    height: 70px;             /* еднаква височина */
-    font-size: 16px;          
-    border-radius: 20px;      /* заоблени */
-    border: none;             /* няма граници */
-    background: #E3B800;      /* кафяво-оранжев */
+    flex: 1;
+    height: 72px;         
+    font-size: 16px;
+    border-radius: 20px;
+    border: none;          
+    background: #C68642;    /* кафяво-оранжево */
     color: white;
     cursor: pointer;
-    transition: transform 0.3s ease, background 0.3s ease;
+    transition: transform 0.25s ease, background 0.25s ease;
 }
 
 #events button:hover {
-    transform: scale(1.05);   /* леко уголемяване */
-    background: #F0C400;      /* по-светъл тон при hover */
+    transform: scale(1.05);
+    background: #D19A5F;
 }
+
 
 
 /* ========== Секция и overlay ========== */
@@ -275,6 +274,7 @@ body {
     align-items: center;
     z-index: 1000;
 }
+
 
 
 
