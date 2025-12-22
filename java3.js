@@ -247,6 +247,15 @@ function showReward(points) {
     rewardDiv.onclick = () => rewardDiv.remove();
     document.body.appendChild(rewardDiv);
 }
+window.addEventListener("load", () => {
+    quizQuestions = quizQuestions.map(q => ({
+        ...q,
+        options: shuffleArray([...q.options])
+    }));
+
+    quizQuestions = shuffleArray(quizQuestions);
+});
+
 
 
 
