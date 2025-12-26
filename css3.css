@@ -310,12 +310,25 @@ body {
     position: relative; /* за абсолютното позициониране на маркера */
 }
 
+
+.answer label {
+    position: relative; /* за да позиционираме резултата спрямо него */
+    display: block;
+    cursor: pointer;
+    font-size: 16px;
+    padding-right: 40px; /* оставяме място за тикчето/хикса */
+}
+
 .result-mark {
     position: absolute;
-    right: 10px; /* отдалечено от края на карето */
+    right: 10px;  /* от края на label, не на карето */
+    top: 50%;
+    transform: translateY(-50%);
     color: #8b5e3c; /* кафяво */
     font-size: 16px;
 }
+
+
 
 
 
