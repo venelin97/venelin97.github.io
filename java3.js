@@ -186,40 +186,36 @@ function checkQuiz() {
         const selected = document.querySelector(`input[name="q${i}"]:checked`);
         const answers = document.querySelectorAll(`input[name="q${i}"] + label`);
 
-        answers.forEach((label) => {
-            // премахваме старите отметки
+        // Премахваме стари маркери
+        answers.forEach(label => {
             label.querySelector('.result-mark')?.remove();
         });
 
+        // Добавяме маркер за избрания отговор
         if (selected) {
+            const mark = document.createElement('span');
+            mark.className = 'result-mark';
             if (selected.value === q.correct) {
-                points++;
-                // добавяме тикче само за отговорените
-                const mark = document.createElement('span');
                 mark.textContent = '✔';
-                mark.style.color = '#8b5e3c'; // кафяв
-                mark.style.marginLeft = '8px';
-                mark.style.fontSize = '16px';
-                mark.className = 'result-mark';
-                selected.nextElementSibling.appendChild(mark);
+                points++;
             } else {
-                const mark = document.createElement('span');
                 mark.textContent = '✖';
-                mark.style.color = '#8b5e3c';
-                mark.style.marginLeft = '8px';
-                mark.style.fontSize = '16px';
-                mark.className = 'result-mark';
-                selected.nextElementSibling.appendChild(mark);
             }
+            selected.nextElementSibling.appendChild(mark);
+        }
+
+        // Ако е грешен, показваме тикче до верния отговор
+        if (selected && selected.value !== q.correct) {
+            const correctInput = document.querySelector(`input[name="q${i}"][value="${q.correct}"]`);
+            const correctMark = document.createElement('span');
+            correctMark.className = 'result-mark';
+            correctMark.textContent = '✔';
+            correctInput.nextElementSibling.appendChild(correctMark);
         }
     });
 
     showReward(points);
 }
-
-   
-
-
 
 
 // Функция за показване на щит според точките
@@ -280,6 +276,7 @@ window.addEventListener("load", () => {
 
     quizQuestions = shuffleArray(quizQuestions);
 });
+
 
 
 
