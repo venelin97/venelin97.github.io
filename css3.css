@@ -303,6 +303,20 @@ body {
     position: relative; /* нужно за ::before позициониране */
     padding-left: 30px; /* да има място за знака */
 }
+.answer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    position: relative; /* за абсолютното позициониране на маркера */
+}
+
+.result-mark {
+    position: absolute;
+    right: 10px; /* отдалечено от края на карето */
+    color: #8b5e3c; /* кафяво */
+    font-size: 16px;
+}
+
 
 
 
