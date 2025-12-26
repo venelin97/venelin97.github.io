@@ -327,6 +327,71 @@ body {
     color: #8b5e3c; /* кафяво */
     font-size: 16px;
 }
+/* Медия за телефони (до 768px ширина) */
+@media (max-width: 768px) {
+    /* Заглавие */
+    #title {
+        font-size: 28px;
+        margin: 20px 0;
+    }
+
+    /* Меню бутони */
+    #menu {
+        flex-direction: column;
+        margin-top: 2rem;
+    }
+
+    #menu button {
+        margin: 5px 0;
+        font-size: 16px;
+        padding: 12px 0;
+    }
+
+    /* Линия на времето */
+    #timeline-container {
+        width: 95%;
+    }
+
+    #timeline {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    #timeline button {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+
+    /* Събития */
+    #events {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 2rem;
+    }
+
+    #events button {
+        width: 100%; /* заема целия ред */
+        padding: 16px 20px;
+        font-size: 15px;
+    }
+
+    /* Overlay с карето */
+    #event-content {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    /* Квиз въпроси */
+    #quiz-box div {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .answer label {
+        padding-right: 30px; /* място за тик/хикс */
+    }
+}
+
 
 
 
