@@ -276,22 +276,35 @@ body {
     align-items: center;
     z-index: 1000;
 }
-.answer-mark {
-    display: inline-block;
-    width: 16px;
-    text-align: center;
-    margin-right: 8px;
-    font-size: 16px;
-    color: transparent; /* по default няма знак */
+/* най-общо, за полето на един отговор */
+.answer.correct::before,
+.answer.wrong::before {
+    content: "";
+    position: absolute;
+    left: 8px;           /* малко отстояние от лявата страна */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
-.answer-mark.correct {
-    color: #8B5E3C; /* тъмнокафяво за тикче */
+/* тикче */
+.answer.correct::before {
+    background-image: url('tick-brown.svg'); /* или png */
 }
 
-.answer-mark.wrong {
-    color: #A67C52; /* по-светло кафяво за хикс */
+/* хиксче */
+.answer.wrong::before {
+    background-image: url('cross-brown.svg');
 }
+.answer {
+    position: relative; /* нужно за ::before позициониране */
+    padding-left: 30px; /* да има място за знака */
+}
+
+
 
 
 
