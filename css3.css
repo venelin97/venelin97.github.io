@@ -327,47 +327,60 @@ body {
     color: #8b5e3c; /* кафяво */
     font-size: 16px;
 }
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+    /* Меню */
     #menu {
         flex-direction: column;
-        gap: 5px;
-        margin-top: 2rem;
+        gap: 8px;
+        margin-top: 1.5rem;
     }
-
     #menu button {
-        width: 100%;
-        font-size: 14px;
+        width: 90%;
+        font-size: 16px;
         padding: 10px 0;
     }
 
+    /* Timeline бутоните */
     #timeline {
         flex-wrap: wrap;
-        justify-content: center;
         gap: 8px;
+        justify-content: center;
     }
-
     #timeline button {
-        font-size: 12px;
-        padding: 8px 12px;
+        width: auto;
+        font-size: 14px;
+        padding: 8px 15px;
     }
 
+    /* Бутоните за събития */
     #events {
         flex-direction: column;
         gap: 10px;
         margin-top: 2rem;
     }
-
     #events button {
-        width: 100%;
-        font-size: 14px;
+        width: 90% !important;
+        font-size: 15px;
+        padding: 14px 0;
+    }
+
+    /* Overlay и карета */
+    #event-content {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+    /* Квиз въпроси */
+    #quiz-box div {
+        font-size: 15px;
         padding: 14px;
     }
-
-    #event-content, #quiz-box div {
-        max-width: 95%;
-        padding: 12px;
+    .answer label {
+        font-size: 15px;
+        padding-right: 35px;
     }
 }
+
 
 
 
