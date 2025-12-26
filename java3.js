@@ -180,8 +180,33 @@ function showQuiz() {
 
 
 function checkQuiz() {
-    let points = 0;
+    quizQuestions.forEach((q, i) => {
+        const options = document.querySelectorAll(`input[name="q${i}"]`);
+        options.forEach(o => {
+            const label = o.nextElementSibling;
 
+            // премахваме предишни отметки
+            label.querySelector('.answer-mark')?.remove();
+
+            const mark = document.createElement('span');
+            mark.classList.add('answer-mark');
+
+            if (o.value === q.correct) {
+                mark.textContent = '✓'; // верен отговор
+                mark.style.color = 'green';
+            } else if (o.checked) {
+                mark.textContent = '✗'; // грешен отговор
+                mark.style.color = 'red';
+            } else {
+                mark.textContent = '';
+            }
+
+            label.appendChild(mark);
+        });
+    });
+
+    // броим точки
+    let points = 0;
     quizQuestions.forEach((q, i) => {
         const a = document.querySelector(`input[name="q${i}"]:checked`);
         if (a && a.value === q.correct) {
@@ -255,6 +280,7 @@ window.addEventListener("load", () => {
 
     quizQuestions = shuffleArray(quizQuestions);
 });
+
 
 
 
