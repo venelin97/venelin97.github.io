@@ -277,10 +277,23 @@ body {
     z-index: 1000;
 }
 .answer-mark {
-    margin-left: 10px;
-    font-weight: bold;
-    font-size: 18px;
+    display: inline-block;
+    width: 16px;
+    text-align: center;
+    margin-right: 8px;
+    font-size: 16px;
+    color: transparent; /* по default няма знак */
 }
+
+.answer-mark.correct {
+    color: #8B5E3C; /* тъмнокафяво за тикче */
+}
+
+.answer-mark.wrong {
+    color: #A67C52; /* по-светло кафяво за хикс */
+}
+
+
 
 
 
