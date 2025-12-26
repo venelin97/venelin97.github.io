@@ -180,37 +180,37 @@ function showQuiz() {
 
 
 function checkQuiz() {
-    quizQuestions.forEach((q, i) => {
-        const options = document.querySelectorAll(`input[name="q${i}"]`);
-        options.forEach(o => {
-            const label = o.nextElementSibling;
-
-            // премахваме предишни отметки
-            label.querySelector('.answer-mark')?.remove();
-
-            const mark = document.createElement('span');
-            mark.classList.add('answer-mark');
-
-            if (o.value === q.correct) {
-                mark.textContent = '✓'; // верен отговор
-                mark.style.color = 'green';
-            } else if (o.checked) {
-                mark.textContent = '✗'; // грешен отговор
-                mark.style.color = 'red';
-            } else {
-                mark.textContent = '';
-            }
-
-            label.appendChild(mark);
-        });
-    });
-
-    // броим точки
     let points = 0;
+
     quizQuestions.forEach((q, i) => {
-        const a = document.querySelector(`input[name="q${i}"]:checked`);
-        if (a && a.value === q.correct) {
-            points++;
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const answers = document.querySelectorAll(`input[name="q${i}"] + label`);
+
+        answers.forEach((label) => {
+            // премахваме старите отметки
+            label.querySelector('.result-mark')?.remove();
+        });
+
+        if (selected) {
+            if (selected.value === q.correct) {
+                points++;
+                // добавяме тикче само за отговорените
+                const mark = document.createElement('span');
+                mark.textContent = '✔';
+                mark.style.color = '#8b5e3c'; // кафяв
+                mark.style.marginLeft = '8px';
+                mark.style.fontSize = '16px';
+                mark.className = 'result-mark';
+                selected.nextElementSibling.appendChild(mark);
+            } else {
+                const mark = document.createElement('span');
+                mark.textContent = '✖';
+                mark.style.color = '#8b5e3c';
+                mark.style.marginLeft = '8px';
+                mark.style.fontSize = '16px';
+                mark.className = 'result-mark';
+                selected.nextElementSibling.appendChild(mark);
+            }
         }
     });
 
@@ -280,6 +280,7 @@ window.addEventListener("load", () => {
 
     quizQuestions = shuffleArray(quizQuestions);
 });
+
 
 
 
