@@ -507,25 +507,44 @@
             #timeline button { padding: 10px 15px; font-size: 14px; }
             #events button { width: 180px; height: 80px; }
         }
-/* Корица със снимка */
+
 #cover {
     width: 100%;
-    height: 300px; /* промени височината ако искаш */
+    height: 300px;
     background: url("snimки/cover.jpg") center / cover no-repeat;
 }
 
-/* Заглавие + бутон ? под корицата */
+
 #top-bar {
     display: flex;
-    justify-content: space-between; /* заглавие вляво, бутон ? вдясно */
+    justify-content: space-between; 
     align-items: center;
     padding: 15px 20px;
-    background-color: rgba(0,0,0,0.3); /* леко прозрачно, за да се вижда снимката */
+    background-color: rgba(0,0,0,0.3); 
     color: white;
-    margin-top: -80px; /* леко припокриване на корицата, ако искаш */
+    margin-top: -80px; 
 }
 
-/* Меню лента под заглавието */
+
+#cover {
+    width: 100%;
+    height: 300px; 
+    background: url("snimки/cover.jpg") center / cover no-repeat;
+    display: block;
+}
+
+
+#top-bar {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 15px 20px;
+    background-color: rgba(0,0,0,0.3); 
+    color: white;
+    margin-top: 0; 
+}
+
+
 #menu {
     display: flex;
     justify-content: center;
@@ -534,7 +553,7 @@
     background-color: rgba(255,255,255,0.9);
 }
 
-/* Стил за бутоните на менюто */
+
 #menu button {
     padding: 10px 20px;
     border: none;
@@ -542,6 +561,8 @@
     color: white;
     cursor: pointer;
 }
+
+
 
 
 
