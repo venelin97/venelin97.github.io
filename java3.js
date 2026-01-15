@@ -295,32 +295,29 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("quiz-result-btn").style.display = "none";
 });
 function showReward(points) {
-    const total = quizQuestions.length; // Вече ще е 10
-    let shieldClass = '';
-    let gradeText = '';
+    const oldReward = document.querySelector('.reward-background');
+    if (oldReward) oldReward.remove();
 
-    if (points >= 9) { // 9 или 10 верни
+    const total = quizQuestions.length; 
+    let shieldClass = '';
+
+    // Определяне на вида на щита
+    if (points >= 9) {
         shieldClass = 'gold-shield';
-        gradeText = 'Отлично! Ти познаваш историята перфектно!';
-    } else if (points >= 6) { // 6 до 8 верни
+    } else if (points >= 6) {
         shieldClass = 'bronze-shield';
-        gradeText = 'Много добре! Почти успя!';
     } else {
         shieldClass = 'silver-shield';
-        gradeText = 'Продължавай да учиш! Опитай пак.';
     }
 
-    // Редактирай и тук, за да показва динамично общия брой
+    // Създаване на елемента
     const rewardDiv = document.createElement('div');
     rewardDiv.className = 'reward-background';
+    
+    // Поставяме само щита, без никакви текстови блокове около него
     rewardDiv.innerHTML = `
-        <div style="text-align:center;">
-            <div class="shield ${shieldClass}">
-                ${points} / ${total}
-            </div>
-            <div style="margin-top:10px; color: white; font-weight: bold;">
-                ${gradeText}
-            </div>
+        <div class="shield ${shieldClass}">
+            ${points} / ${total}
         </div>
     `;
    
@@ -338,6 +335,7 @@ window.addEventListener("load", () => {
 
     quizQuestions = shuffleArray(quizQuestions);
 });
+
 
 
 
