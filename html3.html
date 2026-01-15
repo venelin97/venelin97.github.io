@@ -42,15 +42,20 @@
         <div id="quiz" class="section" style="display:none;">
             <h2>Въпроси за усвоените знания</h2>
             <button id="generate-quiz" class="quiz-btn" onclick="generateQuiz()">Покажи въпроси</button>
-            <div id="questions"></div> <button id="check-button" class="quiz-btn" onclick="checkQuiz()" style="display:none; margin: 20px auto;">Виж резултата</button>
+            
+            <div id="questions"></div>
+            
+            <button id="check-button" class="quiz-btn" onclick="checkQuiz()" style="display:none; margin: 20px auto;">Виж резултата</button>
+            <p id="result"></p>
         </div>
 
         <div id="howto" class="section" style="display:none;">
-            <div style="background: #f9f2ec; padding: 20px; border-radius: 15px; border: 1px solid #d2b48c; max-width: 600px; margin: 20px auto;">
-                <h3>Как се работи със сайта?</h3>
-                <p>• Натиснете бутон от <strong>Линията</strong> (напр. "Средновековие"), за да видите ключови събития.</p>
-                <p>• Кликнете върху конкретно събитие за повече детайли.</p>
-                <p>• Отидете в секция <strong>Въпроси</strong>, за да проверите знанията си и да спечелите щит.</p>
+            <div style="background: #f9f2ec; padding: 20px; border-radius: 15px; border: 1px solid #d2b48c; max-width: 600px; margin: 20px auto; text-align: center;">
+                <h3>Указания за работа</h3>
+                <p>1. Използвайте бутоните "Линия" и "Въпроси" за навигация.</p>
+                <p>2. Изберете епоха, за да видите събитията.</p>
+                <p>3. Направете теста, за да спечелите награда.</p>
+                <button onclick="showSection('line')" class="quiz-btn" style="padding: 10px 20px;">Разбрах</button>
             </div>
         </div>
 
@@ -59,12 +64,15 @@
     <div id="event-overlay" style="display:none;">
         <div id="event-content">
             <span id="close-overlay" onclick="closeEvent()">&times;</span>
+            <img id="event-img" src="" alt="" style="display:none; max-width:100%; border-radius:10px; margin-bottom:15px;">
             <h2 id="event-title"></h2>
             <p id="event-text"></p>
         </div>
     </div>
 
     <script src="java3.js"></script>
+    
+    <button id="scrollToTop" onclick="topFunction()" title="Нагоре" style="display:none;">↑</button>
 
 </body>
 </html>
