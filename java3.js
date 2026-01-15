@@ -258,7 +258,25 @@ function checkQuiz() {
 
     showReward(points);
 }
+// Вземаме бутона
+let mybutton = document.getElementById("scrollToTop");
 
+// Когато потребителят скролне 300px надолу, показваме бутона
+window.onscroll = function() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+};
+
+// Функцията, която връща най-горе
+function topFunction() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Плавно движение
+    });
+}
 
 // Функция за показване на щит според точките
 
@@ -320,6 +338,7 @@ window.addEventListener("load", () => {
 
     quizQuestions = shuffleArray(quizQuestions);
 });
+
 
 
 
