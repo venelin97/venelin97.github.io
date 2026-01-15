@@ -1,11 +1,20 @@
 
 
-// ====== Данни за събитията ======
 function showSection(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-};
+    
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(s => {
+        s.style.display = 'none';
+        s.classList.remove('active');
+    });
 
+   
+    const target = document.getElementById(id);
+    if (target) {
+        target.style.display = 'block'; 
+        target.classList.add('active');
+    }
+}
 const eventsData = {
   Ant: [
     {title:"Държавност и културно наследство на тракийските племена", text:"Траките са били един от най-многобройните народи в античността, разделени на над 80 племена. Те не са оставили писменост, но тяхното богатство и духовност личат в уникалните гробници и златни съкровища като Панагюрското. Тракийските конници са били легендарни, а вярванията им в безсмъртието на душата са вдъхновили митове за герои като Орфей. Одриското царство е първият им опит да обединят тези племена в мощна държава, която е съперничила дори на Атина.", image:"images/traki.jpg"},
@@ -335,6 +344,7 @@ window.addEventListener("load", () => {
 
     quizQuestions = shuffleArray(quizQuestions);
 });
+
 
 
 
