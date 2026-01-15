@@ -10,6 +10,9 @@
     <img src="snimki/logo.png" id="logo" alt="Лого на сайта">
     <h1>БЪЛГАРСКА ИСТОРИЯ</h1>
 </header>
+  <div class="help-wrapper">
+    <button id="help-btn" onclick="showSection('howto')" title="Указания">?</button>
+</div>
 
 
 <h1>Българската история в линия на времето</h1>
@@ -17,7 +20,7 @@
 <!-- Меню -->
 <div id="menu">
   <button onclick="showSection('line')">Линия</button>
-  <button onclick="showSection('howto')">Указания</button>
+ 
   <button onclick="showSection('quiz')">Въпроси</button>
 </div>
 
@@ -38,11 +41,7 @@
     <div id="events"></div>
   </div>
 
-  <!-- Указания -->
-  <div id="howto" class="section" style="display:none;">
-    <h2>Указания за работа със сайта</h2>
-    <p>Натисни бутон за епоха и ще видиш главните събития за всяко едно от тях, като ще имаш възможност да го разгледаш подробно като кликнеш върху него. След това можеш да видиш секцията "Въпроси" и да провериш какво си разбрал със въпроси за събитията от различните епохи.</p>
-  </div>
+
 
   <!-- Въпроси -->
   <div id="quiz" class="section" style="display:none;">
@@ -129,6 +128,7 @@
 <script src="java3.js"></script>
 </body>
 </html>
+
 
 
 
