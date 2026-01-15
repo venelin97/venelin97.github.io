@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Българската история в линия на времето</title>
+    <title>Българската история</title>
     <link rel="stylesheet" href="css3.css">
 </head>
 <body>
 
+    <div id="cover"></div>
+
     <header id="top-bar">
-        <img src="snimki/logo.png" id="logo" alt="Лого на сайта" style="height: 50px;"> 
+        <img src="snimki/logo.png" id="logo" alt="Logo">
         <h1>БЪЛГАРСКА ИСТОРИЯ</h1>
+        <button id="help-btn" onclick="showSection('howto')">?</button>
     </header>
-
-    <div class="help-wrapper">
-        <button id="help-btn" onclick="showSection('howto')" title="Указания">?</button>
-    </div>
-
-    <h2 style="text-align:center; color:#002f6c; margin-top: 20px;">Българската история в линия на времето</h2>
 
     <div id="menu">
         <button onclick="showSection('line')">Линия</button>
@@ -25,61 +22,53 @@
     </div>
 
     <div id="sections">
-
         <div id="line" class="section active">
+            <h2 class="page-title">Българската история в линия на времето</h2>
             <div id="timeline-container">
                 <div id="timeline-line"></div>
                 <div id="timeline">
                     <button onclick="showEpoch('Ant')">Античност</button>
                     <button onclick="showEpoch('Sredn')">Средновековие</button>
                     <button onclick="showEpoch('Vazr')">Възраждане</button>
-                    <button onclick="showEpoch('NovoVr')">Новo време</button>
+                    <button onclick="showEpoch('NovoVr')">Ново време</button>
                 </div>
             </div>
             <div id="events"></div>
         </div>
 
         <div id="quiz" class="section" style="display:none;">
-            <h2 style="text-align: center;">Въпроси за усвоените знания</h2>
-            <div style="text-align:center;">
-                 <button id="generate-quiz" class="quiz-btn" onclick="generateQuiz()">Покажи въпроси</button>
+            <h2 class="page-title">Въпроси за усвоените знания</h2>
+            <div class="quiz-controls">
+                <button class="ux-main-btn" onclick="generateQuiz()">Покажи въпросите</button>
+                <button class="ux-icon-btn" onclick="shuffleCurrentQuiz()" title="Разместване">⇋</button>
             </div>
-            <div id="questions"></div> 
-            <button id="check-button" class="quiz-btn" onclick="checkQuiz()" style="display:none; margin: 20px auto;">Виж резултата</button>
+            
+            <div id="questions-container"></div>
+            
+            <button id="check-button" class="check-btn" onclick="checkQuiz()" style="display:none;">Провери резултата</button>
         </div>
 
         <div id="howto" class="section" style="display:none;">
-            <div style="background: #f9f2ec; padding: 20px; border-radius: 15px; border: 1px solid #d2b48c; max-width: 600px; margin: 20px auto; text-align: center;">
-                <h3>Как се работи със сайта?</h3>
-                <p>• Натиснете бутон от <strong>Линията</strong> (напр. "Средновековие"), за да видите ключови събития.</p>
-                <p>• Кликнете върху конкретно събитие за повече детайли.</p>
-                <p>• Отидете в секция <strong>Въпроси</strong>, за да проверите знанията си и да спечелите щит.</p>
-                <button onclick="showSection('line')" style="padding:10px; background:#002f6c; color:white; border:none; cursor:pointer;">Разбрах, върни ме към историята</button>
+            <div class="info-card">
+                <h3>Указания</h3>
+                <p>Използвайте хронологичната линия, за да разгледате епохите. В секция "Въпроси" можете да тествате знанията си и да получите значка.</p>
+                <button onclick="showSection('line')" class="ux-main-btn">Започни</button>
             </div>
         </div>
-
     </div>
 
-    <div id="event-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
-        <div id="event-content" style="background:white; padding:30px; border-radius:10px; max-width:600px; text-align:center; position:relative;">
-            <span id="close-overlay" onclick="closeEvent()" style="position:absolute; top:10px; right:15px; font-size:30px; cursor:pointer;">&times;</span>
-            
-            <img id="event-img" src="" alt="Събитие" style="display:none;"> 
-            
+    <div id="event-overlay" onclick="closeEvent(event)" style="display:none;">
+        <div id="event-content">
+            <span id="close-overlay" onclick="document.getElementById('event-overlay').style.display='none'">&times;</span>
+            <img id="event-img" src="" alt="">
             <h2 id="event-title"></h2>
             <p id="event-text"></p>
         </div>
     </div>
 
     <script src="java3.js"></script>
-
 </body>
 </html>
-
-
-
-
-
 
 
 
