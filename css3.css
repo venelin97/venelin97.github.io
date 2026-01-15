@@ -531,24 +531,6 @@
     z-index: 10;
 }
 
-#menu {
-    position: absolute;
-    top: 100px;                  /* регулирай според височината на header */
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    z-index: 10;
-}
-
-/* Бутони на менюто */
-#menu button {
-    padding: 10px 15px;
-    background: rgba(255,255,255,0.8);
-    border: none;
-    cursor: pointer;
-}
 
 
 
