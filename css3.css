@@ -121,11 +121,12 @@ body {
     z-index: 0;
 }
 
-
 #events {
     display: flex;
-    flex-wrap: nowrap;      
-    margin-top: 6rem;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 15px; 
+    margin-top: 4rem;
     margin-bottom: 5rem;
     padding: 0 5%;
 }
@@ -171,6 +172,14 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+}
+
+#event-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 #event-content {
@@ -309,17 +318,19 @@ body {
 
 /* Щитове за резултат */
 .shield {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     display: flex;
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
     text-align: center;
-    box-shadow: 0 0 20px #fff;
-    animation: pop 0.5s ease-out;
+    border: 5px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .gold-shield { background: linear-gradient(135deg, gold, #ffcc00); color: black; }
@@ -395,55 +406,12 @@ body {
     color: #8b5e3c; /* кафяво */
     font-size: 16px;
 }
-@media (max-width: 768px) {
 
-    #menu {
-        flex-direction: column;
-    }
-
-    #menu button {
-        font-size: 18px;
-        padding: 18px 0;
-    }
-
-    #timeline {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    #timeline-line {
-        display: none; /* линията няма смисъл на телефон */
-    }
-
-    #events {
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 3rem;
-    }
-
-    #events button {
-        width: 100%;
-        max-width: 90%;
-        height: auto;
-        padding: 20px;
-        font-size: 17px;
-    }
-
-    #event-content {
-        width: 90%;
-        max-width: none;
-    }
-
-    .quiz-buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
+.active-epoch {
+    background: #E1A300 !important; /* Златисто вместо червено */
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(225, 163, 0, 0.5);
 }
-
-
-
-
-
 
 
 
