@@ -71,60 +71,61 @@ const extraQuestions = [
   { q: "Кой град е бил столица на Първото българско царство преди Преслав?", correct: "Плиска", options: ["Плиска", "Охрид", "Търново"] }
 ];
 
-let currentQuiz = [];
+let currentQuizSelection = [];
 
+// 2. УПРАВЛЕНИЕ
 function showSection(id) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+    if(id === 'line') showEpoch('Ant'); // По подразбиране
 }
 
 function showEpoch(epoch) {
-    const box = document.getElementById("events-container");
-    box.innerHTML = "";
+    const container = document.getElementById("events");
+    container.innerHTML = "";
     eventsData[epoch].forEach((ev, i) => {
         const btn = document.createElement("button");
         btn.textContent = ev.title;
         btn.onclick = () => {
-            document.getElementById("modal-title").textContent = ev.title;
-            document.getElementById("modal-text").textContent = ev.text;
-            document.getElementById("modal-img").src = ev.image;
+            document.getElementById("event-title").textContent = ev.title;
+            document.getElementById("event-text").textContent = ev.text;
+            document.getElementById("event-img").src = ev.image;
             document.getElementById("event-overlay").style.display = "flex";
         };
-        box.appendChild(btn);
+        container.appendChild(btn);
     });
 }
 
+// 3. КВИЗ ЛОГИКА
 function generateQuiz() {
-    currentQuiz = [...allQuestions].sort(() => 0.5 - Math.random()).slice(0, 10);
+    currentQuizSelection = [...quizQuestions].sort(() => 0.5 - Math.random());
     renderQuiz();
-    document.getElementById("check-btn").style.display = "block";
+    document.getElementById("check-button").style.display = "block";
 }
 
 function shuffleCurrentQuiz() {
-    currentQuiz.sort(() => 0.5 - Math.random());
+    currentQuizSelection.sort(() => 0.5 - Math.random());
     renderQuiz();
 }
 
 function renderQuiz() {
-    const container = document.getElementById("quiz-container");
+    const container = document.getElementById("questions-container");
     container.innerHTML = "";
-    currentQuiz.forEach((q, i) => {
-        const card = document.createElement("div");
-        card.className = "question-card";
-        card.innerHTML = `<p><strong>${q.q}</strong></p>`;
-        q.opts.forEach(opt => {
-            const optDiv = document.createElement("div");
-            optDiv.className = "option-box";
-            optDiv.innerHTML = `<input type="radio" name="q${i}" value="${opt}"> <span>${opt}</span><span class="status-icon"></span>`;
-            optDiv.onclick = () => optDiv.querySelector('input').checked = true;
-            card.appendChild(optDiv);
-        });
-        container.appendChild(card);
+    currentQuizSelection.forEach((q, i) => {
+        const div = document.createElement("div");
+        div.className = "quiz-question-box";
+        div.innerHTML = `<p><strong>${q.q}</strong></p>` + 
+        q.opts.map(opt => `
+            <div class="answer-option">
+                <input type="radio" name="q${i}" value="${opt}"> ${opt}
+                <span class="status-icon"></span>
+            </div>`).join("");
+        container.appendChild(div);
     });
 }
 
 function checkQuiz() {
-    currentQuiz.forEach((q, i) => {
+    currentQuizSelection.forEach((q, i) => {
         const selected = document.querySelector(`input[name="q${i}"]:checked`);
         const options = document.querySelectorAll(`input[name="q${i}"]`);
         options.forEach(opt => {
@@ -132,17 +133,16 @@ function checkQuiz() {
             const icon = parent.querySelector('.status-icon');
             if(opt.value === q.a) {
                 parent.classList.add("correct");
-                icon.innerHTML = "✓";
+                icon.innerHTML = " ✓";
             } else if (selected && opt === selected && opt.value !== q.a) {
                 parent.classList.add("wrong");
-                icon.innerHTML = "✗";
+                icon.innerHTML = " ✗";
             }
         });
     });
 }
 
-window.onload = () => showEpoch('Ant');
-
+window.onload = () => showSection('line');
 
 
 
