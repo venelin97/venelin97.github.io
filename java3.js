@@ -71,101 +71,78 @@ const extraQuestions = [
   { q: "Кой град е бил столица на Първото българско царство преди Преслав?", correct: "Плиска", options: ["Плиска", "Охрид", "Търново"] }
 ];
 
-let currentQuizSelection = [];
+let currentQuiz = [];
 
-// ==========================================
-// 4. ЛОГИКА НА ЛИНИЯТА (БЕЗ СКРОЛ)
-// ==========================================
+function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
 function showEpoch(epoch) {
-    const box = document.getElementById("events-grid") || document.getElementById("events");
+    const box = document.getElementById("events-container");
     box.innerHTML = "";
     eventsData[epoch].forEach((ev, i) => {
         const btn = document.createElement("button");
         btn.textContent = ev.title;
-        btn.onclick = () => openEvent(epoch, i);
+        btn.onclick = () => {
+            document.getElementById("modal-title").textContent = ev.title;
+            document.getElementById("modal-text").textContent = ev.text;
+            document.getElementById("modal-img").src = ev.image;
+            document.getElementById("event-overlay").style.display = "flex";
+        };
         box.appendChild(btn);
     });
 }
 
-function openEvent(epoch, i) {
-    const ev = eventsData[epoch][i];
-    document.getElementById("modal-title").textContent = ev.title;
-    document.getElementById("modal-text").textContent = ev.text;
-    const img = document.getElementById("modal-img");
-    img.src = ev.image;
-    img.style.display = ev.image ? "block" : "none";
-    document.getElementById("event-overlay").style.display = "flex";
-}
-
-// ==========================================
-// 5. КВИЗ ЛОГИКА (ПО ТВОЯ МОДЕЛ)
-// ==========================================
 function generateQuiz() {
-    // Избираме 10 случайни въпроса от 15-те налични
-    currentQuizSelection = [...extraQuestions].sort(() => 0.5 - Math.random()).slice(0, 10);
+    currentQuiz = [...allQuestions].sort(() => 0.5 - Math.random()).slice(0, 10);
     renderQuiz();
     document.getElementById("check-btn").style.display = "block";
 }
 
 function shuffleCurrentQuiz() {
-    currentQuizSelection.sort(() => 0.5 - Math.random());
+    currentQuiz.sort(() => 0.5 - Math.random());
     renderQuiz();
 }
 
 function renderQuiz() {
-    const container = document.getElementById("quiz-container") || document.getElementById("questions-container");
+    const container = document.getElementById("quiz-container");
     container.innerHTML = "";
-    currentQuizSelection.forEach((q, i) => {
+    currentQuiz.forEach((q, i) => {
         const card = document.createElement("div");
         card.className = "question-card";
         card.innerHTML = `<p><strong>${q.q}</strong></p>`;
-        
-        q.options.forEach(opt => {
-            const optBox = document.createElement("div");
-            optBox.className = "option-box";
-            optBox.innerHTML = `
-                <input type="radio" name="q${i}" value="${opt}" style="margin-right:10px;">
-                <span>${opt}</span>
-                <span class="status-icon"></span>
-            `;
-            // Правим целия правоъгълник кликаем
-            optBox.onclick = () => {
-                const radio = optBox.querySelector('input');
-                if(!radio.disabled) radio.checked = true;
-            };
-            card.appendChild(optBox);
+        q.opts.forEach(opt => {
+            const optDiv = document.createElement("div");
+            optDiv.className = "option-box";
+            optDiv.innerHTML = `<input type="radio" name="q${i}" value="${opt}"> <span>${opt}</span><span class="status-icon"></span>`;
+            optDiv.onclick = () => optDiv.querySelector('input').checked = true;
+            card.appendChild(optDiv);
         });
         container.appendChild(card);
     });
 }
 
 function checkQuiz() {
-    currentQuizSelection.forEach((q, i) => {
-        const options = document.getElementsByName(`q${i}`);
+    currentQuiz.forEach((q, i) => {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const options = document.querySelectorAll(`input[name="q${i}"]`);
         options.forEach(opt => {
             const parent = opt.parentElement;
             const icon = parent.querySelector('.status-icon');
-            
-            // Спираме промяната на отговорите след проверка
-            opt.disabled = true;
-
-            if (opt.value === q.correct) {
+            if(opt.value === q.a) {
                 parent.classList.add("correct");
-                icon.innerHTML = " ✓";
-            } else if (opt.checked && opt.value !== q.correct) {
+                icon.innerHTML = "✓";
+            } else if (selected && opt === selected && opt.value !== q.a) {
                 parent.classList.add("wrong");
-                icon.innerHTML = " ✗";
+                icon.innerHTML = "✗";
             }
         });
     });
 }
 
-// ==========================================
-// 6. СТАРТИРАНЕ
-// ==========================================
-window.onload = () => {
-    showEpoch('Ant');
-};
+window.onload = () => showEpoch('Ant');
+
 
 
 
