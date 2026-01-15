@@ -16,15 +16,15 @@
         <button id="help-btn" onclick="showSection('howto')">?</button>
     </header>
 
-    <div id="menu">
+    <nav id="menu">
         <button onclick="showSection('line')">Линия</button>
         <button onclick="showSection('quiz')">Въпроси</button>
-    </div>
+    </nav>
 
-    <div id="sections">
+    <main id="sections">
         <div id="line" class="section active">
             <h2 class="page-title">Българската история в линия на времето</h2>
-            <div id="timeline-container">
+            <div id="timeline-ui">
                 <div id="timeline-line"></div>
                 <div id="timeline">
                     <button onclick="showEpoch('Ant')">Античност</button>
@@ -39,23 +39,23 @@
         <div id="quiz" class="section" style="display:none;">
             <h2 class="page-title">Въпроси за усвоените знания</h2>
             <div class="quiz-controls">
-                <button class="ux-main-btn" onclick="generateQuiz()">Покажи въпросите</button>
-                <button class="ux-icon-btn" onclick="shuffleCurrentQuiz()" title="Разместване">⇋</button>
+                <button class="original-blue-btn" onclick="generateQuiz()">Покажи въпросите</button>
+                <button class="original-blue-btn ux-shuffle" onclick="shuffleCurrentQuiz()">⇌</button>
             </div>
             
             <div id="questions-container"></div>
             
-            <button id="check-button" class="check-btn" onclick="checkQuiz()" style="display:none;">Провери резултата</button>
+            <button id="check-button" class="original-blue-btn" onclick="checkQuiz()" style="display:none; margin: 20px auto;">Провери резултата</button>
         </div>
 
         <div id="howto" class="section" style="display:none;">
             <div class="info-card">
                 <h3>Указания</h3>
-                <p>Използвайте хронологичната линия, за да разгледате епохите. В секция "Въпроси" можете да тествате знанията си и да получите значка.</p>
-                <button onclick="showSection('line')" class="ux-main-btn">Започни</button>
+                <p>Използвайте хронологичната линия, за да разгледате епохите. В секция "Въпроси" можете да тествате знанията си.</p>
+                <button onclick="showSection('line')" class="original-blue-btn">Започни</button>
             </div>
         </div>
-    </div>
+    </main>
 
     <div id="event-overlay" onclick="closeEvent(event)" style="display:none;">
         <div id="event-content">
@@ -69,7 +69,6 @@
     <script src="java3.js"></script>
 </body>
 </html>
-
 
 
 
