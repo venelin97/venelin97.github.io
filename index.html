@@ -1,20 +1,23 @@
-<!DOCTYPE html> <html lang="bg"> 
-        <head> 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Българската история</title>
-        <link rel="stylesheet" href="css3.css"> </head>
-        <body>
-                
-                <header id="top-bar"> 
-                        
-        <h1>БЪЛГАРСКА ИСТОРИЯ</h1>
-        <button id="help-btn" onclick="showSection('howto')">?</button>
-    </header>
-    <nav id="menu">
-        <button onclick="showSection('line')">Линия</button>
-        <button onclick="showSection('quiz')">Въпроси</button>
-    </nav>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Българската история</title>
+<link rel="stylesheet" href="css3.css">
+</head>
+<body>
+
+<!-- Корица със снимка -->
+<div id="cover"></div>
+
+<!-- Лента с заглавие и бутон ? -->
+<header id="top-bar">
+    <h1>БЪЛГАРСКА ИСТОРИЯ</h1>
+    <button id="help-btn" onclick="showSection('howto')">?</button>
+</header>
+
+<!-- Меню лента с бутоните -->
+<nav id="menu">
+    <button onclick="showSection('line')">Линия</button>
+    <button onclick="showSection('quiz')">Въпроси</button>
+</nav>
     <main id="sections">
         <div id="line" class="section active">
             <h2 class="page-title">Българската история в линия на времето</h2>
@@ -82,6 +85,7 @@
         <script src="java3.js"></script>
 </body>
 </html>
+
 
 
 
