@@ -123,27 +123,26 @@ body {
 
 #events {
     display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 15px; 
-    margin-top: 4rem;
-    margin-bottom: 5rem;
-    padding: 0 5%;
+    flex-wrap: nowrap;    
+    overflow-x: auto;      
+    gap: 15px;            */
+    padding: 20px 0;
+    justify-content: flex-start; 
 }
 
+
 #events button {
-    width: 260px;          
-    height: 72px;
-    margin: 0 5px;          
-    font-size: 16px;
-    border-radius: 20px;
-    border: none;
-    background: #C68642;   
+    flex: 0 0 auto;       
+    width: 200px;         
+    height: 100px;        
+    background: #c68642;
     color: white;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.25s ease, background 0.25s ease;
-    white-space: normal;   
-    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    white-space: normal;  
 }
 
 #events button:hover {
@@ -412,6 +411,7 @@ body {
     transform: scale(1.1);
     box-shadow: 0 0 15px rgba(225, 163, 0, 0.5);
 }
+
 
 
 
