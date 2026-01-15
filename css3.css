@@ -92,7 +92,7 @@
         #menu button:hover {
             transform: scale(1.05);
             filter: brightness(1.1);
-        }
+       
 
         /* ========== Линия на времето ========== */
         #timeline-ui {
@@ -535,6 +535,8 @@
 
 
 #top-bar {
+  background-color: #f5e9d4;
+    color: #333; 
     display: flex;
     justify-content: space-between; 
     align-items: center;
@@ -561,6 +563,7 @@
     color: white;
     cursor: pointer;
 }
+
 
 
 
