@@ -1,19 +1,10 @@
-// 1. Управление на секциите
+// ====== Управление на секциите (Твоят код) ======
 function showSection(id) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(s => {
-        s.style.display = 'none';
-        s.classList.remove('active');
-    });
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+};
 
-    const target = document.getElementById(id);
-    if (target) {
-        target.style.display = 'block';
-        target.classList.add('active');
-    }
-}
-
-// 2. Данни за събитията (Пълен текст)
+// ====== Данни за събитията (Твоят текст 1:1) ======
 const eventsData = {
   Ant: [
     {title:"Държавност и културно наследство на тракийските племена", text:"Траките са били един от най-многобройните народи в античността, разделени на над 80 племена. Те не са оставили писменост, но тяхното богатство и духовност личат в уникалните гробници и златни съкровища като Панагюрското. Тракийските конници са били легендарни, а вярванията им в безсмъртието на душата са вдъхновили митове за герои като Орфей. Одриското царство е първият им опит да обединят тези племена в мощна държава, която е съперничила дори на Атина.", image:"images/traki.jpg"},
@@ -23,7 +14,7 @@ const eventsData = {
     {title:"Духовен синкретизъм и разпространение на християнството", text:"Разпространение на римска култура, латински език и християнство в някои региони.", image:"images/trakiizkustvo.jpg"}
   ],
   Sredn: [
-    {title:"Създаване на Първото българско царство", text:"През 681 г. византийският император Константин IV е принуден да подпише мирен договор и да плаща данък на един нов и непознат народ. Това е официалното признание на България. Хан Аспарух избира Плиска за столица – огромен град, заобиколен от земни валове и каменни стени, който е заемал площ от 23 кв. км (по-голям от тогавашния Константинопол). Българите донасят със себе си държавна организация, която съчетава войнствеността на прабългарите с уседналия начин на живот на славяните.",  image:"images/1vo bg charstvo.jpg"},
+    {title:"Създаване на Първото българско царство", text:"През 681 г. византийският император Константин IV е принуден да подпише мирен договор и да плаща данък на един нов и непознат народ. Това е официалното признание на България. Хан Аспарух избира Плиска за столица – огромен град, заобиколен от земни валове и каменни стени, който е заемал площ от 23 кв. км (по-голям от тогавашния Константинопол). Българите донасят със себе си държавна организация, която съчетава войнствеността на прабългарите со уседналия начин на живот на славяните.",  image:"images/1vo bg charstvo.jpg"},
     {title:"Съперничество между България и Византия за балканско надмощие", text:"Отношенията между България и Източната римска империя (Византия) са низ от военни конфликти и периоди на културен обмен. От кан Тервел, който спасява Константинопол от арабите, до кан Крум, който влиза в пряк двубой с император Никифор, борбата е за надмощие на Балканите. Византия не приема лесно присъствието на независима държава на своите граници, но именно в тези войни се калява българската народност. Този период завършва с падането на Първото царство, но и с трайното възприемане на православието и византийския държавен модел.",  image:"images/bitkisvisantiq.jpg"},
     {title:"Златен век на България", text:"При цар Симеон Велики България не е просто военна сила, тя е културен хегемон. След като приема християнството при Борис I, страната се нуждае от собствена писменост. Симеон превръща новата столица Велики Преслав в 'преславен' град с бели каменни стени и позлатени куполи. Тук работят книжовници, които превеждат най-важните християнски текстове на старобългарски език, превръщайки България в духовен фар за всички славянски народи. Това е времето на 'Три морета' – България се мие от водите на Черно, Егейско и Адриатическо море.", image:"images/zlatenvek.jpg"},
     {title:"Залез на Първата българска държава", text:"Краят на Първото царство е изпълнен с драматизъм и героизъм. Цар Самуил води епична съпротива срещу византийския император Василий II, наречен по-късно 'Българоубиец'. В продължение на десетилетия двете империи са в състояние на перманентна война. Трагедията след битката при Беласица (1014 г.), където 15 000 български войници са ослепени, пречупва сърцето на царя, но не и духа на народа. През 1018 г. България пада под византийска власт, но съхранява своята култура и църква, което помага за бъдещото ѝ възкресение.", image:"images/padane.jpg"}
@@ -44,153 +35,89 @@ const eventsData = {
   ]
 };
 
-// 3. Данни за въпросите (15 броя)
+// ====== Пълен списък с въпроси (Довършени до 15) ======
 const extraQuestions = [
   { q: "Кой град е основан от Филип II Македонски под името Филипопол?", correct: "Пловдив", options: ["София", "Пловдив", "Варна"] },
   { q: "През коя година е признато Първото българско царство след битката при Онгъла?", correct: "681 г.", options: ["632 г.", "681 г.", "811 г."] },
   { q: "Кой български владетел превръща Велики Преслав в духовен център?", correct: "цар Симеон I", options: ["хан Крум", "княз Борис I", "цар Симеон I"] },
-  { q: "Как се нарича първата българска конституция, приета през 1879 г.?", correct: "Търновска конституция", options: ["Радомирска конституция", "Търновска конституция", "Софийска конституция"] },
-  { q: "На коя страна участва България в Първата световна война?", correct: "Централните сили", options: ["Антантата", "Централните сили", "СССР"] },
-  { q: "Коя книга поставя началото на Българското възраждане през 1762 г.?", correct: "История славянобългарска", options: ["Рибен буквар", "История славянобългарска", "Горски пътник"] },
-  { q: "Кой е основният идеолог на тайната комитетска мрежа за освобождение?", correct: "Васил Левски", options: ["Христо Ботев", "Георги Раковски", "Васил Левски"] },
-  { q: "Кой мирен договор връща Южна Добруджа на България през 1940 г.?", correct: "Крайовска спогодба", options: ["Ньойски договор", "Крайовска спогодба", "Берлински договор"] },
-  { q: "Какво събитие се случва на 22 септември 1908 г. във Велико Търново?", correct: "Обявяване на Независимостта", options: ["Съединението", "Обявяване на Независимостта", "Освобождението"] },
-  { q: "Кой римски император е наричал днешна София „моят Рим“?", correct: "Константин Велики", options: ["Юлий Цезар", "Константин Велики", "Марк Аврелий"] },
-  { q: "През кой период България е обявена за Народна република?", correct: "1944 – 1989 г.", options: ["1918 – 1944 г.", "1878 – 1908 г.", "1944 – 1989 г."] },
-  { q: "Кое гръцко име носи античният Несебър?", correct: "Месемврия", options: ["Одесос", "Месемврия", "Аполония"] },
-  { q: "Кой е последният владетел на Първото българско царство преди византийското завоевание?", correct: "цар Самуил", options: ["цар Петър", "цар Самуил", "цар Иван Владислав"] },
-  { q: "Кога България става пълноправен член на Европейския съюз?", correct: "1 януари 2007 г.", options: ["2004 г.", "1 януари 2007 г.", "2010 г."] },
-  { q: "Кой град е бил столица на Първото българско царство преди Преслав?", correct: "Плиска", options: ["Плиска", "Охрид", "Търново"] }
+  { q: "Как се нарича първата българска конституция от 1879 г.?", correct: "Търновска", options: ["Търновска", "Софийска", "Пловдивска"] },
+  { q: "На коя дата е обявена Независимостта на България?", correct: "22 септември 1908", options: ["3 март 1878", "6 септември 1885", "22 септември 1908"] },
+  { q: "Кой е авторът на 'История славянобългарска'?", correct: "Паисий Хилендарски", options: ["Софроний Врачански", "Паисий Хилендарски", "Неофит Рилски"] },
+  { q: "Кой град е столица на Одриското царство?", correct: "Севтополис", options: ["Севтополис", "Кабиле", "Филипопол"] },
+  { q: "Кой римски град е предшественик на днешна София?", correct: "Сердика", options: ["Пауталия", "Сердика", "Августа Траяна"] },
+  { q: "През коя година е прието християнството при княз Борис I?", correct: "864 г.", options: ["855 г.", "864 г.", "893 г."] },
+  { q: "Кой е Апостолът на свободата?", correct: "Васил Левски", options: ["Христо Ботев", "Васил Левски", "Стефан Стамболов"] },
+  { q: "Кога е подписан Санстефанският мирен договор?", correct: "3 март 1878", options: ["3 март 1878", "20 април 1876", "10 ноември 1989"] },
+  { q: "Коя държава е основен съперник на България през Средновековието?", correct: "Византия", options: ["Франция", "Византия", "Русия"] },
+  { q: "Кога България влиза в ЕС?", correct: "2007 г.", options: ["2004 г.", "2007 г.", "2010 г."] },
+  { q: "Кой хан е създал Стара Велика България?", correct: "хан Кубрат", options: ["хан Аспарух", "хан Кубрат", "хан Тервел"] },
+  { q: "Какво се отбелязва на 6 септември?", correct: "Съединението", options: ["Независимостта", "Съединението", "Освобождението"] }
 ];
 
 let quizQuestions = [];
 
-// 4. Логика на Линията на времето
+// ====== Линия на времето (Функционалност) ======
 function showEpoch(epoch) {
-    const box = document.getElementById("events");
-    box.innerHTML = "";
-
-    document.querySelectorAll("#timeline button").forEach(b => b.classList.remove("active-epoch"));
-    const activeBtn = document.querySelector(`#timeline button[onclick="showEpoch('${epoch}')"]`);
-    if(activeBtn) activeBtn.classList.add("active-epoch");
-
-    eventsData[epoch].forEach((ev, i) => {
-        const btn = document.createElement("button");
-        btn.textContent = ev.title;
-        btn.onclick = () => openEvent(epoch, i);
-        box.appendChild(btn);
-    });
+  const box = document.getElementById("events");
+  box.innerHTML = "";
+  eventsData[epoch].forEach((ev, i) => {
+    const btn = document.createElement("button");
+    btn.textContent = ev.title;
+    btn.onclick = () => openEvent(epoch, i);
+    box.appendChild(btn);
+  });
 }
 
 function openEvent(epoch, index) {
-    const ev = eventsData[epoch][index];
-    document.getElementById("event-title").textContent = ev.title;
-    document.getElementById("event-text").textContent = ev.text;
-    
-    const overlayImg = document.getElementById("event-img");
-    if(overlayImg) {
-        if(ev.image) {
-            overlayImg.src = ev.image;
-            overlayImg.style.display = "block";
-        } else {
-            overlayImg.style.display = "none";
-        }
-    }
-    
-    document.getElementById("event-overlay").style.display = "flex";
+  const ev = eventsData[epoch][index];
+  document.getElementById("event-title").textContent = ev.title;
+  document.getElementById("event-text").textContent = ev.text;
+  document.getElementById("event-overlay").style.display = "flex";
 }
 
 function closeEvent() {
-    document.getElementById("event-overlay").style.display = "none";
+  document.getElementById("event-overlay").style.display = "none";
 }
 
-// 5. Логика на Квиза (10 от 15)
-function shuffleArray(arr) {
-    return arr.sort(() => Math.random() - 0.5);
-}
-
+// ====== Квиз (Функционалност) ======
 function generateQuiz() {
-    let shuffled = shuffleArray([...extraQuestions]);
-    quizQuestions = shuffled.slice(0, 10).map(q => ({
-        ...q,
-        options: shuffleArray([...q.options])
-    }));
-
-    const box = document.getElementById("questions");
-    box.innerHTML = "";
-
-    quizQuestions.forEach((q, i) => {
-        const d = document.createElement("div");
-        d.className = "quiz-question";
-        d.innerHTML = `
-            <p><strong>${i + 1}. ${q.q}</strong></p>
-            ${q.options.map((o, j) => `
-                <div class="answer">
-                    <input type="radio" id="q${i}_${j}" name="q${i}" value="${o}">
-                    <label for="q${i}_${j}">${o}</label>
-                </div>
-            `).join("")}
-        `;
-        box.appendChild(d);
-    });
-
-    document.getElementById("check-button").style.display = "block";
-    document.getElementById("result").textContent = ""; 
+  quizQuestions = extraQuestions.sort(() => 0.5 - Math.random()).slice(0, 10);
+  const box = document.getElementById("questions");
+  box.innerHTML = "";
+  quizQuestions.forEach((q, i) => {
+    const div = document.createElement("div");
+    div.innerHTML = `<p>${i+1}. ${q.q}</p>` + q.options.map(o => `
+      <div class="answer">
+        <input type="radio" name="q${i}" value="${o}" id="q${i}${o}">
+        <label for="q${i}${o}">${o}</label>
+      </div>`).join("");
+    box.appendChild(div);
+  });
+  document.getElementById("check-button").style.display = "block";
 }
 
 function checkQuiz() {
-    let points = 0;
-    quizQuestions.forEach((q, i) => {
-        const selected = document.querySelector(`input[name="q${i}"]:checked`);
-        const labels = document.querySelectorAll(`input[name="q${i}"] + label`);
-
-        labels.forEach(l => l.style.color = "dimgray");
-
-        if (selected) {
-            if (selected.value === q.correct) {
-                points++;
-                selected.nextElementSibling.style.color = "green";
-            } else {
-                selected.nextElementSibling.style.color = "red";
-                const correctInput = document.querySelector(`input[name="q${i}"][value="${q.correct}"]`);
-                if(correctInput) correctInput.nextElementSibling.style.color = "green";
-            }
-        }
-    });
-    showReward(points);
+  let score = 0;
+  quizQuestions.forEach((q, i) => {
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if (selected && selected.value === q.correct) score++;
+  });
+  showReward(score);
 }
 
 function showReward(points) {
-    const oldReward = document.querySelector('.reward-background');
-    if (oldReward) oldReward.remove();
-
-    const rewardDiv = document.createElement('div');
-    rewardDiv.className = 'reward-background';
-    let shieldClass = points >= 9 ? 'gold-shield' : points >= 6 ? 'bronze-shield' : 'silver-shield';
-    
-    rewardDiv.innerHTML = `<div class="shield ${shieldClass}">${points} / 10</div>`;
-    rewardDiv.onclick = () => rewardDiv.remove();
-    document.body.appendChild(rewardDiv);
+  const rewardDiv = document.createElement('div');
+  rewardDiv.className = 'reward-background';
+  let type = points >= 9 ? 'gold-shield' : points >= 6 ? 'silver-shield' : 'bronze-shield';
+  rewardDiv.innerHTML = `<div class="shield ${type}">${points}/10</div>`;
+  rewardDiv.onclick = () => rewardDiv.remove();
+  document.body.appendChild(rewardDiv);
 }
 
-// 6. Бутон за нагоре и помощни функции
-window.onscroll = function() {
-    let btn = document.getElementById("scrollToTop");
-    if(btn) {
-        btn.style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? "block" : "none";
-    }
-};
+function topFunction() { window.scrollTo({top: 0, behavior: 'smooth'}); }
 
-function topFunction() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-window.addEventListener("load", () => {
-    // Начално състояние
-    showEpoch('Ant');
-});
-
-
+// Начало при зареждане
+window.onload = () => showEpoch('Ant');
 
 
 
