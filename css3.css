@@ -563,6 +563,33 @@
     color: white;
     cursor: pointer;
 }
+         #menu {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#menu button {
+    padding: 10px 20px;
+    border: 1px solid #0050b3;
+    border-left: none; /* премахваме дублиращата се граница между бутоните */
+    background-color: #0050b3;
+    color: white;
+    cursor: pointer;
+}
+
+/* Първият бутон да има заобляне вляво */
+#menu button:first-child {
+    border-radius: 5px 0 0 5px;
+    border-left: 1px solid #0050b3;
+}
+
+/* Последният бутон да има заобляне вдясно */
+#menu button:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+
 
 
 
