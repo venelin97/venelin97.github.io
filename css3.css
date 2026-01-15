@@ -531,6 +531,64 @@
     z-index: 10;
 }
 
+/* Корицата със снимка */
+#cover {
+    width: 100%;
+    height: 300px; /* може да увеличиш ако искаш по-голяма корица */
+    background: url("snimки/cover.jpg") center/cover no-repeat;
+    position: relative;
+}
+
+/* Header върху корицата */
+#top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(0,0,0,0.3); /* леко прозрачна за видимост на снимката */
+    color: white;
+    z-index: 10;
+}
+
+/* Контейнер за бутон ? + меню */
+#controls {
+    margin-top: 10px; /* малко разстояние под корицата */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* бутон ? вдясно */
+    padding: 0 20px;
+}
+
+/* Бутон ? */
+#help-btn {
+    padding: 10px 15px;
+    background: #0050b3;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Меню бутоните под ? */
+#menu {
+    margin-top: 10px; /* малко разстояние под ? */
+    display: flex;
+    gap: 10px;
+}
+
+/* Меню бутоните стил */
+#menu button {
+    padding: 10px 15px;
+    background: rgba(255,255,255,0.8);
+    border: none;
+    cursor: pointer;
+}
+
+
+
 
 
 
