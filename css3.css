@@ -526,68 +526,6 @@
 }
 
 
-#cover {
-    width: 100%;
-    height: 300px; 
-    background: url("snimки/cover.jpg") center / cover no-repeat;
-    display: block;
-}
-
-
-#top-bar {
-  background-color: #f5e9d4;
-    color: #333; 
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    padding: 15px 20px;
-    background-color: rgba(0,0,0,0.3); 
-    color: white;
-    margin-top: 0; 
-}
-
-
-#menu {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding: 10px 0;
-    background-color: rgba(255,255,255,0.9);
-}
-
-
-#menu button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #0050b3;
-    color: white;
-    cursor: pointer;
-}
-         #menu {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-#menu button {
-    padding: 10px 20px;
-    border: 1px solid #0050b3;
-    border-left: none; /* премахваме дублиращата се граница между бутоните */
-    background-color: #0050b3;
-    color: white;
-    cursor: pointer;
-}
-
-/* Първият бутон да има заобляне вляво */
-#menu button:first-child {
-    border-radius: 5px 0 0 5px;
-    border-left: 1px solid #0050b3;
-}
-
-/* Последният бутон да има заобляне вдясно */
-#menu button:last-child {
-    border-radius: 0 5px 5px 0;
-}
 
 
 
