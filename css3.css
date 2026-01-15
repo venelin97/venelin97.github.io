@@ -507,25 +507,28 @@
             #timeline button { padding: 10px 15px; font-size: 14px; }
             #events button { width: 180px; height: 80px; }
         }
+#cover {
+    position: relative;        /* header ще бъде „върху“ него */
+    width: 100%;
+    height: 300px;             /* или колкото искаш */
+    background-color: #002f6c; /* син фон ако нямаш снимка */
+    /* ако имаш снимка:
+    background: url("snimki/cover.jpg") center / cover no-repeat;
+    */
+}
+
 #top-bar {
-    position: absolute;       /* header „плува“ върху cover */
+    position: absolute;       /* прави го да лежи върху cover */
     top: 0;
     left: 0;
     width: 100%;
     padding: 20px;
-    background: rgba(0,0,0,0.4); /* леко прозрачно, за да се вижда снимката */
+    background: rgba(0,0,0,0.3); /* леко прозрачност, за да се вижда синята корица */
     color: white;
-    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-#cover {
-    position: relative;        /* за да можем да позиционираме header върху него */
-    width: 100%;
-    height: 300px;             /* може да е 400px ако искаш по-голяма */
-    background: url("logo.jpg") center/cover no-repeat;
+    z-index: 10;
 }
 
 
