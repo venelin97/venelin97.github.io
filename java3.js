@@ -77,13 +77,6 @@ let quizQuestions = [];
 function showEpoch(epoch) {
     const box = document.getElementById("events");
     box.innerHTML = "";
-
-    // Маркиране на активна епоха
-    document.querySelectorAll("#timeline button").forEach(b => b.classList.remove("active-epoch"));
-    const activeBtn = document.querySelector(`#timeline button[onclick="showEpoch('${epoch}')"]`);
-    if(activeBtn) activeBtn.classList.add("active-epoch");
-
-    // Създаване на бутони за събития
     eventsData[epoch].forEach((ev, i) => {
         const btn = document.createElement("button");
         btn.textContent = ev.title;
@@ -92,139 +85,69 @@ function showEpoch(epoch) {
     });
 }
 
-function openEvent(epoch, index) {
-    const ev = eventsData[epoch][index];
-    
+function openEvent(epoch, i) {
+    const ev = eventsData[epoch][i];
     document.getElementById("event-title").textContent = ev.title;
     document.getElementById("event-text").textContent = ev.text;
-    
-    // ЛОГИКА ЗА СНИМКАТА
-    const overlayImg = document.getElementById("event-img");
-    if(overlayImg) {
-        if(ev.image) {
-            overlayImg.src = ev.image;
-            overlayImg.style.display = "block";
-        } else {
-            overlayImg.style.display = "none";
-        }
-    }
-    
+    const img = document.getElementById("event-img");
+    img.src = ev.image;
+    img.style.display = ev.image ? "block" : "none";
     document.getElementById("event-overlay").style.display = "flex";
 }
 
-function closeEvent() {
-    document.getElementById("event-overlay").style.display = "none";
-}
-
-// ==========================================
-// 5. ЛОГИКА НА КВИЗА (ГЕНЕРИРАНЕ И ПРОВЕРКА)
-// ==========================================
-function shuffleArray(arr) {
-    return arr.sort(() => Math.random() - 0.5);
-}
+// КВИЗ ЛОГИКА
+let currentQuiz = [];
 
 function generateQuiz() {
-    // Взимаме 10 случайни въпроса
-    let shuffled = shuffleArray([...extraQuestions]);
-    quizQuestions = shuffled.slice(0, 10).map(q => ({
-        ...q,
-        options: shuffleArray([...q.options])
-    }));
-
-    const box = document.getElementById("questions");
-    box.innerHTML = "";
-
-    quizQuestions.forEach((q, i) => {
-        const d = document.createElement("div");
-        d.className = "quiz-question";
-        d.innerHTML = `
-            <p><strong>${i + 1}. ${q.q}</strong></p>
-            ${q.options.map((o, j) => `
-                <div class="answer">
-                    <input type="radio" id="q${i}_${j}" name="q${i}" value="${o}">
-                    <label for="q${i}_${j}">${o}</label>
-                </div>
-            `).join("")}
-        `;
-        box.appendChild(d);
-    });
-
-    // Показваме бутона за проверка
+    currentQuiz = [...questionsData].sort(() => Math.random() - 0.5).slice(0, 10);
+    renderQuiz();
     document.getElementById("check-button").style.display = "block";
 }
 
-function checkQuiz() {
-    let points = 0;
-    
-    quizQuestions.forEach((q, i) => {
-        const selected = document.querySelector(`input[name="q${i}"]:checked`);
-        
-        // Всички отговори на този въпрос стават черни първо
-        const labels = document.querySelectorAll(`input[name="q${i}"] + label`);
-        labels.forEach(l => l.style.color = "dimgray");
+function shuffleCurrentQuiz() {
+    currentQuiz.sort(() => Math.random() - 0.5);
+    renderQuiz();
+}
 
-        if (selected) {
-            if (selected.value === q.correct) {
-                points++;
-                selected.nextElementSibling.style.color = "green";
-                selected.nextElementSibling.style.fontWeight = "bold";
-            } else {
-                selected.nextElementSibling.style.color = "red";
-                // Показваме верния в зелено
-                const correctInput = document.querySelector(`input[name="q${i}"][value="${q.correct}"]`);
-                if(correctInput) {
-                    correctInput.nextElementSibling.style.color = "green";
-                    correctInput.nextElementSibling.style.fontWeight = "bold";
-                }
-            }
-        }
+function renderQuiz() {
+    const container = document.getElementById("questions-container");
+    container.innerHTML = "";
+    currentQuiz.forEach((q, i) => {
+        const div = document.createElement("div");
+        div.className = "quiz-question-box";
+        div.innerHTML = `
+            <p><strong>${q.q}</strong></p>
+            ${q.opts.map(opt => `
+                <div class="answer-option">
+                    <input type="radio" name="q${i}" value="${opt}"> ${opt}
+                    <span class="status-icon"></span>
+                </div>
+            `).join("")}
+        `;
+        container.appendChild(div);
     });
-
-    showReward(points);
 }
 
-function showReward(points) {
-    // Махаме стар щит ако има
-    const old = document.querySelector('.reward-background');
-    if(old) old.remove();
+function checkQuiz() {
+    currentQuiz.forEach((q, i) => {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const options = document.querySelectorAll(`input[name="q${i}"]`);
 
-    const rewardDiv = document.createElement('div');
-    rewardDiv.className = 'reward-background';
-    
-    let shieldClass = 'silver-shield';
-    if(points >= 9) shieldClass = 'gold-shield';
-    else if(points <= 5) shieldClass = 'bronze-shield';
-    
-    rewardDiv.innerHTML = `<div class="shield ${shieldClass}">${points} / 10</div>`;
-    
-    rewardDiv.onclick = () => rewardDiv.remove();
-    document.body.appendChild(rewardDiv);
+        options.forEach(opt => {
+            const parent = opt.parentElement;
+            const icon = parent.querySelector(".status-icon");
+            if (opt.value === q.a) {
+                parent.classList.add("correct");
+                icon.innerHTML = " ✓";
+            } else if (selected && opt === selected && opt.value !== q.a) {
+                parent.classList.add("wrong");
+                icon.innerHTML = " ✗";
+            }
+        });
+    });
 }
 
-// ==========================================
-// 6. СКРОЛ И ИНИЦИАЛИЗАЦИЯ
-// ==========================================
-window.onscroll = function() {
-    let btn = document.getElementById("scrollToTop");
-    if(btn) {
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-            btn.style.display = "block";
-        } else {
-            btn.style.display = "none";
-        }
-    }
-};
-
-function topFunction() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Стартиране (отваря Античност по подразбиране)
-window.onload = function() {
-    showEpoch('Ant');
-};
-
-
+window.onload = () => showEpoch('Ant');
 
 
 
