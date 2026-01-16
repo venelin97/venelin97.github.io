@@ -508,64 +508,64 @@
             #events button { width: 180px; height: 80px; }
         }
 
-/* Корица със снимка */
-#cover {
-    width: 100%;
-    height: 300px;
-    background: url("snimки/cover.jpg") center/cover no-repeat;
-    margin-bottom: 10px;
-}
-
-/* Лента с заглавие и бутон ? */
+/* ===== HEADER ===== */
 #top-bar {
+    background: #0b4da2;
+    padding: 25px 0;
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: auto;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    background-color: #f5e9d4; /* бежова лента */
-    color: #333;
-    font-size: 24px;
-    font-weight: bold;
+    justify-content: center;
+    position: relative;
 }
 
-/* Бутон ? */
-#help-btn {
-    padding: 8px 12px;
-    background: #0050b3;
+.header-inner h1 {
     color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 22px;
+    font-size: 34px;
+    margin: 0;
 }
 
-/* Меню лента с бутоните */
+/* ? бутон до заглавието */
+#help-btn {
+    margin-left: 15px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    color: #0b4da2;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* ===== MENU (2 СВЪРЗАНИ БУТОНА) ===== */
 #menu {
     display: flex;
     justify-content: center;
-    margin-top: 5px;
+    margin-top: 15px;
 }
 
-/* Свързани меню бутони */
 #menu button {
-    padding: 10px 25px;
-    border: 1px solid #0050b3;
-    border-left: none;
-    background: #0050b3;
+    background: #c9a23f;   /* златисто като на снимката */
     color: white;
+    border: none;
+    padding: 12px 45px;
+    font-size: 16px;
     cursor: pointer;
 }
 
-/* Първият бутон има заобляне вляво */
 #menu button:first-child {
-    border-radius: 5px 0 0 5px;
-    border-left: 1px solid #0050b3;
+    border-radius: 6px 0 0 6px;
 }
 
-/* Последният бутон има заобляне вдясно */
 #menu button:last-child {
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 6px 6px 0;
+    border-left: 2px solid rgba(255,255,255,0.4);
 }
-
 
 
 
