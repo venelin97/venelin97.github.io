@@ -201,6 +201,8 @@
             flex-direction: column;
             align-items: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            overflow-y: auto;
+
         }
 
         #event-img {
@@ -225,18 +227,19 @@
         }
 
        #close-overlay {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 36px;
+    position: sticky;
+    top: 10px;
+    align-self: flex-end;
+    font-size: 32px;
     cursor: pointer;
-    color: white;
+    color: #002f6c;
     background: none;
     border: none;
-    z-index: 3000;
+    z-index: 10;
     line-height: 1;
     transition: transform 0.2s ease, color 0.2s ease;
 }
+
 
 #close-overlay:hover {
     transform: scale(1.2);
@@ -542,6 +545,7 @@
     border-radius: 0 6px 6px 0 !important;
     border-left: 2px solid rgba(255,255,255,0.5) !important;
 }
+
 
 
 
