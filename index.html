@@ -11,18 +11,15 @@
 <body>
 
 <!-- Корица със снимка -->
-<div id="cover"></div>
-
-
-    <header id="top-bar">
-    <div class="header-inner">
+<div id="cover">
+    <img src="images/cover.jpg" alt="Корица Българска история" id="cover-img">
+    <div id="cover-content">
         <h1>БЪЛГАРСКА ИСТОРИЯ</h1>
-        <button id="help-btn">?</button>
+        <button id="help-btn" onclick="showSection('howto')">?</button>
     </div>
-</header>
+</div>
 
-
-<!-- Меню лента с бутоните -->
+<!-- ===== МЕНЮ СВЪРЗАНА ЛЕНТА ===== -->
 <nav id="menu">
     <button onclick="showSection('line')">Линия</button>
     <button onclick="showSection('quiz')">Въпроси</button>
@@ -82,6 +79,7 @@
 <script src="java3.js"></script>
 </body>
 </html>
+
 
 
 
