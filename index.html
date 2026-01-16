@@ -10,16 +10,19 @@
 </head>
 <body>
 
+<!-- Корица със снимка -->
+<div id="cover"></div>
 
-<div id="cover">
-    <img src="images/cover.jpg" alt="Корица Българска история" id="cover-img">
-    <div id="cover-content">
+
+    <header id="top-bar">
+    <div class="header-inner">
         <h1>БЪЛГАРСКА ИСТОРИЯ</h1>
-        <button id="help-btn" onclick="showSection('howto')">?</button>
+        <button id="help-btn">?</button>
     </div>
-</div>
+</header>
 
-<!-- ===== МЕНЮ СВЪРЗАНА ЛЕНТА ===== -->
+
+<!-- Меню лента с бутоните -->
 <nav id="menu">
     <button onclick="showSection('line')">Линия</button>
     <button onclick="showSection('quiz')">Въпроси</button>
@@ -32,10 +35,10 @@
         <div id="timeline-ui">
             <div id="timeline-line"></div>
             <div id="timeline">
-                <button data-epoch="Ant">Античност</button>
-                <button data-epoch="Sredn">Средновековие</button>
-                <button data-epoch="Vazr">Възраждане</button>
-                <button data-epoch="NovoVr">Ново време</button>
+                <button onclick="showEpoch('Ant')">Античност</button>
+                <button onclick="showEpoch('Sredn')">Средновековие</button>
+                <button onclick="showEpoch('Vazr')">Възраждане</button>
+                <button onclick="showEpoch('NovoVr')">Ново време</button>
             </div>
         </div>
         <div id="events"></div>
@@ -45,31 +48,31 @@
     <div id="quiz" class="section">
         <h2 class="page-title">Въпроси за усвоените знания</h2>
         <div class="quiz-controls">
-            <button class="original-blue-btn" id="btn-generate-quiz">Покажи въпросите</button>
-            <button class="original-blue-btn ux-shuffle" id="btn-shuffle-quiz">⇌</button>
+            <button class="original-blue-btn" onclick="generateQuiz()">Покажи въпросите</button>
+            <button class="original-blue-btn ux-shuffle" onclick="shuffleCurrentQuiz()">⇌</button>
         </div>
         <div id="questions-container"></div>
-        <button id="check-button" class="original-blue-btn" style="display:none;">Провери резултата</button>
+        <button id="check-button" class="original-blue-btn" onclick="checkQuiz()" style="display:none;">Провери резултата</button>
     </div>
 
     <!-- Секция Как да използваме -->
     <div id="howto" class="section">
         <div class="info-card">
             <h3>Указания за използване</h3>
-            <p><strong>Секция "Линия":</strong> Разгледайте българската история през четири епохи.</p>
-            <p><strong>Секция "Въпроси":</strong> Тествайте знанията си с интерактивен квиз.</p>
-            <button id="btn-start" class="original-blue-btn">Продължи</button>
+            <p><strong>Секция "Линия":</strong> Разгледайте българската история...</p>
+            <p><strong>Секция "Въпроси":</strong> Тествайте знанията си...</p>
+            <button onclick="showSection('line')" class="original-blue-btn">Продължи</button>
         </div>
     </div>
 </main>
 
 <!-- Бутон за връщане нагоре -->
-<button id="scrollToTop">↑</button>
+<button id="scrollToTop" onclick="scrollToTop()">↑</button>
 
 <!-- Overlay за събития -->
 <div id="event-overlay" style="display:none;">
     <div id="event-content">
-        <span id="close-overlay">&times;</span>
+        <span id="close-overlay" onclick="closeOverlay()">&times;</span>
         <img id="event-img" src="" alt="">
         <h2 id="event-title"></h2>
         <p id="event-text"></p>
@@ -79,7 +82,6 @@
 <script src="java3.js"></script>
 </body>
 </html>
-
 
 
 
