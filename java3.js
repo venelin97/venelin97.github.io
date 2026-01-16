@@ -151,17 +151,9 @@
             });
         }
 
-       const helpBtn = document.getElementById('help-btn');
-const howto = document.getElementById('howto');
-const closeBtn = document.getElementById('close-howto');
 
-helpBtn.addEventListener('click', () => {
-    howto.style.display = 'flex'; // показваме секцията
-});
 
-closeBtn.addEventListener('click', () => {
-    howto.style.display = 'none'; // скриваме секцията
-});
+
 
 
         // ПРОВЕРКА НА КВИЗА
@@ -196,9 +188,7 @@ closeBtn.addEventListener('click', () => {
             showResultShield(correctCount, currentQuizSelection.length);
         }
 
-document.getElementById('help-btn').addEventListener('click', () => {
-    showSection('howto'); 
-});
+
 
 
         // ПОКАЗВАНЕ НА РЕЗУЛТАТ СЪС ЗЛАТЕН ЩИТ
