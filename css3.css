@@ -494,7 +494,8 @@
 
 /* 1. Скриваме Указания НАВСЯКЪДЕ */
 #howto {
-    display: none !important;
+    display: none !important; /* display: none !important; */
+
 }
 
 /* 2. Синьо заглавие */
@@ -612,6 +613,7 @@
     transform: scale(1.1);
     background: #C2B078;
 }
+
 
 
 
