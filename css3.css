@@ -700,6 +700,62 @@
     background: #C2B078;
 }
 
+#cover-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+    position: relative;
+}
+
+#help-wrapper {
+    position: relative; /* за да позиционираме preview */
+}
+
+#help-btn {
+    background: white;
+    color: #0b4da2;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#help-btn:hover {
+    transform: scale(1.1);
+    background: #C2B078;
+}
+
+/* Preview картинка при hover */
+#help-preview {
+    display: none;
+    position: absolute;
+    top: 50px; /* малко под бутона */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px; /* размер на preview */
+    border: 2px solid #0b4da2;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    background: white;
+    z-index: 10;
+}
+
+#help-wrapper:hover #help-preview {
+    display: block;
+}
+
+#help-preview img {
+    width: 100%;
+    border-radius: 6px;
+}
+
+
+
 
 
 
