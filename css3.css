@@ -46,23 +46,7 @@
             color: #002f6c;
         }
 
-        #help-btn { 
-            position: absolute; 
-            right: 20px; 
-            background: #002f6c; 
-            color: white; 
-            border-radius: 50%; 
-            width: 40px; 
-            height: 40px; 
-            border: none; 
-            cursor: pointer;
-            font-size: 20px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        
 
         #help-btn:hover {
             background: #C2B078;
@@ -92,6 +76,7 @@
         #menu button:hover {
             transform: scale(1.05);
             filter: brightness(1.1);
+        }
        
 
         /* ========== Линия на времето ========== */
@@ -563,6 +548,7 @@
     border-radius: 0 6px 6px 0 !important;
     border-left: 2px solid rgba(255,255,255,0.5) !important;
 }
+
 
 
 
