@@ -781,6 +781,37 @@
 #menu button:first-child { border-right: 2px solid rgba(255,255,255,0.5); }
 #menu button:hover { filter: brightness(1.1); transform: scale(1.05); }
 
+#cover-title {
+    display: flex;
+    justify-content: center; /* центрира всичко хоризонтално */
+    align-items: center;
+    gap: 20px; /* разстояние между заглавие и бутон */
+    margin: 20px 0;
+}
+
+#cover-title h1 {
+    font-size: 3rem;
+    color: #0b4da2;
+    margin: 0;
+}
+
+#help-btn {
+    background: white;
+    color: #0b4da2;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#help-btn:hover {
+    transform: scale(1.1);
+    background: #C2B078;
+}
+
 
 
 
