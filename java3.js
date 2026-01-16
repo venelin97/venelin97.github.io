@@ -250,10 +250,7 @@ document.getElementById('help-btn').addEventListener('click', () => {
             });
         }
 
-        // СТАРТИРАНЕ ПРИ ЗАРЕЖДАНЕ
-        window.onload = () => {
-            showSection('line');
-        };
+      
 
 
 
