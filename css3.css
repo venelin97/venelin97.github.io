@@ -754,6 +754,34 @@
     border-radius: 6px;
 }
 
+#cover-title {
+    display: flex;
+    justify-content: flex-start; /* отместено към ляво, за да можем да сдвинем бутона */
+    align-items: center;
+    gap: 40px; /* повече разстояние между заглавието и бутона */
+    margin: 20px 0;
+    padding-left: 10%; /* сдвиждаме целия блок вдясно от заглавието */
+}
+
+#menu {
+    display: inline-flex; /* като група */
+    margin: 15px 0 30px 0;
+    border-radius: 6px;
+    overflow: hidden; /* за да се сливат краищата */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+#menu button {
+    border: none;
+    padding: 12px 45px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#menu button:first-child { border-right: 2px solid rgba(255,255,255,0.5); }
+#menu button:hover { filter: brightness(1.1); transform: scale(1.05); }
+
+
 
 
 
