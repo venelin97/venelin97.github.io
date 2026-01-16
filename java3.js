@@ -48,8 +48,7 @@
         ];
 
         let currentQuizSelection = [];
-        let currentEpoch = 'Ant';
-
+        let currentEpoch = '';
         // ФУНКЦИЯ ЗА ПОКАЗВАНЕ НА СЕКЦИЯ
         function showSection(id) {
             const sections = document.querySelectorAll('.section');
@@ -239,6 +238,7 @@ document.getElementById('help-btn').addEventListener('click', () => {
 };
 
       
+
 
 
 
