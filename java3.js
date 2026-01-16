@@ -151,6 +151,19 @@
             });
         }
 
+       const helpBtn = document.getElementById('help-btn');
+const howto = document.getElementById('howto');
+const closeBtn = document.getElementById('close-howto');
+
+helpBtn.addEventListener('click', () => {
+    howto.style.display = 'flex'; // показваме секцията
+});
+
+closeBtn.addEventListener('click', () => {
+    howto.style.display = 'none'; // скриваме секцията
+});
+
+
         // ПРОВЕРКА НА КВИЗА
         function checkQuiz() {
             let correctCount = 0;
@@ -236,6 +249,7 @@ document.getElementById('help-btn').addEventListener('click', () => {
 };
 
       
+
 
 
 
