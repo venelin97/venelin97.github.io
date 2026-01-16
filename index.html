@@ -62,14 +62,12 @@
     </div>
 
     <!-- Секция Как да използваме -->
-    <div id="howto" class="section">
-        <div class="info-card">
-            <h3>Указания за използване</h3>
-            <p><strong>Секция "Линия":</strong> Разгледайте българската история...</p>
-            <p><strong>Секция "Въпроси":</strong> Тествайте знанията си...</p>
-            <button onclick="showSection('line')" class="original-blue-btn">Продължи</button>
-        </div>
-    </div>
+  <div id="howto" style="display:none; flex-direction: column; align-items: center; padding: 20px; border: 2px solid #0b4da2; border-radius: 12px; max-width: 600px; margin: 20px auto; background:white;">
+    <span id="close-howto" style="cursor:pointer; float:right; font-weight:bold;">&times;</span>
+    <h2>Указания</h2>
+    <p>Натиснете бутоните по-долу, за да разгледате различни части от българската история. Съдържанието се отваря само при натискане на бутон за епоха.</p>
+</div>
+
 </main>
 
 <!-- Бутон за връщане нагоре -->
@@ -88,6 +86,7 @@
 <script src="java3.js"></script>
 </body>
 </html>
+
 
 
 
