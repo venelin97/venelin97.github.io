@@ -66,10 +66,26 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
             
             // Ако показваме линията, зареди първата епоха
-            if(id === 'line') {
-                showEpoch(currentEpoch);
-            }
-        }
+            function showSection(id) {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(s => {
+        s.style.display = 'none';
+        s.classList.remove('active');
+    });
+
+    const target = document.getElementById(id);
+    if (target) {
+        target.style.display = 'flex';
+        target.classList.add('active');
+    }
+    window.scrollTo({top: 0, behavior: 'smooth'});
+
+    // Ако показваме линейната секция чрез меню, зареди първата епоха
+    if(id === 'line' && currentEpoch === '') {
+        currentEpoch = 'Ant';
+        showEpoch(currentEpoch);
+    }
+}
 
         // ФУНКЦИЯ ЗА ПОКАЗВАНЕ НА ЕПОХА
         function showEpoch(epoch) {
@@ -238,6 +254,7 @@ document.getElementById('help-btn').addEventListener('click', () => {
         window.onload = () => {
             showSection('line');
         };
+
 
 
 
