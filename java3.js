@@ -185,6 +185,11 @@
             showResultShield(correctCount, currentQuizSelection.length);
         }
 
+document.getElementById('help-btn').addEventListener('click', () => {
+    showSection('howto'); 
+});
+
+
         // ПОКАЗВАНЕ НА РЕЗУЛТАТ СЪС ЗЛАТЕН ЩИТ
         function showResultShield(correct, total) {
             const percentage = (correct / total) * 100;
@@ -233,6 +238,7 @@
         window.onload = () => {
             showSection('line');
         };
+
 
 
 
