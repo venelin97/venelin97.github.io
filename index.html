@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Българската история</title>
     <link rel="stylesheet" href="css3.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Българската история</title>
+
 </head>
 <body>
 
-<!-- Корица със снимка -->
-<div id="cover"></div>
 
-<header id="top-bar">
-    <div class="header-inner">
+<div id="cover">
+    <img src="images/cover.jpg" alt="Корица Българска история" id="cover-img">
+    <div id="cover-content">
         <h1>БЪЛГАРСКА ИСТОРИЯ</h1>
-        <button id="help-btn">?</button>
+        <button id="help-btn" onclick="showSection('howto')">?</button>
     </div>
-</header>
+</div>
 
-<!-- Меню лента с бутоните -->
+<!-- ===== МЕНЮ СВЪРЗАНА ЛЕНТА ===== -->
 <nav id="menu">
-    <button id="btn-line">Линия</button>
-    <button id="btn-quiz">Въпроси</button>
+    <button onclick="showSection('line')">Линия</button>
+    <button onclick="showSection('quiz')">Въпроси</button>
 </nav>
 
 <main id="sections">
@@ -78,6 +79,7 @@
 <script src="java3.js"></script>
 </body>
 </html>
+
 
 
 
