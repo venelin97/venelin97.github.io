@@ -65,11 +65,7 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
             
             // Ако показваме линията, зареди първата епоха
-          if(id === 'line') {
-    showEpoch(currentEpoch);
-}
-        }
-
+         
 
         // ФУНКЦИЯ ЗА ПОКАЗВАНЕ НА ЕПОХА
         function showEpoch(epoch) {
@@ -238,6 +234,7 @@ document.getElementById('help-btn').addEventListener('click', () => {
 };
 
       
+
 
 
 
