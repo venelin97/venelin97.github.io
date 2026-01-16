@@ -508,64 +508,62 @@
             #events button { width: 180px; height: 80px; }
         }
 
-/* ===== HEADER ===== */
+/* ===== FORCE FIX ===== */
+
+/* 1. Скриваме Указания НАВСЯКЪДЕ */
+#howto {
+    display: none !important;
+}
+
+/* 2. Синьо заглавие */
 #top-bar {
-    background: #0b4da2;
-    padding: 25px 0;
+    background: #0b4da2 !important;
+    padding: 25px 0 !important;
 }
 
+/* 3. ? бутон до заглавието */
 .header-inner {
-    max-width: 1100px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
-.header-inner h1 {
-    color: white;
-    font-size: 34px;
-    margin: 0;
-}
-
-/* ? бутон до заглавието */
 #help-btn {
-    margin-left: 15px;
+    margin-left: 15px !important;
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    border: none;
     background: white;
     color: #0b4da2;
+    border: none;
     font-size: 20px;
-    cursor: pointer;
+    font-weight: bold;
 }
 
-/* ===== MENU (2 СВЪРЗАНИ БУТОНА) ===== */
+/* 4. Меню – САМО 2 СВЪРЗАНИ БУТОНА */
 #menu {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
+    display: flex !important;
+    justify-content: center !important;
+    margin: 15px 0 30px !important;
 }
 
 #menu button {
-    background: #c9a23f;   /* златисто като на снимката */
-    color: white;
-    border: none;
-    padding: 12px 45px;
-    font-size: 16px;
-    cursor: pointer;
+    background: #c9a23f !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 45px !important;
+    font-size: 16px !important;
 }
 
 #menu button:first-child {
-    border-radius: 6px 0 0 6px;
+    border-radius: 6px 0 0 6px !important;
 }
 
 #menu button:last-child {
-    border-radius: 0 6px 6px 0;
-    border-left: 2px solid rgba(255,255,255,0.4);
+    border-radius: 0 6px 6px 0 !important;
+    border-left: 2px solid rgba(255,255,255,0.5) !important;
 }
+
 
 
 
