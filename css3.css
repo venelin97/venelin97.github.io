@@ -581,6 +581,38 @@
     filter: brightness(1.1);
     transform: scale(1.05);
 }
+#cover-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center; /* центрира заглавието */
+    align-items: center;
+    gap: 20px; /* разстояние между заглавието и бутона */
+}
+
+#cover-content h1 {
+    color: #0b4da2; /* синьо заглавие */
+    font-size: 3rem;
+    margin: 0;
+}
+
+#help-btn {
+    background: white;
+    color: #0b4da2;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#help-btn:hover {
+    transform: scale(1.1);
+    background: #C2B078;
+}
+
 
 
 
