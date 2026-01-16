@@ -69,6 +69,7 @@
           if(id === 'line') {
     showEpoch(currentEpoch);
 }
+        }
 
 
         // ФУНКЦИЯ ЗА ПОКАЗВАНЕ НА ЕПОХА
@@ -238,6 +239,7 @@ document.getElementById('help-btn').addEventListener('click', () => {
 };
 
       
+
 
 
 
