@@ -28,7 +28,7 @@
           ]
         };
 
-        // ВЪПРОСИ ЗА КВИЗА
+        
         const extraQuestions = [
           { q: "Кой град е основан от Филип II Македонски под името Филипопол?", correct: "Пловдив", options: ["София", "Пловдив", "Варна"] },
           { q: "През коя година е признато Първото българско царство след битката при Онгъла?", correct: "681 г.", options: ["632 г.", "681 г.", "811 г."] },
@@ -48,7 +48,7 @@
 
         let currentQuizSelection = [];
         let currentEpoch = '';
-        // ФУНКЦИЯ ЗА ПОКАЗВАНЕ НА СЕКЦИЯ
+       
        function showSection(id) {
     const sections = document.querySelectorAll('.section');
     sections.forEach(s => {
@@ -65,10 +65,10 @@
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
-            // Ако показваме линията, зареди първата епоха
+            
          
 
-        // ФУНКЦИЯ ЗА ПОКАЗВАНЕ НА ЕПОХА
+        
         function showEpoch(epoch) {
             currentEpoch = epoch;
             
@@ -238,6 +238,7 @@
 };
 
       
+
 
 
 
