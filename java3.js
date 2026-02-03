@@ -46,198 +46,91 @@
           { q: "Кой град е бил столица на Първото българско царство преди Преслав?", correct: "Плиска", options: ["Плиска", "Охрид", "Търново"] }
         ];
 
-        let currentQuizSelection = [];
-        let currentEpoch = '';
-       
-       function showSection(id) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(s => {
-        s.style.display = 'none';
+      let currentEpoch = "";
+let currentQuizSelection = [];
+
+/* ===== СЕКЦИИ ===== */
+
+function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => {
         s.classList.remove('active');
     });
-
-    const target = document.getElementById(id);
-    if (target) {
-        target.style.display = 'flex';
-        target.classList.add('active');
-    }
-
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-            
-         
+/* ===== ЕПОХИ ===== */
 
-        
-        function showEpoch(epoch) {
-            currentEpoch = epoch;
-            
-            // Маркираме активната епоха
-            const timelineButtons = document.querySelectorAll('#timeline button');
-            timelineButtons.forEach(btn => {
-                btn.classList.remove('active-epoch');
-                if(btn.textContent.includes('Античност') && epoch === 'Ant') btn.classList.add('active-epoch');
-                if(btn.textContent.includes('Средновековие') && epoch === 'Sredn') btn.classList.add('active-epoch');
-                if(btn.textContent.includes('Възраждане') && epoch === 'Vazr') btn.classList.add('active-epoch');
-                if(btn.textContent.includes('Ново време') && epoch === 'NovoVr') btn.classList.add('active-epoch');
-            });
+function showEpoch(epoch) {
+    currentEpoch = epoch;
 
-            const container = document.getElementById("events");
-            container.innerHTML = "";
-            
-            if(!eventsData[epoch]) {
-                console.error('Няма данни за епоха:', epoch);
-                return;
-            }
-            
-            eventsData[epoch].forEach((ev) => {
-                const btn = document.createElement("button");
-                btn.textContent = ev.title;
-                btn.onclick = function() {
-                    document.getElementById("event-title").textContent = ev.title;
-                    document.getElementById("event-text").textContent = ev.text;
-                    document.getElementById("event-img").src = ev.image;
-                    document.getElementById("event-overlay").style.display = "flex";
-                };
-                container.appendChild(btn);
-            });
-        }
+    document.querySelectorAll('#timeline button').forEach(btn => {
+        btn.classList.toggle('active-epoch', btn.dataset.epoch === epoch);
+    });
 
-        // ФУНКЦИЯ ЗА ЗАТВАРЯНЕ НА OVERLAY
-        function closeOverlay() {
-            document.getElementById('event-overlay').style.display = 'none';
-        }
+    const container = document.getElementById("events");
+    container.innerHTML = "";
 
-        // ГЕНЕРИРАНЕ НА КВИЗ
-        function generateQuiz() {
-            currentQuizSelection = [...extraQuestions].sort(() => 0.5 - Math.random()).slice(0, 10);
-            renderQuiz();
-            document.getElementById("check-button").style.display = "block";
-        }
+    if (!eventsData[epoch]) return;
 
-        // РАЗБЪРКВАНЕ НА КВИЗА
-        function shuffleCurrentQuiz() {
-            if(currentQuizSelection.length === 0) {
-                alert('Първо натиснете "Покажи въпросите"');
-                return;
-            }
-            currentQuizSelection.sort(() => 0.5 - Math.random());
-            renderQuiz();
-        }
+    eventsData[epoch].forEach(ev => {
+        const btn = document.createElement("button");
+        btn.textContent = ev.title;
+        btn.onclick = () => openOverlay(ev);
+        container.appendChild(btn);
+    });
+}
 
-        // РЕНДЕРИРАНЕ НА КВИЗА
-        function renderQuiz() {
-            const container = document.getElementById("questions-container");
-            container.innerHTML = "";
-            
-            currentQuizSelection.forEach((q, i) => {
-                const div = document.createElement("div");
-                div.className = "quiz-question-box";
-                
-                let html = `<p>${i + 1}. ${q.q}</p>`;
-                q.options.forEach(opt => {
-                    html += `
-                        <div class="answer-option">
-                            <input type="radio" id="q${i}_${opt}" name="q${i}" value="${opt}">
-                            <label for="q${i}_${opt}">${opt}</label>
-                            <span class="status-icon"></span>
-                        </div>
-                    `;
-                });
-                
-                div.innerHTML = html;
-                container.appendChild(div);
-            });
-        }
+/* ===== OVERLAY ===== */
 
+function openOverlay(ev) {
+    document.getElementById("event-title").textContent = ev.title;
+    document.getElementById("event-text").textContent = ev.text;
+    document.getElementById("event-img").src = ev.image;
+    document.getElementById("event-overlay").style.display = "flex";
+}
 
+function closeOverlay() {
+    document.getElementById("event-overlay").style.display = "none";
+}
 
+/* ===== QUIZ ===== */
 
+function generateQuiz() {
+    currentQuizSelection = shuffle(extraQuestions).slice(0, 10);
+    renderQuiz();
+    document.getElementById("check-button").style.display = "block";
+}
 
+function shuffleCurrentQuiz() {
+    if (!currentQuizSelection.length) return;
+    currentQuizSelection = shuffle(currentQuizSelection);
+    renderQuiz();
+}
 
-        // ПРОВЕРКА НА КВИЗА
-        function checkQuiz() {
-            let correctCount = 0;
-            
-            currentQuizSelection.forEach((q, i) => {
-                const selected = document.querySelector(`input[name="q${i}"]:checked`);
-                const options = document.querySelectorAll(`input[name="q${i}"]`);
-                
-                options.forEach(opt => {
-                    const parent = opt.parentElement;
-                    const icon = parent.querySelector('.status-icon');
-                    
-                    parent.classList.remove('correct', 'wrong');
-                    icon.innerHTML = '';
-                    
-                    if(opt.value === q.correct) {
-                        parent.classList.add("correct");
-                        icon.innerHTML = " ✓";
-                        if(selected && opt === selected) {
-                            correctCount++;
-                        }
-                    } else if (selected && opt === selected) {
-                        parent.classList.add("wrong");
-                        icon.innerHTML = " ✗";
-                    }
-                });
-            });
+function shuffle(arr) {
+    return [...arr].sort(() => Math.random() - 0.5);
+}
 
-            // Показваме резултата със златен щит
-            showResultShield(correctCount, currentQuizSelection.length);
-        }
+function renderQuiz() {
+    const container = document.getElementById("questions-container");
+    container.innerHTML = "";
 
+    currentQuizSelection.forEach((q, i) => {
+        const box = document.createElement("div");
+        box.className = "quiz-question-box";
 
-
-
-        // ПОКАЗВАНЕ НА РЕЗУЛТАТ СЪС ЗЛАТЕН ЩИТ
-        function showResultShield(correct, total) {
-            const percentage = (correct / total) * 100;
-            let shieldClass = 'bronze-shield';
-            
-            if(percentage >= 90) {
-                shieldClass = 'gold-shield';
-            } else if(percentage >= 70) {
-                shieldClass = 'silver-shield';
-            }
-
-            // Създаваме overlay
-            const overlay = document.createElement('div');
-            overlay.className = 'reward-background';
-            overlay.onclick = function() {
-                document.body.removeChild(overlay);
-            };
-
-            // Създаваме щита
-            const shield = document.createElement('div');
-            shield.className = `shield ${shieldClass}`;
-            shield.innerHTML = `${correct}/${total}`;
-
-            overlay.appendChild(shield);
-            document.body.appendChild(overlay);
-        }
-
-        // СКРОЛ БУТОН
-        window.onscroll = function() {
-            const scrollBtn = document.getElementById('scrollToTop');
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                scrollBtn.classList.add('show');
-            } else {
-                scrollBtn.classList.remove('show');
-            }
-        };
-
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-         window.onload = () => {
-};
-
+        box.innerHTML = `
+            <p>${i + 1}. ${q.q}</p>
+            ${q.options.map(opt => `
+                <div class="answer-option">
+                    <input type="radio" name="q${i}" value="${opt}">
+                    <label>${opt}</label>
+                    <span class="status-icon"></span>
+                </div>
+  
       
+
 
 
 
