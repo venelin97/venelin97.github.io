@@ -6,7 +6,7 @@ const eventsData = {
     {title:"Устройство под римска власт", text:"Рим не просто завладява Тракия, той я преобразява. След 46 г. сл. Хр. по нашите земи се издигат градове със сложна канализация, амфитеатри и терми (бани). Римляните изграждат 'магистралите' на античността – Via Militaris и Via Pontica, които свързват Рим с Константинопол. Сердика (днешна София) става толкова важна, че император Константин Велики често е казвал: 'Сердика е моят Рим!'. Дори днес, разхождайки се в центъра на София, стъпваме върху плочите на този древен град.", image:"images/okupacia.jpg"}, 
     {title:"Разпространение на християнството", text:"Разпространение на римска култура, латински език и християнство в някои региони.", image:"images/trakiizkustvo.jpg"} 
   ], 
-  Sredn: [ 
+  Sredn: [
     {title:"Създаване на Първото българско царство", text:"През 681 г. византийският император Константин IV е принуден да подпише мирен договор и да плаща данък на един нов и непознат народ. Това е официалното признание на България. Хан Аспарух избира Плиска за столица – огромен град, заобиколен от земни валове и каменни стени, който е заемал площ от 23 кв. км (по-голям от тогавашния Константинопол). Българите донасят със себе си държавна организация, която съчетава войнствеността на прабългарите с уседналия начин на живот на славяните.", image:"images/1vo bg charstvo.jpg"}, 
     {title:"Съперничество между България и Византия", text:"Отношенията между България и Източната римска империя (Византия) са низ от военни конфликти и периоди на културен обмен. От кан Тервел, който спасява Константинопол от арабите, до кан Крум, който влиза в пряк двубой с император Никифор, борбата е за надмощие на Балканите. Византия не приема лесно присъствието на независима държава на своите граници, но именно в тези войни се калява българската народност. Този период завършва с падането на Първото царство, но и с трайното възприемане на православието и византийския държавен модел.", image:"images/bitkisvisantiq.jpg"}, 
     {title:"Златен век на България", text:"При цар Симеон Велики България не е просто военна сила, тя е културен хегемон. След като приема християнството при Борис I, страната се нуждае от собствена писменост. Симеон превръща новата столица Велики Преслав в 'преславен' град с бели каменни стени и позлатени куполи. Тук работят книжовници, които превеждат най-важните християнски текстове на старобългарски език, превръщайки България в духовен фар за всички славянски народи. Това е времето на 'Три морета' – България се мие от водите на Черно, Егейско и Адриатическо море.", image:"images/zlatenvek.jpg"}, 
@@ -47,6 +47,28 @@ const extraQuestions = [
 
 let currentEpoch = ""; 
 let currentQuizSelection = []; 
+
+function checkQuiz() {
+  currentQuizSelection.forEach((q, i) => {
+    const options = document.getElementsByName(`q${i}`);
+    options.forEach(opt => {
+      const icon = opt.nextElementSibling.nextElementSibling; // span.status-icon
+      if (opt.checked) {
+        if (opt.value === q.correct) {
+          icon.textContent = "✔"; // правилен
+          icon.style.color = "green";
+        } else {
+          icon.textContent = "✖"; // грешен
+          icon.style.color = "red";
+        }
+      } else if (opt.value === q.correct) {
+        icon.textContent = "✔"; // показваме верния отговор
+        icon.style.color = "green";
+      }
+    });
+  });
+}
+
 
 /* ===== СЕКЦИИ ===== */ 
 function showSection(id) { 
@@ -95,13 +117,33 @@ function shuffleCurrentQuiz() {
 function shuffle(arr) { 
   return [...arr].sort(() => Math.random() - 0.5); 
 } 
-function renderQuiz() { 
-  const container = document.getElementById("questions-container"); 
-  container.innerHTML = ""; 
-  currentQuizSelection.forEach((q, i) => { 
-    const box = document.createElement("div"); 
-    box.className = "quiz-question-box"; 
-    box.innerHTML = <p>${i + 1}. ${q.q}</p> ${q.options.map(opt => <div class="answer-option"> <input type="radio" name="q${i}" value="${opt}"> <label>${opt}</label> <span class="status-icon"></span> </div>
+function renderQuiz() {
+  const container = document.getElementById("questions-container");
+  container.innerHTML = "";
+
+  currentQuizSelection.forEach((q, i) => {
+    const box = document.createElement("div");
+    box.className = "quiz-question-box";
+
+    // Създаваме въпроса
+    let html = `<p>${i + 1}. ${q.q}</p>`;
+
+    // Добавяме опциите
+    q.options.forEach(opt => {
+      html += `
+        <div class="answer-option">
+          <input type="radio" name="q${i}" value="${opt}">
+          <label>${opt}</label>
+          <span class="status-icon"></span>
+        </div>
+      `;
+    });
+
+    box.innerHTML = html;
+    container.appendChild(box);
+  });
+}
+
 
 
 
