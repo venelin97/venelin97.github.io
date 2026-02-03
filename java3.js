@@ -68,6 +68,24 @@ function checkQuiz() {
     });
   });
 }
+function showQuizResult() {
+  let score = 0;
+  currentQuizSelection.forEach((q, i) => {
+    const options = document.getElementsByName(`q${i}`);
+    options.forEach(opt => {
+      if (opt.checked && opt.value === q.correct) {
+        score++;
+      }
+    });
+  });
+
+  document.getElementById("quiz-score").textContent = `Вие отговорихте правилно на ${score} от ${currentQuizSelection.length} въпроса.`;
+  document.getElementById("quiz-result-overlay").style.display = "flex";
+}
+
+function closeQuizResult() {
+  document.getElementById("quiz-result-overlay").style.display = "none";
+}
 
 
 /* ===== СЕКЦИИ ===== */ 
@@ -143,6 +161,7 @@ function renderQuiz() {
     container.appendChild(box);
   });
 }
+
 
 
 
