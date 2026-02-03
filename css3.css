@@ -1,5 +1,5 @@
-/* ===== ОБЩИ СТИЛОВЕ ===== */
-/* --- Основи --- */
+
+
 body{margin:0;font-family:Arial,sans-serif;background:aliceblue;color:dimgray;}
 h1,h2{margin:0;color:#002f6c;}
 h1{font-size:3rem;text-align:center;}
@@ -8,7 +8,7 @@ button{cursor:pointer;transition:.3s;}
 .section{display:none;flex-direction:column;align-items:center;padding:20px;}
 .section.active{display:flex;}
 
-/* --- Корицата --- */
+
 #cover{width:100%;height:400px;overflow:hidden;display:flex;justify-content:center;align-items:center;position:relative;}
 #cover-img{width:100%;height:100%;object-fit:cover;filter:brightness(0.6);}
 #cover-title{display:flex;justify-content:center;align-items:center;gap:20px;margin:20px 0;position:relative;}
@@ -19,13 +19,13 @@ button{cursor:pointer;transition:.3s;}
 #help-wrapper:hover #help-preview{display:block;}
 #help-preview img{width:100%;border-radius:6px;}
 
-/* --- Меню --- */
+
 #menu{display:inline-flex;margin:15px 0 30px 0;border-radius:6px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.2);}
 #menu button{border:none;padding:12px 45px;font-size:16px;font-weight:bold;background:#c9a23f;color:white;}
 #menu button:first-child{border-right:2px solid rgba(255,255,255,.5);}
 #menu button:hover{filter:brightness(1.1);transform:scale(1.05);}
 
-/* --- Линия на времето --- */
+
 #timeline-ui{width:80%;margin:3rem auto;position:relative;}
 #timeline{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;position:relative;z-index:1;}
 #timeline button{background:#8A1E1E;color:white;font-size:18px;font-weight:bold;padding:12px 25px;border:none;border-radius:10px;}
@@ -36,7 +36,7 @@ button{cursor:pointer;transition:.3s;}
 #events button{width:220px;height:90px;background:#c68642;color:white;border:none;border-radius:10px;font-weight:bold;font-size:14px;padding:10px;box-shadow:0 4px 8px rgba(0,0,0,.2);}
 #events button:hover{background:#D19A5F;transform:scale(1.05);box-shadow:0 6px 12px rgba(0,0,0,.3);}
 
-/* --- Overlay --- */
+
 #event-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;justify-content:center;align-items:center;z-index:1000;}
 #event-content{background:white;padding:30px;border-radius:12px;max-width:600px;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;align-items:center;box-shadow:0 4px 20px rgba(0,0,0,.5);}
 #event-img{max-width:100%;border-radius:8px;margin-bottom:20px;box-shadow:0 4px 10px rgba(0,0,0,.1);}
@@ -45,7 +45,7 @@ button{cursor:pointer;transition:.3s;}
 #close-overlay{position:sticky;top:10px;align-self:flex-end;font-size:32px;color:#002f6c;background:none;border:none;cursor:pointer;}
 #close-overlay:hover{transform:scale(1.2);color:#E1A300;}
 
-/* --- Квиз --- */
+
 .quiz-controls{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin:20px 0;}
 .original-blue-btn{background:#002f6c;color:white;padding:12px 25px;border:none;border-radius:8px;font-weight:bold;font-size:16px;box-shadow:0 4px 10px rgba(0,0,0,.2);}
 .original-blue-btn:hover{background:#0050b3;transform:scale(1.05);}
@@ -60,21 +60,20 @@ button{cursor:pointer;transition:.3s;}
 .status-icon{margin-left:auto;font-weight:bold;font-size:18px;}
 #check-button{display:block;margin:30px auto;}
 
-/* --- Щитове --- */
-.shield{width:200px;height:200px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:48px;font-weight:bold;border:5px solid rgba(255,255,255,.3);box-shadow:0 0 40px rgba(0,0,0,.4);animation:smoothPop .8s cubic-bezier(.34,1.56,.64,1);}
-.gold-shield{background:linear-gradient(135deg,#FFD700,#FFA500);color:#333;}
-.silver-shield{background:linear-gradient(135deg,#C0C0C0,#E8E8E8);color:#333;}
-.bronze-shield{background:linear-gradient(135deg,#CD7F32,#A97142);color:white;}
-@keyframes smoothPop{0%{transform:scale(.3);opacity:0}50%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
-.reward-background{position:fixed;top:0;left:0;width:100%;height:100%;backdrop-filter:blur(8px);background:rgba(0,0,0,.7);display:flex;justify-content:center;align-items:center;z-index:2000;animation:fadeIn .5s ease;}
 
-/* --- Скрол бутон --- */
+#quiz-result-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 1000;}
+
+.quiz-result-box { background: white; padding: 30px;border-radius: 15px; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.5); width: 300px;}
+
+
 #scrollToTop{display:none;position:fixed;bottom:30px;right:30px;width:60px;height:60px;border:none;border-radius:50%;background:linear-gradient(135deg,#C2B078,#E1A300);color:white;font-size:24px;box-shadow:0 4px 15px rgba(0,0,0,.3);}
 #scrollToTop.show{display:flex;justify-content:center;align-items:center;}
 #scrollToTop:hover{transform:scale(1.1);box-shadow:0 6px 20px rgba(0,0,0,.4);}
 
-/* --- Указания --- */
+
 .info-card{background:white;padding:40px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.2);text-align:center;max-width:700px;margin:50px auto;}
 .info-card h3{color:#002f6c;font-size:2em;margin-bottom:20px;}
 .info-card p, .info-card ul{color:#555;font-size:1.1em;line-height:1.8;text-align:left;margin:20px 0;}
 .info-card ul li{margin-bottom:12px;}
+
+
