@@ -1,87 +1,79 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8">
-  <title>Българска история</title>
-  <link rel="stylesheet" href="css3.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Българската история</title>
+<link rel="stylesheet" href="css3.css">
 </head>
 <body>
+  <!-- Корица -->
+  <div id="cover">
+    <img src="logo.jpg" alt="Корица Българска история" id="cover-img">
+  </div>
+  <div id="cover-title">
+    <h1>БЪЛГАРСКА ИСТОРИЯ</h1>
+    <div id="help-wrapper">
+      <button id="help-btn">?</button>
+      <div id="help-preview"><img src="preview.jpg" alt="Превю"></div>
+    </div>
+  </div>
 
-<nav>
-  <button onclick="showSection('line')">Линия на времето</button>
-  <button onclick="showSection('quiz')">Въпроси</button>
-</nav>
+  <!-- Меню -->
+  <nav id="menu">
+    <button onclick="showSection('line')">Линия</button>
+    <button onclick="showSection('quiz')">Въпроси</button>
+  </nav>
 
-<main id="sections">
-
+  <!-- Секции -->
+  <main id="sections">
+    <!-- Линия на времето -->
     <div id="line" class="section active">
-        <h2 class="page-title">Българската история в линия на времето</h2>
-
+      <h2 class="page-title">Българската история в линия на времето</h2>
+      <div id="timeline-ui">
+        <div id="timeline-line"></div>
         <div id="timeline">
-            <button data-epoch="Ant" onclick="showEpoch('Ant')">Античност</button>
-            <button data-epoch="Sredn" onclick="showEpoch('Sredn')">Средновековие</button>
-            <button data-epoch="Vazr" onclick="showEpoch('Vazr')">Възраждане</button>
-            <button data-epoch="NovoVr" onclick="showEpoch('NovoVr')">Ново време</button>
+          <button onclick="showEpoch('Ant')">Античност</button>
+          <button onclick="showEpoch('Sredn')">Средновековие</button>
+          <button onclick="showEpoch('Vazr')">Възраждане</button>
+          <button onclick="showEpoch('NovoVr')">Ново време</button>
         </div>
-
-        <div id="events"></div>
+      </div>
+      <div id="events"></div>
     </div>
 
+    <!-- Квиз -->
     <div id="quiz" class="section">
-        <h2 class="page-title">Въпроси</h2>
-
-        <div class="quiz-controls">
-            <button onclick="generateQuiz()">Покажи въпросите</button>
-            <button onclick="shuffleCurrentQuiz()">⇌</button>
-        </div>
-
-        <div id="questions-container"></div>
-        <button id="check-button" onclick="checkQuiz()" style="display:none;">
-            Покажи резултата
-        </button>
+      <h2 class="page-title">Въпроси за усвоените знания</h2>
+      <div class="quiz-controls">
+        <button class="original-blue-btn" onclick="generateQuiz()">Покажи въпросите</button>
+        <button class="original-blue-btn ux-shuffle" onclick="shuffleCurrentQuiz()">⇌</button>
+      </div>
+      <div id="questions-container"></div>
+      <button id="check-button" class="original-blue-btn" style="display:none;" onclick="checkQuiz()">Провери резултата</button>
     </div>
 
-</main>
+    <!-- Указания -->
+    <div id="howto" class="info-card" style="display:none;">
+      <span id="close-howto" style="cursor:pointer; float:right; font-weight:bold;">&times;</span>
+      <h2>Указания</h2>
+      <p>Натиснете бутоните по-долу, за да разгледате различни части от българската история. Съдържанието се отваря само при натискане на бутон за епоха.</p>
+    </div>
+  </main>
 
-<div id="event-overlay">
+  <!-- Бутон за връщане нагоре -->
+  <button id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+  <!-- Overlay за събития -->
+  <div id="event-overlay" style="display:none;">
     <div id="event-content">
-        <span id="close-overlay" onclick="closeOverlay()">&times;</span>
-        <img id="event-img">
-        <h2 id="event-title"></h2>
-        <p id="event-text"></p>
+      <span id="close-overlay" onclick="closeOverlay()">&times;</span>
+      <img id="event-img" src="" alt="">
+      <h2 id="event-title"></h2>
+      <p id="event-text"></p>
     </div>
-</div>
-
-<button id="scrollToTop" onclick="scrollToTop()">↑</button>
+  </div>
 
 <script src="java3.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
