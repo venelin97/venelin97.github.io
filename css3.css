@@ -35,6 +35,7 @@ button{cursor:pointer;transition:.3s;}
 #events{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding:20px;max-width:1200px;margin:20px auto;}
 #events button{width:220px;height:90px;background:#c68642;color:white;border:none;border-radius:10px;font-weight:bold;font-size:14px;padding:10px;box-shadow:0 4px 8px rgba(0,0,0,.2);}
 #events button:hover{background:#D19A5F;transform:scale(1.05);box-shadow:0 6px 12px rgba(0,0,0,.3);}
+nav {width: 100%;}  
 
 
 #event-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;justify-content:center;align-items:center;z-index:1000;}
@@ -75,5 +76,6 @@ button{cursor:pointer;transition:.3s;}
 .info-card h3{color:#002f6c;font-size:2em;margin-bottom:20px;}
 .info-card p, .info-card ul{color:#555;font-size:1.1em;line-height:1.8;text-align:left;margin:20px 0;}
 .info-card ul li{margin-bottom:12px;}
+
 
 
