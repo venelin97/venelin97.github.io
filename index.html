@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Българска история</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css3.css">
 </head>
 <body>
 
@@ -13,42 +13,50 @@
 </nav>
 
 <main id="sections">
-  <div id="line" class="section active">
-    <h2 class="page-title">Българската история в линия на времето</h2>
-    <div id="timeline">
-      <button data-epoch="Ant" onclick="showEpoch('Ant')">Античност</button>
-      <button data-epoch="Sredn" onclick="showEpoch('Sredn')">Средновековие</button>
-      <button data-epoch="Vazr" onclick="showEpoch('Vazr')">Възраждане</button>
-      <button data-epoch="NovoVr" onclick="showEpoch('NovoVr')">Ново време</button>
-    </div>
-    <div id="events"></div>
-  </div>
 
-  <div id="quiz" class="section">
-    <h2 class="page-title">Въпроси</h2>
-    <div class="quiz-controls">
-      <button onclick="generateQuiz()">Покажи въпросите</button>
-      <button onclick="shuffleCurrentQuiz()">⇌</button>
+    <div id="line" class="section active">
+        <h2 class="page-title">Българската история в линия на времето</h2>
+
+        <div id="timeline">
+            <button data-epoch="Ant" onclick="showEpoch('Ant')">Античност</button>
+            <button data-epoch="Sredn" onclick="showEpoch('Sredn')">Средновековие</button>
+            <button data-epoch="Vazr" onclick="showEpoch('Vazr')">Възраждане</button>
+            <button data-epoch="NovoVr" onclick="showEpoch('NovoVr')">Ново време</button>
+        </div>
+
+        <div id="events"></div>
     </div>
-    <div id="questions-container"></div>
-    <button id="check-button" onclick="checkQuiz()" style="display:none;">Покажи резултата</button>
-  </div>
+
+    <div id="quiz" class="section">
+        <h2 class="page-title">Въпроси</h2>
+
+        <div class="quiz-controls">
+            <button onclick="generateQuiz()">Покажи въпросите</button>
+            <button onclick="shuffleCurrentQuiz()">⇌</button>
+        </div>
+
+        <div id="questions-container"></div>
+        <button id="check-button" onclick="checkQuiz()" style="display:none;">
+            Покажи резултата
+        </button>
+    </div>
+
 </main>
 
 <div id="event-overlay">
-  <div id="event-content">
-    <span id="close-overlay" onclick="closeOverlay()">&times;</span>
-    <img id="event-img">
-    <h2 id="event-title"></h2>
-    <p id="event-text"></p>
-  </div>
+    <div id="event-content">
+        <span id="close-overlay" onclick="closeOverlay()">&times;</span>
+        <img id="event-img">
+        <h2 id="event-title"></h2>
+        <p id="event-text"></p>
+    </div>
 </div>
 
 <button id="scrollToTop" onclick="scrollToTop()">↑</button>
-<script src="script.js"></script>
+
+<script src="java3.js"></script>
 </body>
 </html>
-
 
 
 
