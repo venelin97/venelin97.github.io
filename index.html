@@ -1,88 +1,62 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-    <link rel="stylesheet" href="css3.css">
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Българската история</title>
-
+  <meta charset="UTF-8">
+  <title>Българска история</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="cover">
-    <img src="logo.jpg" alt="Корица Българска история" id="cover-img">
-</div>
-
-
-<div id="cover-title">
-    <h1>БЪЛГАРСКА ИСТОРИЯ</h1>
-
-    
-
-    
-</div>
-
-
-
-<nav id="menu">
-    <button onclick="showSection('line')">Линия</button>
-    <button onclick="showSection('quiz')">Въпроси</button>
+<nav>
+  <button onclick="showSection('line')">Линия на времето</button>
+  <button onclick="showSection('quiz')">Въпроси</button>
 </nav>
 
 <main id="sections">
-    <!-- Секция Линия -->
+
     <div id="line" class="section active">
         <h2 class="page-title">Българската история в линия на времето</h2>
-        <div id="timeline-ui">
-            <div id="timeline-line"></div>
-            <div id="timeline">
-                <button onclick="showEpoch('Ant')">Античност</button>
-                <button onclick="showEpoch('Sredn')">Средновековие</button>
-                <button onclick="showEpoch('Vazr')">Възраждане</button>
-                <button onclick="showEpoch('NovoVr')">Ново време</button>
-            </div>
+
+        <div id="timeline">
+            <button data-epoch="Ant" onclick="showEpoch('Ant')">Античност</button>
+            <button data-epoch="Sredn" onclick="showEpoch('Sredn')">Средновековие</button>
+            <button data-epoch="Vazr" onclick="showEpoch('Vazr')">Възраждане</button>
+            <button data-epoch="NovoVr" onclick="showEpoch('NovoVr')">Ново време</button>
         </div>
+
         <div id="events"></div>
     </div>
 
-    <!-- Секция Квиз -->
     <div id="quiz" class="section">
-        <h2 class="page-title">Въпроси за усвоените знания</h2>
-        <div class="quiz-controls">
-            <button class="original-blue-btn" onclick="generateQuiz()">Покажи въпросите</button>
-            <button class="original-blue-btn ux-shuffle" onclick="shuffleCurrentQuiz()">⇌</button>
-        </div>
-        <div id="questions-container"></div>
-        <button id="check-button" class="original-blue-btn" onclick="checkQuiz()" style="display:none;">Провери резултата</button>
-    </div>
+        <h2 class="page-title">Въпроси</h2>
 
-    <!-- Секция Как да използваме -->
-  <div id="howto" style="display:none; flex-direction: column; align-items: center; padding: 20px; border: 2px solid #0b4da2; border-radius: 12px; max-width: 600px; margin: 20px auto; background:white;">
-    <span id="close-howto" style="cursor:pointer; float:right; font-weight:bold;">&times;</span>
-    <h2>Указания</h2>
-    <p>Натиснете бутоните по-долу, за да разгледате различни части от българската история. Съдържанието се отваря само при натискане на бутон за епоха.</p>
-</div>
+        <div class="quiz-controls">
+            <button onclick="generateQuiz()">Покажи въпросите</button>
+            <button onclick="shuffleCurrentQuiz()">⇌</button>
+        </div>
+
+        <div id="questions-container"></div>
+        <button id="check-button" onclick="checkQuiz()" style="display:none;">
+            Покажи резултата
+        </button>
+    </div>
 
 </main>
 
-<!-- Бутон за връщане нагоре -->
-<button id="scrollToTop" onclick="scrollToTop()">↑</button>
-
-<!-- Overlay за събития -->
-<div id="event-overlay" style="display:none;">
+<div id="event-overlay">
     <div id="event-content">
         <span id="close-overlay" onclick="closeOverlay()">&times;</span>
-        <img id="event-img" src="" alt="">
+        <img id="event-img">
         <h2 id="event-title"></h2>
         <p id="event-text"></p>
     </div>
 </div>
 
-<script src="java3.js"></script>
+<button id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+<script src="script.js"></script>
 </body>
 </html>
-
 
 
 
