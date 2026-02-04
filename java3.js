@@ -70,20 +70,24 @@ function checkQuiz() {
   });
 }
 function showQuizResult() {
-document.body.style.overflow = "hidden";
   let score = 0;
   currentQuizSelection.forEach((q, i) => {
     const options = document.getElementsByName(`q${i}`);
     options.forEach(opt => {
-      if (opt.checked && opt.value === q.correct) {
-        score++;
-      }
+      if (opt.checked && opt.value === q.correct) score++;
     });
   });
 
-  document.getElementById("quiz-score").textContent = `Вие отговорихте правилно на ${score} от ${currentQuizSelection.length} въпроса.`;
-  document.getElementById("quiz-result-overlay").style.display = "flex";
+  document.getElementById("quiz-score").textContent =
+    `Вие отговорихте правилно на ${score} от ${currentQuizSelection.length} въпроса.`;
+
+  const overlay = document.getElementById("quiz-result-overlay");
+  overlay.style.display = "flex";
+  overlay.addEventListener("click", () => {
+    overlay.style.display = "none";
+  });
 }
+
 
 function closeQuizResult() {
   document.body.style.overflow = "auto";
@@ -189,6 +193,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
