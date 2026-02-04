@@ -65,10 +65,12 @@ function checkQuiz() {
         icon.textContent = "✔";
         icon.style.color = "green";
       }
+      showQuizResult();
     });
   });
 }
 function showQuizResult() {
+document.body.style.overflow = "hidden";
   let score = 0;
   currentQuizSelection.forEach((q, i) => {
     const options = document.getElementsByName(`q${i}`);
@@ -84,6 +86,7 @@ function showQuizResult() {
 }
 
 function closeQuizResult() {
+  document.body.style.overflow = "auto";
   document.getElementById("quiz-result-overlay").style.display = "none";
 }
 
@@ -165,7 +168,7 @@ function renderQuiz() {
     let html = `<p>${i + 1}. ${q.q}</p>`;
 
     // Добавяме опциите
-    q.options.forEach(opt => {
+  shuffle(q.options).forEach(opt => {
       html += `
         <div class="answer-option">
           <input type="radio" name="q${i}" value="${opt}">
@@ -179,6 +182,7 @@ function renderQuiz() {
     container.appendChild(box);
   });
 }
+
 
 
 
