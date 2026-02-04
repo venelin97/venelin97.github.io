@@ -304,13 +304,12 @@ nav {
   transition: background 0.2s;
 }
 
-  .answer-option input[type="radio"] {
+ .answer-option input[type="radio"] {
   margin-right: 12px;
   accent-color: brown; 
   width: 18px;
   height: 18px;
 }
-
 
 .answer-option label {
   flex: 1; 
@@ -327,10 +326,10 @@ nav {
 
 .answer-option.selected {
   color: white;
-  background-color: #f5ebe0; /* светло кафяво за избран ред */
+  background-color: #f5ebe0; 
   border-color: brown;
 }
-}
+
 
 
 .answer-option.correct {
@@ -389,6 +388,7 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
 
 
 
