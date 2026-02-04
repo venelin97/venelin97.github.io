@@ -304,9 +304,13 @@ nav {
   transition: background 0.2s;
 }
 
-.answer-option input[type="radio"] {
-  margin-right: 12px; 
+  .answer-option input[type="radio"] {
+  margin-right: 12px;
+  accent-color: brown; 
+  width: 18px;
+  height: 18px;
 }
+
 
 .answer-option label {
   flex: 1; 
@@ -385,6 +389,7 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
 
 
 
