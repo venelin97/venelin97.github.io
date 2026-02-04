@@ -300,6 +300,11 @@ nav {
   background: white;
 }
 
+.answer-option.selected input {
+  accent-color: #8b5e3c; 
+}
+
+
 .answer-option.correct {
   border-color: green;
   background: #e8f5e9;
@@ -356,6 +361,7 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
 
 
 
