@@ -81,11 +81,7 @@ function showQuizResult() {
   document.getElementById("quiz-score").textContent =
     `Вие отговорихте правилно на ${score} от ${currentQuizSelection.length} въпроса.`;
 
-  const overlay = document.getElementById("quiz-result-overlay");
-  overlay.style.display = "flex";
-  overlay.addEventListener("click", () => {
-    overlay.style.display = "none";
-  });
+  document.getElementById("quiz-result-overlay").style.display = "flex";
 }
 
 
@@ -193,6 +189,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
