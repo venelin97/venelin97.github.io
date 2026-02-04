@@ -52,17 +52,17 @@ function checkQuiz() {
   currentQuizSelection.forEach((q, i) => {
     const options = document.getElementsByName(`q${i}`);
     options.forEach(opt => {
-      const icon = opt.nextElementSibling.nextElementSibling; // span.status-icon
+      const icon = opt.nextElementSibling.nextElementSibling; 
       if (opt.checked) {
         if (opt.value === q.correct) {
-          icon.textContent = "✔"; // правилен
+          icon.textContent = "✔"; 
           icon.style.color = "green";
         } else {
-          icon.textContent = "✖"; // грешен
+          icon.textContent = "✖";
           icon.style.color = "red";
         }
       } else if (opt.value === q.correct) {
-        icon.textContent = "✔"; // показваме верния отговор
+        icon.textContent = "✔";
         icon.style.color = "green";
       }
     });
@@ -88,7 +88,23 @@ function closeQuizResult() {
 }
 
 
-/* ===== СЕКЦИИ ===== */ 
+window.addEventListener("scroll", () => {
+  const btn = document.getElementById("scrollToTop");
+  if (window.scrollY > 300) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
+});
+
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+
+
+
 function showSection(id) { 
   document.querySelectorAll('.section').forEach(s => { s.classList.remove('active'); }); 
   document.getElementById(id).classList.add('active'); 
@@ -112,12 +128,14 @@ function showEpoch(epoch) {
 
 /* ===== OVERLAY ===== */ 
 function openOverlay(ev) { 
+  document.body.style.overflow = "hidden";
   document.getElementById("event-title").textContent = ev.title; 
   document.getElementById("event-text").textContent = ev.text; 
   document.getElementById("event-img").src = ev.image; 
   document.getElementById("event-overlay").style.display = "flex"; 
 } 
 function closeOverlay() { 
+  document.body.style.overflow = "auto";
   document.getElementById("event-overlay").style.display = "none"; 
 } 
 
@@ -161,6 +179,7 @@ function renderQuiz() {
     container.appendChild(box);
   });
 }
+
 
 
 
