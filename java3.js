@@ -163,8 +163,10 @@ function renderQuiz() {
   currentQuizSelection.forEach((q, i) => {
     const box = document.createElement("div");
     box.className = "quiz-question-box";
+
     let html = `<p>${i + 1}. ${q.q}</p>`;
-  shuffle(q.options).forEach(opt => {
+
+    shuffle(q.options).forEach(opt => {
       html += `
         <div class="answer-option">
           <input type="radio" name="q${i}" value="${opt}">
@@ -172,21 +174,23 @@ function renderQuiz() {
           <span class="status-icon"></span>
         </div>
       `;
-    };
-});
-
     });
 
     box.innerHTML = html;
     container.appendChild(box);
+
     box.querySelectorAll(".answer-option").forEach(option => {
-    option.onclick = function () {
-    const radio = option.querySelector("input");
-    radio.checked = true;
-    box.querySelectorAll(".answer-option").forEach(o => o.classList.remove("selected"));
-    option.classList.add("selected");
-  };
-});
+      option.onclick = function () {
+        const radio = option.querySelector("input");
+        radio.checked = true;
+        box.querySelectorAll(".answer-option").forEach(o => o.classList.remove("selected"));
+        option.classList.add("selected");
+      };
+    });
+  });
+}
+
+
 
 
 
