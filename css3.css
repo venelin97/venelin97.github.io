@@ -291,17 +291,25 @@ nav {
 }
 
 .answer-option {
-  padding: 12px;
-  margin: 8px 0;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  background: white;
 }
 
-.answer-option.selected input {
-  accent-color: #8b5e3c; 
+.answer-option input {
+  display: none; 
+
+.answer-option.selected {
+  background-color: #8b5e3c; 
+  color: white;
+}
+
+.answer-option:hover {
+  background-color: #a67850; 
 }
 
 
@@ -361,6 +369,7 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
 
 
 
