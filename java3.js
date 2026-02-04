@@ -163,11 +163,7 @@ function renderQuiz() {
   currentQuizSelection.forEach((q, i) => {
     const box = document.createElement("div");
     box.className = "quiz-question-box";
-
-    // Създаваме въпроса
     let html = `<p>${i + 1}. ${q.q}</p>`;
-
-    // Добавяме опциите
   shuffle(q.options).forEach(opt => {
       html += `
         <div class="answer-option">
@@ -176,12 +172,22 @@ function renderQuiz() {
           <span class="status-icon"></span>
         </div>
       `;
+    };
+});
+
     });
 
     box.innerHTML = html;
     container.appendChild(box);
-  });
-}
+    box.querySelectorAll(".answer-option").forEach(option => {
+    option.onclick = function () {
+    const radio = option.querySelector("input");
+    radio.checked = true;
+    box.querySelectorAll(".answer-option").forEach(o => o.classList.remove("selected"));
+    option.classList.add("selected");
+  };
+});
+
 
 
 
