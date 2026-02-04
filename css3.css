@@ -225,14 +225,32 @@ nav {
 }
 
 #close-overlay {
-  position: absolute;
-  top: 15px;
+  position: fixed;
+  top: 20px;
   right: 20px;
-  font-size: 32px;
-  background: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
   border: none;
+  background: white;
+  color: #8A1E1E;
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  z-index: 1100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: 0.3s;
 }
+
+#close-overlay:hover {
+  background: #8A1E1E;
+  color: white;
+  transform: scale(1.15);
+}
+
 
 
 /* ===== QUIZ ===== */
@@ -338,6 +356,7 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
 
 
 
