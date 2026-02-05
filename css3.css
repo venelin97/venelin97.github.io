@@ -324,7 +324,6 @@ nav {
 }
 
 .answer-option.selected {
-  color: white;
   background-color: #f5ebe0; 
   border-color: brown;
 }
@@ -421,6 +420,7 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
 
 
 
