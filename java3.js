@@ -71,6 +71,7 @@ function checkQuiz() {
 }
 function showQuizResult() {
   let score = 0;
+
   currentQuizSelection.forEach((q, i) => {
     const options = document.getElementsByName(`q${i}`);
     options.forEach(opt => {
@@ -78,17 +79,18 @@ function showQuizResult() {
     });
   });
 
-  document.getElementById("quiz-score").textContent =
-    `Вие отговорихте правилно на ${score} от ${currentQuizSelection.length} въпроса.`;
+  document.getElementById("quiz-score").innerHTML =
+    `${score} / ${currentQuizSelection.length}<br>Верни отговори`;
 
   document.getElementById("quiz-result-overlay").style.display = "flex";
+  document.body.style.overflow = "hidden";
 }
-
 
 function closeQuizResult() {
-  document.body.style.overflow = "auto";
   document.getElementById("quiz-result-overlay").style.display = "none";
+  document.body.style.overflow = "auto";
 }
+
 
 
 window.addEventListener("scroll", () => {
@@ -104,8 +106,6 @@ window.addEventListener("scroll", () => {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
-
-
 
 
 function showSection(id) { 
@@ -189,6 +189,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
