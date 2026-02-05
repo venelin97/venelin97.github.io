@@ -1,4 +1,3 @@
-/* ===== ОСНОВНИ СТИЛОВЕ ===== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -29,7 +28,7 @@ button {
 }
 
 
-/* ===== СЕКЦИИ ===== */
+
 .section {
   display: none;
   flex-direction: column;
@@ -42,7 +41,7 @@ button {
 }
 
 
-/* ===== КОРИЦА ===== */
+
 #cover {
   width: 100%;
   height: 400px;
@@ -102,7 +101,7 @@ nav {
 }
 
 
-/* ===== ЛИНИЯ НА ВРЕМЕТО ===== */
+
 #timeline-ui {
   width: 80%;
   margin: 3rem auto;
@@ -150,7 +149,7 @@ nav {
 }
 
 
-/* ===== СЪБИТИЯ ===== */
+
 #events {
   display: flex;
   flex-wrap: wrap;
@@ -253,7 +252,7 @@ nav {
 
 
 
-/* ===== QUIZ ===== */
+
 .quiz-controls {
   display: flex;
   justify-content: center;
@@ -348,27 +347,61 @@ nav {
 }
 
 
-/* ===== РЕЗУЛТАТ ===== */
 #quiz-result-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+
+.quiz-shield {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at top,
+    #ffe28a 0%,
+    #e1a300 40%,
+    #b8860b 75%,
+    #8a6a00 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  box-shadow:
+    0 0 0 8px rgba(255, 215, 0, 0.4),
+    0 20px 45px rgba(0, 0, 0, 0.6);
+  animation: shieldPop 0.4s ease-out;
 }
 
-.quiz-result-box {
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
+
+.shield-score {
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
   text-align: center;
-  width: 300px;
+  line-height: 1.4;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
 }
 
 
-/* ===== SCROLL TO TOP ===== */
+@keyframes shieldPop {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+
 #scrollToTop {
   display: none;
   position: fixed;
@@ -388,6 +421,7 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
 
 
 
