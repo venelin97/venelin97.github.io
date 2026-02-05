@@ -80,7 +80,7 @@ function showQuizResult() {
   });
 
   document.getElementById("quiz-score").innerHTML =
-    `${score} / ${currentQuizSelection.length}<br>Верни отговори`;
+    `${score} / ${currentQuizSelection.length}`;
 
   document.getElementById("quiz-result-overlay").style.display = "flex";
   document.body.style.overflow = "hidden";
@@ -189,6 +189,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
