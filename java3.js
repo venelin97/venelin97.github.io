@@ -169,55 +169,62 @@ function closeOverlay() {
   document.getElementById("event-overlay").style.display = "none"; 
 } 
 
-function startFocus(topic) {
-  if (!topic.trim()) return;
-  const text = content.dataset.text || content.textContent;
-  if (!text) return;
-  content.innerHTML = `
-    <h1 class="focus-topic">Тема: ${topic}</h1>
-    <p id="summary-text">${text}</p>
-    <div id="question-container"></div>
-  `;
-  const facts = (text.match(/[^.?!]+[.?!]/g) || []).slice(0, 5);
-  const container = document.getElementById("question-container");
-  facts.forEach((fact, i) => {
-    container.appendChild(createQuestion(fact, i));
-  });
-}
-function createQuestion(fact, index) {
-  const box = document.createElement("div");
-  box.className = "quiz-question-box";
-  const options = shuffle([
-    fact,
-    "Неправилен вариант 1",
-    "Неправилен вариант 2"
-  ]);
-  box.innerHTML = `
-    <p>${index + 1}. ${fact}</p>
-    ${options.map(opt => `
-      <div class="answer-option">
-        <input type="radio" name="fact${index}">
-        <label>${opt}</label>
-        <span class="status-icon"></span>
-      </div>
-    `).join("")}
-  `;
-  box.querySelectorAll(".answer-option").forEach(opt => {
-    opt.onclick = () => {
-      box.querySelectorAll(".answer-option")
-         .forEach(o => o.classList.remove("selected"));
-      opt.classList.add("selected");
-      opt.querySelector("input").checked = true;
-    };
-  });
-  return box;
-}
-function shuffle(arr) {
-  return [...arr].sort(() => Math.random() - 0.5);
-}
-input.addEventListener("keydown", e => {
-  if (e.key === "Enter") startFocus(input.value);
+const input = document.getElementById("focusInput");
+const textBox = document.getElementById("focusText");
+const practiceBtn = document.getElementById("focusPractice");
+const questionBox = document.getElementById("question-container");
+const title = document.getElementById("focusTitle");
+
+input.addEventListener("keydown", function (e) {
+  if (e.key !== "Enter") return;
+  const topic = input.value.trim();
+  if (!topic) return;
+  title.textContent = "Тема: " + topic;
+  title.style.color = "#1e3ea0";
+  textBox.textContent =
+    "Тук ще се появи текст по темата. Той съдържа факти и информация за практиката. Всяко изречение може да стане въпрос за разбиране.";
+  textBox.classList.remove("hidden");
+  practiceBtn.classList.remove("hidden");
+  questionBox.classList.add("hidden"); 
 });
+
+practiceBtn.addEventListener("click", function () {
+  questionBox.innerHTML = "";
+  questionBox.classList.remove("hidden");
+  const text = textBox.textContent;
+  generateQuestions(text);
+});
+
+
+function generateQuestions(text) {
+  const sentences = text.match(/[^.?!]+[.?!]/g) || [];
+  const questions = sentences.slice(0, 10);
+  questions.forEach((s, i) => {
+    const q = document.createElement("div");
+    q.className = "quiz-question-box";
+    const p = document.createElement("p");
+    p.textContent = `${i + 1}. Кое твърдение е вярно?`;
+    q.appendChild(p);
+    addOption(q, s);
+    addOption(q, "Това противоречи на текста");
+    addOption(q, "Това не е споменато");
+    questionBox.appendChild(q);
+  });
+}
+function addOption(parent, text) {
+  const opt = document.createElement("div");
+  opt.className = "answer-option";
+  const radio = document.createElement("input");
+  radio.type = "radio";
+  radio.name = "quiz";
+  const label = document.createElement("label");
+  label.textContent = text;
+  opt.appendChild(radio);
+  opt.appendChild(label);
+  opt.onclick = () => radio.checked = true;
+  parent.appendChild(opt);
+}
+
 
 
 /* ===== QUIZ ===== */ 
@@ -267,6 +274,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
