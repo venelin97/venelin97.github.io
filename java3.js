@@ -169,6 +169,15 @@ function closeOverlay() {
   document.getElementById("event-overlay").style.display = "none"; 
 } 
 
+function openFocus() {
+  document.getElementById("focus-overlay").style.display = "flex";
+}
+
+function closeFocus() {
+  document.getElementById("focus-overlay").style.display = "none";
+}
+
+
 /* ===== QUIZ ===== */ 
 function generateQuiz() { 
   currentQuizSelection = shuffle(extraQuestions).slice(0, 10); 
@@ -216,6 +225,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
