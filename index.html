@@ -18,7 +18,7 @@
 
 <nav id="menu">
   <button onclick="showSection('line')">Линия</button>
-  <button onclick="openFocus()">Фокус</button>
+  <button onclick="showSection('focus')">Фокус</button>
   <button onclick="showSection('quiz')">Въпроси</button>
 </nav>
 
@@ -37,27 +37,21 @@
     <div id="events"></div>
   </div>
 
-<section id="focus" class="page hidden">
-
+<div id="focus" class="section">
   <h1>Фокусирай се върху избрана от теб тема</h1>
-
   <div class="focus-search">
     <input 
       type="text" 
       id="focusInput" 
-      placeholder="На каква тема искаш да се фокусираш..."
-    >
+      placeholder="На каква тема искаш да се фокусираш...">
   </div>
-
   <div id="focusContent" class="focus-content">
     <!-- Тук ще се появява информацията -->
   </div>
-
   <button id="focusPractice" class="focus-btn hidden">
     Упражни наученото
   </button>
-
-</section>
+</div>
 
 
 
@@ -95,6 +89,7 @@
 <script src="java3.js"></script>
 </body>
 </html>
+
 
 
 
