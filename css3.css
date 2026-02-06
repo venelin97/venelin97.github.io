@@ -250,23 +250,47 @@ nav {
   transform: scale(1.15);
 }
 
-.focus-search {
-  margin: 30px 0;
+#focus h1 {
+  font-size: 26px;      
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #3a2a1f;
 }
 
-#focusInput {
+.focus-search input {
   width: 100%;
-  padding: 15px;
-  font-size: 18px;
+  max-width: 600px;
+  padding: 16px 18px;
+  font-size: 17px;
   border-radius: 12px;
-  border: 2px solid #b08b57;
+  border: 2px solid #7a1f1f;      
+  background-color: #f6e6dc;      
+  color: #4a1e1e;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.focus-search input:focus {
+  border-color: #a52a2a;
+  box-shadow: 0 0 0 2px rgba(165, 42, 42, 0.25);
+}
+
+
+.focus-search input::placeholder {
+  color: #8b4a4a;
+  font-size: 16px;
 }
 
 .focus-content {
   margin-top: 30px;
   padding: 20px;
-  background: #f5ebe0;
-  border-radius: 15px;
+  border-radius: 14px;
+  border: 2px solid #7a1f1f;
+  background-color: #f6e6dc;
+  color: #4a1e1e;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .focus-btn {
@@ -448,6 +472,7 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
 
 
 
