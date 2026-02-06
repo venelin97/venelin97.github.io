@@ -173,6 +173,24 @@ function openFocus() {
   document.getElementById("focus-overlay").style.display = "flex";
 }
 
+const focusInput = document.getElementById("focus-input");
+
+focusInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    startFocusSearch();
+  }
+});
+
+function startFocusSearch() {
+  const topic = focusInput.value.trim();
+
+  if (topic === "") return;
+
+  document.getElementById("focus-result").innerHTML =
+    `<p>Търсене на материал за: <strong>${topic}</strong></p>`;
+}
+
+
 function closeFocus() {
   document.getElementById("focus-overlay").style.display = "none";
 }
@@ -225,6 +243,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
