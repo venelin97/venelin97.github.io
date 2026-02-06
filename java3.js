@@ -168,22 +168,31 @@ function closeOverlay() {
   document.body.style.overflow = "auto";
   document.getElementById("event-overlay").style.display = "none"; 
 } 
+
 function startFocus(topic) {
-  if (topic.trim() === "") return;
+  if(topic.trim() === "") return;
 
   content.innerHTML = `
-    <h2>${topic}</h2>
-    <p>
+    <h1 class="focus-topic">Тема: ${topic}</h1>
+    <p id="summary-text">
       Това е обобщена информация по темата "${topic}".
-      Тук по-късно ще влиза AI съдържание.
+      <br><strong>Въпросът за упражнение ще се появи тук след резюмето.</strong>
     </p>
   `;
-
+  content.classList.remove("hidden");
   practiceBtn.classList.remove("hidden");
-}
-practiceBtn.onclick = function () {
+practiceBtn.onclick = function() {
+  // Показва въпроса
+  const qContainer = document.getElementById("question-container");
+  qContainer.innerHTML = `
+    <p><strong>Въпрос:</strong> Какво научихте за "${input.value}"?</p>
+  `;
+  qContainer.classList.remove("hidden");
+
+  // Може да извика функция за филтриране на въпросите по тема
   openQuestionsWithFilter(input.value);
 };
+
 
 const input = document.getElementById("focusInput");
 const content = document.getElementById("focusContent");
@@ -194,10 +203,6 @@ input.addEventListener("keydown", function (e) {
     startFocus(input.value);
   }
 });
-
-
-
-
 
 
 /* ===== QUIZ ===== */ 
@@ -247,6 +252,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
