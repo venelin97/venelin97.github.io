@@ -258,17 +258,18 @@ nav {
   color: ;
 }
 
+.focus-search {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .focus-search input {
-  width: 100%;
-  max-width: 800px;
-  padding: 18px 20px;
-  font-size: 17px;
-  border-radius: 12px;
-  border: 2px solid #7a1f1f;      
-  background-color: #f6e6dc;      
-  color: #4a1e1e;
-  outline: none;
-  transition: border 0.2s, box-shadow 0.2s;
+  width: 400px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px 0 0 6px;
 }
 
 .focus-search input:focus {
@@ -485,6 +486,7 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
 
 
 
