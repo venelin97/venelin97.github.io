@@ -195,9 +195,7 @@ input.addEventListener("keydown", function (e) {
   }
 });
 
-practiceBtn.onclick = function () {
-  openQuestionsWithFilter(input.value);
-};
+
 
 
 
@@ -249,6 +247,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
