@@ -250,7 +250,41 @@ nav {
   transform: scale(1.15);
 }
 
+#focus-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
 
+#focus-content {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 600px;
+  max-width: 90%;
+  text-align: center;
+}
+
+#focus-input {
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
+  font-size: 16px;
+}
+
+#focus-search-btn,
+#focus-practice-btn {
+  margin: 10px;
+  padding: 12px 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
 
 .quiz-controls {
@@ -420,6 +454,7 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
 
 
 
