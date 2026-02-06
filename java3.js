@@ -171,39 +171,54 @@ function closeOverlay() {
 
 function startFocus(topic) {
   if(topic.trim() === "") return;
-
+  const contentText = content.dataset.text || content.textContent || ""; 
+  if(!contentText) return;
   content.innerHTML = `
-    <h1 class="focus-topic">Тема: ${topic}</h1>
-    <p id="summary-text">
-      Това е обобщена информация по темата "${topic}".
-      <br><strong>Въпросът за упражнение ще се появи тук след резюмето.</strong>
-    </p>
+    <h1 class="focus-topic" style="color:#1e3ea0; font-size:28px;">
+      Тема: ${topic}
+    </h1>
+    <p id="summary-text">${contentText}</p>
+    <div id="question-container"></div>
   `;
-  content.classList.remove("hidden");
-  practiceBtn.classList.remove("hidden");
-practiceBtn.onclick = function() {
-  // Показва въпроса
-  const qContainer = document.getElementById("question-container");
-  qContainer.innerHTML = `
-    <p><strong>Въпрос:</strong> Какво научихте за "${input.value}"?</p>
-  `;
-  qContainer.classList.remove("hidden");
-
-  // Може да извика функция за филтриране на въпросите по тема
-  openQuestionsWithFilter(input.value);
-};
-
-
-const input = document.getElementById("focusInput");
-const content = document.getElementById("focusContent");
-const practiceBtn = document.getElementById("focusPractice");
-
+  const facts = contentText.match(/[^.?!]+[.?!]/g) || [];
+  const selectedFacts = facts.slice(0,5); 
+  const container = document.getElementById("question-container");
+  container.innerHTML = ""; 
+  selectedFacts.forEach((fact, i) => {
+    const box = document.createElement("div");
+    box.className = "quiz-question-box";
+    const options = [
+      fact,
+      "Неправилен вариант 1",
+      "Неправилен вариант 2"
+    ].sort(() => Math.random() - 0.5); // разбъркваме опции
+    let html = `<p>${i+1}. ${fact}</p>`;
+    options.forEach(opt => {
+      html += `
+        <div class="answer-option">
+          <input type="radio" name="fact${i}" value="${opt}">
+          <label>${opt}</label>
+          <span class="status-icon"></span>
+        </div>
+      `;
+    });
+    box.innerHTML = html;
+    container.appendChild(box);
+    box.querySelectorAll(".answer-option").forEach(option => {
+      option.onclick = function () {
+        const radio = option.querySelector("input");
+        radio.checked = true;
+        box.querySelectorAll(".answer-option").forEach(o => o.classList.remove("selected"));
+        option.classList.add("selected");
+      };
+    });
+  });
+}
 input.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
     startFocus(input.value);
   }
 });
-
 
 /* ===== QUIZ ===== */ 
 function generateQuiz() { 
@@ -252,6 +267,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
