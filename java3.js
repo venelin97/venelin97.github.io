@@ -168,32 +168,38 @@ function closeOverlay() {
   document.body.style.overflow = "auto";
   document.getElementById("event-overlay").style.display = "none"; 
 } 
+function startFocus(topic) {
+  if (topic.trim() === "") return;
 
-function openFocus() {
-  document.getElementById("focus-overlay").style.display = "flex";
+  content.innerHTML = `
+    <h2>${topic}</h2>
+    <p>
+      Това е обобщена информация по темата "${topic}".
+      Тук по-късно ще влиза AI съдържание.
+    </p>
+  `;
+
+  practiceBtn.classList.remove("hidden");
 }
+practiceBtn.onclick = function () {
+  openQuestionsWithFilter(input.value);
+};
 
-const focusInput = document.getElementById("focus-input");
+const input = document.getElementById("focusInput");
+const content = document.getElementById("focusContent");
+const practiceBtn = document.getElementById("focusPractice");
 
-focusInput.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    startFocusSearch();
+input.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    startFocus(input.value);
   }
 });
 
-function startFocusSearch() {
-  const topic = focusInput.value.trim();
-
-  if (topic === "") return;
-
-  document.getElementById("focus-result").innerHTML =
-    `<p>Търсене на материал за: <strong>${topic}</strong></p>`;
-}
+practiceBtn.onclick = function () {
+  openQuestionsWithFilter(input.value);
+};
 
 
-function closeFocus() {
-  document.getElementById("focus-overlay").style.display = "none";
-}
 
 
 /* ===== QUIZ ===== */ 
@@ -243,6 +249,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
