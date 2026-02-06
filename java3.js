@@ -170,55 +170,55 @@ function closeOverlay() {
 } 
 
 function startFocus(topic) {
-  if(topic.trim() === "") return;
-  const contentText = content.dataset.text || content.textContent || ""; 
-  if(!contentText) return;
+  if (!topic.trim()) return;
+  const text = content.dataset.text || content.textContent;
+  if (!text) return;
   content.innerHTML = `
-    <h1 class="focus-topic" style="color:#1e3ea0; font-size:28px;">
-      Тема: ${topic}
-    </h1>
-    <p id="summary-text">${contentText}</p>
+    <h1 class="focus-topic">Тема: ${topic}</h1>
+    <p id="summary-text">${text}</p>
     <div id="question-container"></div>
   `;
-  const facts = contentText.match(/[^.?!]+[.?!]/g) || [];
-  const selectedFacts = facts.slice(0,5); 
+  const facts = (text.match(/[^.?!]+[.?!]/g) || []).slice(0, 5);
   const container = document.getElementById("question-container");
-  container.innerHTML = ""; 
-  selectedFacts.forEach((fact, i) => {
-    const box = document.createElement("div");
-    box.className = "quiz-question-box";
-    const options = [
-      fact,
-      "Неправилен вариант 1",
-      "Неправилен вариант 2"
-    ].sort(() => Math.random() - 0.5); // разбъркваме опции
-    let html = `<p>${i+1}. ${fact}</p>`;
-    options.forEach(opt => {
-      html += `
-        <div class="answer-option">
-          <input type="radio" name="fact${i}" value="${opt}">
-          <label>${opt}</label>
-          <span class="status-icon"></span>
-        </div>
-      `;
-    });
-    box.innerHTML = html;
-    container.appendChild(box);
-    box.querySelectorAll(".answer-option").forEach(option => {
-      option.onclick = function () {
-        const radio = option.querySelector("input");
-        radio.checked = true;
-        box.querySelectorAll(".answer-option").forEach(o => o.classList.remove("selected"));
-        option.classList.add("selected");
-      };
-    });
+  facts.forEach((fact, i) => {
+    container.appendChild(createQuestion(fact, i));
   });
 }
-input.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") {
-    startFocus(input.value);
-  }
+function createQuestion(fact, index) {
+  const box = document.createElement("div");
+  box.className = "quiz-question-box";
+  const options = shuffle([
+    fact,
+    "Неправилен вариант 1",
+    "Неправилен вариант 2"
+  ]);
+  box.innerHTML = `
+    <p>${index + 1}. ${fact}</p>
+    ${options.map(opt => `
+      <div class="answer-option">
+        <input type="radio" name="fact${index}">
+        <label>${opt}</label>
+        <span class="status-icon"></span>
+      </div>
+    `).join("")}
+  `;
+  box.querySelectorAll(".answer-option").forEach(opt => {
+    opt.onclick = () => {
+      box.querySelectorAll(".answer-option")
+         .forEach(o => o.classList.remove("selected"));
+      opt.classList.add("selected");
+      opt.querySelector("input").checked = true;
+    };
+  });
+  return box;
+}
+function shuffle(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+input.addEventListener("keydown", e => {
+  if (e.key === "Enter") startFocus(input.value);
 });
+
 
 /* ===== QUIZ ===== */ 
 function generateQuiz() { 
@@ -267,6 +267,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
