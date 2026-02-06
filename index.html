@@ -37,25 +37,28 @@
     <div id="events"></div>
   </div>
 
-  <div id="focus-overlay" style="display:none;">
-  <div id="focus-content">
-    <h2>Фокусирай се върху избрана от теб тема</h2>
+<section id="focus" class="page hidden">
 
+  <h1>Фокусирай се върху избрана от теб тема</h1>
+
+  <div class="focus-search">
     <input 
       type="text" 
-      id="focus-input" 
-      placeholder="На каква тема искаш да се фокусираш">
-
-
-    <div id="focus-result">
-     
-    </div>
-
-    <button id="focus-practice-btn">
-      Упражни наученото
-    </button>
+      id="focusInput" 
+      placeholder="На каква тема искаш да се фокусираш..."
+    >
   </div>
-</div>
+
+  <div id="focusContent" class="focus-content">
+    <!-- Тук ще се появява информацията -->
+  </div>
+
+  <button id="focusPractice" class="focus-btn hidden">
+    Упражни наученото
+  </button>
+
+</section>
+
 
 
   <div id="quiz" class="section">
@@ -92,6 +95,7 @@
 <script src="java3.js"></script>
 </body>
 </html>
+
 
 
 
