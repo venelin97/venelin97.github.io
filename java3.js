@@ -177,62 +177,56 @@ const title = document.getElementById("focusTitle");
 
 input.addEventListener("keydown", function (e) {
   if (e.key !== "Enter") return;
-  const topic = input.value.trim();
+  const topic = input.value.trim().toLowerCase();
   if (!topic) return;
-  title.textContent = "Тема: " + topic;
+  let foundEvent = null;
+  for (const epoch in eventsData) {
+    for (const ev of eventsData[epoch]) {
+      if (ev.title.toLowerCase().includes(topic)) {
+        foundEvent = ev;
+        break;
+      }
+    }
+    if (foundEvent) break;
+  }
+  if (!foundEvent) {
+    title.textContent = "Няма намерена тема";
+    title.style.color = "darkred";
+    textBox.classList.add("hidden");
+    practiceBtn.classList.add("hidden");
+    return;
+  }
+  focusTopic = topic; 
+  title.textContent = foundEvent.title;
   title.style.color = "#1e3ea0";
-  textBox.textContent =
-    "Тук ще се появи текст по темата. Той съдържа факти и информация за практиката. Всяко изречение може да стане въпрос за разбиране.";
+  textBox.textContent = foundEvent.text;
   textBox.classList.remove("hidden");
   practiceBtn.classList.remove("hidden");
-  questionBox.classList.add("hidden"); 
 });
+
 
 practiceBtn.addEventListener("click", function () {
-  questionBox.innerHTML = "";
-  questionBox.classList.remove("hidden");
-  const text = textBox.textContent;
-  generateQuestions(text);
+  showSection("quiz");
+  generateQuiz();
 });
 
-
-function generateQuestions(text) {
-  const sentences = text.match(/[^.?!]+[.?!]/g) || [];
-  const questions = sentences.slice(0, 10);
-  questions.forEach((s, i) => {
-    const q = document.createElement("div");
-    q.className = "quiz-question-box";
-    const p = document.createElement("p");
-    p.textContent = `${i + 1}. Кое твърдение е вярно?`;
-    q.appendChild(p);
-    addOption(q, s);
-    addOption(q, "Това противоречи на текста");
-    addOption(q, "Това не е споменато");
-    questionBox.appendChild(q);
-  });
-}
-function addOption(parent, text) {
-  const opt = document.createElement("div");
-  opt.className = "answer-option";
-  const radio = document.createElement("input");
-  radio.type = "radio";
-  radio.name = "quiz";
-  const label = document.createElement("label");
-  label.textContent = text;
-  opt.appendChild(radio);
-  opt.appendChild(label);
-  opt.onclick = () => radio.checked = true;
-  parent.appendChild(opt);
-}
-
-
-
 /* ===== QUIZ ===== */ 
-function generateQuiz() { 
-  currentQuizSelection = shuffle(extraQuestions).slice(0, 10); 
-  renderQuiz(); 
-  document.getElementById("check-button").style.display = "block"; 
-} 
+function generateQuiz() {
+  let sourceQuestions = extraQuestions;
+  if (focusTopic) {
+    sourceQuestions = extraQuestions.filter(q =>
+      q.topic && q.topic.toLowerCase().includes(focusTopic)
+    );
+  }
+  if (!sourceQuestions.length) {
+    alert("Няма въпроси по тази тема.");
+    return;
+  }
+  currentQuizSelection = shuffle(sourceQuestions).slice(0, 10);
+  renderQuiz();
+  document.getElementById("check-button").style.display = "block";
+  focusTopic = null;
+}
 function shuffleCurrentQuiz() { 
   if (!currentQuizSelection.length) return; 
   currentQuizSelection = shuffle(currentQuizSelection); 
@@ -274,53 +268,3 @@ function renderQuiz() {
     });
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
