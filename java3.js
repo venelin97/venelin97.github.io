@@ -210,6 +210,70 @@ practiceBtn.addEventListener("click", function () {
   generateQuiz();
 });
 
+
+document.getElementById("focus-button").onclick = async () => {
+  const topic = document.getElementById("topic-input").value;
+  if (!topic) return alert("Моля, въведете тема!")
+  const container = document.getElementById("questions-container");
+  container.innerHTML = "<p>Зареждане на допълнителна информация...</p>";
+  try {
+    const aiInfo = await fetch("/get-ai-info", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ topic })
+    }).then(res => res.json());
+    container.innerHTML = `<div class="ai-text-box">${aiInfo.text}</div>`;
+    generateQuizFromText(aiInfo.text);
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = "<p>Възникна грешка при AI заявката.</p>";
+  }
+};
+function generateQuizFromText(text) {
+  const sentences = text.match(/[^.?!]+[.?!]/g) || [];
+  const questions = sentences.map((s, i) => ({
+    q: `${i+1}. Какво се казва в текста?`,
+    options: [
+      s,
+      "Това противоречи на текста",
+      "Не е споменато"
+    ]
+  }));
+  currentQuizSelection = questions;
+  renderQuiz();
+}
+import express from "express";
+import fetch from "node-fetch";
+const app = express();
+app.use(express.json());
+app.post("/get-ai-info", async (req, res) => {
+  const { topic } = req.body;
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4.1-mini",
+        messages: [
+          { role: "system", content: "Ти си учител по история и наука. Създавай точна и подробна информация и въпроси." },
+          { role: "user", content: `Напиши подробна информация за "${topic}" и подготви кратки въпроси по нея.` }
+        ],
+        temperature: 0.7
+      })
+    });
+    const data = await response.json();
+    const aiText = data.choices[0].message.content;
+    res.json({ text: aiText });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "AI заявката се провали." });
+  }
+});
+app.listen(3000, () => console.log("Server running on port 3000"));
+
 /* ===== QUIZ ===== */ 
 function generateQuiz() {
   let sourceQuestions = extraQuestions;
@@ -276,4 +340,5 @@ function renderQuiz() {
     });
   });
 }
+
 
