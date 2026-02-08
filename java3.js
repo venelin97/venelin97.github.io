@@ -218,8 +218,16 @@ function generateQuiz() {
       q.topic && q.topic.toLowerCase().includes(focusTopic)
     );
   }
+  const container = document.getElementById("questions-container");
+  container.innerHTML = "";
   if (!sourceQuestions.length) {
-    alert("Няма въпроси по тази тема.");
+    container.innerHTML = `
+      <p style="color:#b00020; font-weight:600;">
+        Няма налични въпроси по тази тема.
+      </p>
+    `;
+    document.getElementById("check-button").style.display = "none";
+    focusTopic = null;
     return;
   }
   currentQuizSelection = shuffle(sourceQuestions).slice(0, 10);
@@ -268,3 +276,4 @@ function renderQuiz() {
     });
   });
 }
+
