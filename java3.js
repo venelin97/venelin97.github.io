@@ -242,37 +242,7 @@ function generateQuizFromText(text) {
   currentQuizSelection = questions;
   renderQuiz();
 }
-import express from "express";
-import fetch from "node-fetch";
-const app = express();
-app.use(express.json());
-app.post("/get-ai-info", async (req, res) => {
-  const { topic } = req.body;
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: "gpt-4.1-mini",
-        messages: [
-          { role: "system", content: "Ти си учител по история и наука. Създавай точна и подробна информация и въпроси." },
-          { role: "user", content: `Напиши подробна информация за "${topic}" и подготви кратки въпроси по нея.` }
-        ],
-        temperature: 0.7
-      })
-    });
-    const data = await response.json();
-    const aiText = data.choices[0].message.content;
-    res.json({ text: aiText });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "AI заявката се провали." });
-  }
-});
-app.listen(3000, () => console.log("Server running on port 3000"));
+
 
 /* ===== QUIZ ===== */ 
 function generateQuiz() {
@@ -340,5 +310,6 @@ function renderQuiz() {
     });
   });
 }
+
 
 
