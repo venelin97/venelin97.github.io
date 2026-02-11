@@ -217,7 +217,7 @@ document.getElementById("focus-button").onclick = async () => {
   const container = document.getElementById("questions-container");
   container.innerHTML = "<p>Зареждане на допълнителна информация...</p>";
   try {
-    const aiInfo = await fetch("https://my-ai-server.onrender.com/get-ai-info", {
+    const aiInfo = await fetch("http://localhost:3000/focus-ai", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ topic })
@@ -310,6 +310,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
