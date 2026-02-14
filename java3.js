@@ -169,24 +169,30 @@ function closeOverlay() {
   document.getElementById("event-overlay").style.display = "none"; 
 } 
 
+/* Запазваме останалите функции за Timeline и Overlay непроменени... */
+
 const input = document.getElementById("focusInput");
 const textBox = document.getElementById("focusText");
 const practiceBtn = document.getElementById("focusPractice");
-const questionBox = document.getElementById("question-container");
 const title = document.getElementById("focusTitle");
 
+// Слушател за търсене
 input.addEventListener("keydown", async function (e) {
   if (e.key !== "Enter") return;
   
   const topic = input.value.trim();
   if (!topic) return;
+
+  // Визуална обратна връзка
+  title.textContent = `Учителят мисли за: ${topic}...`;
   textBox.classList.remove("hidden");
   textBox.innerHTML = `
     <div class="loading-container">
-      <p class="loading-text"> Моля, изчакайте.</p>
+      <p class="loading-text">⏳ Моля, изчакайте, учителят прелиства архивите...</p>
     </div>
   `;
   practiceBtn.classList.add("hidden"); 
+
   try {
     const response = await fetch("https://noncellulous-endlessly-kennith.ngrok-free.dev/focus-ai", {
       method: "POST",
@@ -196,21 +202,57 @@ input.addEventListener("keydown", async function (e) {
       },
       body: JSON.stringify({ topic: topic })
     });
+
     if (!response.ok) throw new Error("Сървърът не отговаря.");
+
     const data = await response.json();
+    
     title.textContent = topic; 
     textBox.innerHTML = `<div class="ai-response">${data.text}</div>`;
+    
+    // Генерираме динамичен тест от новия текст
     generateQuizFromText(data.text);
     practiceBtn.classList.remove("hidden");
+
+    // Скролваме автоматично до отговора
+    textBox.scrollIntoView({ behavior: 'smooth' });
+
   } catch (err) {
+    title.textContent = "Учителят е офлайн";
     textBox.innerHTML = `
-      <p style="color: red; padding: 10px; border: 1px dashed red;">
-         Грешка: Сървърът е офлайн. <br>
-        Провери дали Node.js и ngrok работят на твоя компютър.
+      <p style="color: red; padding: 10px; border: 1px dashed red; background: #fff5f5;">
+        ⚠️ Сървърът не отговаря. Увери се, че Node.js и ngrok работят на компютъра ти.
       </p>`;
     console.error("AI Error:", err);
   }
 });
+
+// ФУНКЦИЯ ЗА ГЕНЕРИРАНЕ НА ТЕСТ ОТ AI ТЕКСТА
+function generateQuizFromText(text) {
+  // Разделяме текста на изречения (грубо)
+  const sentences = text.match(/[^.?!]+[.?!]/g) || [];
+  
+  // Взимаме до 5 изречения за въпроси
+  const questions = sentences.slice(0, 5).map((s, i) => {
+    const cleanSentence = s.trim();
+    return {
+      q: `Според текста: "${cleanSentence.substring(0, 50)}..." - това вярно ли е?`,
+      correct: "Да, точно така.",
+      options: ["Да, точно така.", "Не, това е грешно.", "Няма информация в текста."]
+    };
+  });
+
+  currentQuizSelection = questions;
+}
+
+// Променяме функцията за "Упражни наученото"
+practiceBtn.onclick = function() {
+  showSection("quiz");
+  renderQuiz(); // Директно рендерираме въпросите от AI
+  document.getElementById("check-button").style.display = "block";
+};
+
+/* Останалите функции за Quiz (renderQuiz, checkQuiz и т.н.) остават същите... */
 /* ===== QUIZ ===== */ 
 function generateQuiz() {
   let sourceQuestions = extraQuestions;
@@ -277,6 +319,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
