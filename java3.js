@@ -168,27 +168,19 @@ function closeOverlay() {
   document.body.style.overflow = "auto";
   document.getElementById("event-overlay").style.display = "none"; 
 } 
-
-/* Запазваме останалите функции за Timeline и Overlay непроменени... */
-
 const input = document.getElementById("focusInput");
 const textBox = document.getElementById("focusText");
 const practiceBtn = document.getElementById("focusPractice");
 const title = document.getElementById("focusTitle");
-
-// Слушател за търсене
 input.addEventListener("keydown", async function (e) {
   if (e.key !== "Enter") return;
-  
   const topic = input.value.trim();
   if (!topic) return;
-
-  // Визуална обратна връзка
-  title.textContent = `Учителят мисли за: ${topic}...`;
+  title.textContent = ` ${topic}`;
   textBox.classList.remove("hidden");
   textBox.innerHTML = `
     <div class="loading-container">
-      <p class="loading-text">⏳ Моля, изчакайте, учителят прелиства архивите...</p>
+      <p class="loading-text">⏳ Моля, изчакайте.</p>
     </div>
   `;
   practiceBtn.classList.add("hidden"); 
@@ -319,6 +311,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
