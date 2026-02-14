@@ -175,75 +175,42 @@ const practiceBtn = document.getElementById("focusPractice");
 const questionBox = document.getElementById("question-container");
 const title = document.getElementById("focusTitle");
 
-input.addEventListener("keydown", function (e) {
+input.addEventListener("keydown", async function (e) {
   if (e.key !== "Enter") return;
-  const topic = input.value.trim().toLowerCase();
+  
+  const topic = input.value.trim();
   if (!topic) return;
-  let foundEvent = null;
-  for (const epoch in eventsData) {
-    for (const ev of eventsData[epoch]) {
-      if (ev.title.toLowerCase().includes(topic)) {
-        foundEvent = ev;
-        break;
-      }
-    }
-    if (foundEvent) break;
-  }
-  if (!foundEvent) {
-    title.textContent = "Няма намерена тема";
-    title.style.color = "darkred";
-    textBox.classList.add("hidden");
-    practiceBtn.classList.add("hidden");
-    return;
-  }
-  focusTopic = topic; 
-  title.textContent = foundEvent.title;
-  title.style.color = "#1e3ea0";
-  textBox.textContent = foundEvent.text;
   textBox.classList.remove("hidden");
-  practiceBtn.classList.remove("hidden");
-});
-
-
-practiceBtn.addEventListener("click", function () {
-  showSection("quiz");
-  generateQuiz();
-});
-
-
-document.getElementById("focus-button").onclick = async () => {
-  const topic = document.getElementById("topic-input").value;
-  if (!topic) return alert("Моля, въведете тема!")
-  const container = document.getElementById("questions-container");
-  container.innerHTML = "<p>Зареждане на допълнителна информация...</p>";
+  textBox.innerHTML = `
+    <div class="loading-container">
+      <p class="loading-text"> Моля, изчакайте.</p>
+    </div>
+  `;
+  practiceBtn.classList.add("hidden"); 
   try {
-    const aiInfo = await fetch("http://localhost:3000/focus-ai", {
+    const response = await fetch("https://noncellulous-endlessly-kennith.ngrok-free.dev/focus-ai", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ topic })
-    }).then(res => res.json());
-    container.innerHTML = `<div class="ai-text-box">${aiInfo.text}</div>`;
-    generateQuizFromText(aiInfo.text);
+      headers: { 
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "true" 
+      },
+      body: JSON.stringify({ topic: topic })
+    });
+    if (!response.ok) throw new Error("Сървърът не отговаря.");
+    const data = await response.json();
+    title.textContent = topic; 
+    textBox.innerHTML = `<div class="ai-response">${data.text}</div>`;
+    generateQuizFromText(data.text);
+    practiceBtn.classList.remove("hidden");
   } catch (err) {
-    console.error(err);
-    container.innerHTML = "<p>Възникна грешка при AI заявката.</p>";
+    textBox.innerHTML = `
+      <p style="color: red; padding: 10px; border: 1px dashed red;">
+         Грешка: Сървърът е офлайн. <br>
+        Провери дали Node.js и ngrok работят на твоя компютър.
+      </p>`;
+    console.error("AI Error:", err);
   }
-};
-function generateQuizFromText(text) {
-  const sentences = text.match(/[^.?!]+[.?!]/g) || [];
-  const questions = sentences.map((s, i) => ({
-    q: `${i+1}. Какво се казва в текста?`,
-    options: [
-      s,
-      "Това противоречи на текста",
-      "Не е споменато"
-    ]
-  }));
-  currentQuizSelection = questions;
-  renderQuiz();
-}
-
-
+});
 /* ===== QUIZ ===== */ 
 function generateQuiz() {
   let sourceQuestions = extraQuestions;
@@ -310,6 +277,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
