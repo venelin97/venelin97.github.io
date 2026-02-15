@@ -210,77 +210,70 @@ input.addEventListener("keydown", async function (e) {
   }
 });
 function generateQuizFromText(text) {
-  const sentences = text.match(/[^.?!]+[.?!]/g) || [];
-  const questions = sentences.slice(0, 5).map((s, i) => {
-    const cleanSentence = s.trim();
-    return {
-      q: `Според текста: "${cleanSentence.substring(0, 50)}..." - това вярно ли е?`,
-      correct: "Да, точно така.",
-      options: ["Да, точно така.", "Не, това е грешно.", "Няма информация в текста."]
-    };
-  });
-  currentQuizSelection = questions;
+    const cleanText = text.replace(/[#*_>]/g, '');
+    const sentences = cleanText.match(/[^.?!]+[.?!]/g) || [];
+    currentQuizSelection = sentences.slice(0, 5).map((s) => {
+        const sentence = s.trim();
+        return {
+            q: sentence,
+            correct: "Вярно",
+            options: ["Вярно", "Невярно", "Няма информация"]
+        };
+    });
 }
-practiceBtn.onclick = function() {
-  showSection("quiz");
-  renderQuiz(); 
-  document.getElementById("check-button").style.display = "block";
-};
-/* ===== QUIZ ===== */ 
+/* ===== ГЕНЕРИРАНЕ НА ОБЩ ТЕСТ ===== */
 function generateQuiz() {
-   
-    let sourceQuestions = extraQuestions;
     input.value = ""; 
     const container = document.getElementById("questions-container");
     container.innerHTML = "";
-    if (!sourceQuestions.length) {
+    if (!extraQuestions.length) {
         container.innerHTML = `<p style="color:#b00020;">Грешка при зареждане на въпросите.</p>`;
         return;
     }
-    urrentQuizSelection = shuffle(sourceQuestions).slice(0, 10);
+    currentQuizSelection = shuffle(extraQuestions).slice(0, 10);
     renderQuiz();
-    document.getElementById("check-button").style.display = "block";
+    const checkBtn = document.getElementById("check-button");
+    if(checkBtn) checkBtn.style.display = "block";
 }
-  currentQuizSelection = shuffle(sourceQuestions).slice(0, 10);
-  renderQuiz();
-  document.getElementById("check-button").style.display = "block";
-  focusTopic = null;
-}
-function shuffleCurrentQuiz() { 
-  if (!currentQuizSelection.length) return; 
-  currentQuizSelection = shuffle(currentQuizSelection); 
-  renderQuiz(); 
-} 
-function shuffle(arr) { 
-  return [...arr].sort(() => Math.random() - 0.5); 
-} 
 function renderQuiz() {
-  const container = document.getElementById("questions-container");
-  container.innerHTML = ""
-  currentQuizSelection.forEach((q, i) => {
-    const box = document.createElement("div");
-    box.className = "quiz-question-box";
-    let html = `<p>${i + 1}. ${q.q}</p>`;
-    shuffle(q.options).forEach(opt => {
-      html += `
-        <div class="answer-option">
-          <input type="radio" name="q${i}" value="${opt}">
-          <label>${opt}</label>
-          <span class="status-icon"></span>
-        </div>
-      `;
+    const container = document.getElementById("questions-container");
+    const quizSectionTitle = document.querySelector("#quiz h2");
+    container.innerHTML = "";
+    const focusTopic = input.value.trim();
+    if (focusTopic && currentQuizSelection.length > 0) {
+        quizSectionTitle.innerHTML = `Въпроси върху: <span style="color: #1e3ea0;">${focusTopic}</span>`;
+    } else {
+        quizSectionTitle.innerHTML = `Общи въпроси по история`;
+    }
+    if (!currentQuizSelection.length) {
+        container.innerHTML = "<p>Няма зареден тест. Моля, изберете тема.</p>";
+        return;
+    }
+    currentQuizSelection.forEach((q, i) => {
+        const box = document.createElement("div");
+        box.className = "quiz-question-box";
+        let html = `<p>${i + 1}. ${q.q}</p>`
+        const shuffledOptions = shuffle(q.options);
+        shuffledOptions.forEach(opt => {
+            html += `
+                <div class="answer-option">
+                    <input type="radio" name="q${i}" value="${opt}">
+                    <label>${opt}</label>
+                    <span class="status-icon"></span>
+                </div>
+            `;
+        });
+        box.innerHTML = html;
+        container.appendChild(box)
+        box.querySelectorAll(".answer-option").forEach(option => {
+            option.onclick = function () {
+                const radio = option.querySelector("input");
+                radio.checked = true;
+                box.querySelectorAll(".answer-option").forEach(o => o.classList.remove("selected"));
+                option.classList.add("selected");
+            };
+        });
     });
-    box.innerHTML = html;
-    container.appendChild(box);
-    box.querySelectorAll(".answer-option").forEach(option => {
-      option.onclick = function () {
-        const radio = option.querySelector("input");
-        radio.checked = true;
-        box.querySelectorAll(".answer-option").forEach(o => o.classList.remove("selected"));
-        option.classList.add("selected");
-      };
-    });
-  });
 }
 
 
