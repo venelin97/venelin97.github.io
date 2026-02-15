@@ -237,14 +237,16 @@ function renderQuiz() {
         box.appendChild(questionTitle);
         const shuffledOptions = shuffle(q.options);
         shuffledOptions.forEach(opt => {
-        const optionDiv = document.createElement("div");
-        optionDiv.className = "answer-option";
+            const optionDiv = document.createElement("div");
+            optionDiv.className = "answer-option";
             const radio = document.createElement("input");
             radio.type = "radio";
             radio.name = `q${i}`;
             radio.value = opt;
             const label = document.createElement("label");
             label.textContent = opt;
+            const icon = document.createElement("span");
+            icon.className = "status-icon"; 
             optionDiv.onclick = function () {
                 radio.checked = true;
                 box.querySelectorAll(".answer-option").forEach(el => el.classList.remove("selected"));
@@ -252,6 +254,8 @@ function renderQuiz() {
             };
             optionDiv.appendChild(radio);
             optionDiv.appendChild(label);
+            optionDiv.appendChild(icon);
+            
             box.appendChild(optionDiv);
         });
         container.appendChild(box);
