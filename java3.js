@@ -201,17 +201,6 @@ textBox.scrollIntoView({ behavior: 'smooth' });
     console.error("AI Error:", err);
   }
 });
-function generateQuizFromText(aiData) {
-    if (Array.isArray(aiData)) {
-        currentQuizSelection = aiData.map(item => ({
-            q: item.q,
-            correct: item.correct,
-            options: item.options,
-        }));
-    } else {
-        console.error("Не намираме правилния формат въпроси.");
-    }
-}
 /* ===== ГЕНЕРИРАНЕ НА ОБЩ ТЕСТ ===== */
 function generateQuiz() {
     input.value = ""; 
@@ -261,6 +250,7 @@ function renderQuiz() {
         container.appendChild(box);
     });
 }
+
 
 
 
