@@ -98,28 +98,21 @@ function checkQuiz() {
 }
 function showQuizResult() {
   let score = 0;
-
   currentQuizSelection.forEach((q, i) => {
     const options = document.getElementsByName(`q${i}`);
     options.forEach(opt => {
       if (opt.checked && opt.value === q.correct) score++;
     });
   });
-
   document.getElementById("quiz-score").innerHTML =
     `${score} / ${currentQuizSelection.length}`;
-
   document.getElementById("quiz-result-overlay").style.display = "flex";
   document.body.style.overflow = "hidden";
 }
-
 function closeQuizResult() {
   document.getElementById("quiz-result-overlay").style.display = "none";
   document.body.style.overflow = "auto";
 }
-
-
-
 window.addEventListener("scroll", () => {
   const btn = document.getElementById("scrollToTop");
   if (window.scrollY > 300) {
@@ -128,19 +121,14 @@ window.addEventListener("scroll", () => {
     btn.classList.remove("show");
   }
 });
-
-
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
-
-
 function showSection(id) { 
   document.querySelectorAll('.section').forEach(s => { s.classList.remove('active'); }); 
   document.getElementById(id).classList.add('active'); 
   window.scrollTo({ top: 0, behavior: 'smooth' }); 
 } 
-
 /* ===== ЕПОХИ ===== */ 
 function showEpoch(epoch) { 
   currentEpoch = epoch; 
@@ -193,15 +181,19 @@ input.addEventListener("keydown", async function (e) {
       },
       body: JSON.stringify({ topic: topic })
     });
-    if (!response.ok) throw new Error("Сървърът не отговаря.");
+   if (!response.ok) throw new Error("Сървърът не отговаря.");
     const data = await response.json();
     title.textContent = topic; 
     textBox.innerHTML = `<div class="ai-response">${data.text}</div>`;
-    generateQuizFromText(data.text);
-    practiceBtn.classList.remove("hidden");
-    textBox.scrollIntoView({ behavior: 'smooth' });
+   if (data.questions && data.questions.length > 0) {
+    currentQuizSelection = data.questions; 
+} else {
+    console.warn("AI не генерира специфични въпроси.");
+}
+practiceBtn.classList.remove("hidden");
+textBox.scrollIntoView({ behavior: 'smooth' });
   } catch (err) {
-    title.textContent = "Учителят е офлайн";
+    title.textContent = "⚠️ Проблем със сървъра!";
     textBox.innerHTML = `
       <p style="color: red; padding: 10px; border: 1px dashed red; background: #fff5f5;">
         ⚠️ Проблем със сървъра!
@@ -209,17 +201,16 @@ input.addEventListener("keydown", async function (e) {
     console.error("AI Error:", err);
   }
 });
-function generateQuizFromText(text) {
-    const cleanText = text.replace(/[#*_>]/g, '');
-    const sentences = cleanText.match(/[^.?!]+[.?!]/g) || [];
-    currentQuizSelection = sentences.slice(0, 5).map((s) => {
-        const sentence = s.trim();
-        return {
-            q: sentence,
-            correct: "Вярно",
-            options: ["Вярно", "Невярно", "Няма информация"]
-        };
-    });
+function generateQuizFromText(aiData) {
+    if (Array.isArray(aiData)) {
+        currentQuizSelection = aiData.map(item => ({
+            q: item.q,
+            correct: item.correct,
+            options: item.options,
+        }));
+    } else {
+        console.error("Не намираме правилния формат въпроси.");
+    }
 }
 /* ===== ГЕНЕРИРАНЕ НА ОБЩ ТЕСТ ===== */
 function generateQuiz() {
@@ -237,44 +228,36 @@ function generateQuiz() {
 }
 function renderQuiz() {
     const container = document.getElementById("questions-container");
-    const quizSectionTitle = document.querySelector("#quiz h2");
-    container.innerHTML = "";
-    const focusTopic = input.value.trim();
-    if (focusTopic && currentQuizSelection.length > 0) {
-        quizSectionTitle.innerHTML = `Въпроси върху: <span style="color: #1e3ea0;">${focusTopic}</span>`;
-    } else {
-        quizSectionTitle.innerHTML = `Общи въпроси по история`;
-    }
-    if (!currentQuizSelection.length) {
-        container.innerHTML = "<p>Няма зареден тест. Моля, изберете тема.</p>";
-        return;
-    }
+    container.innerHTML = ""; 
     currentQuizSelection.forEach((q, i) => {
         const box = document.createElement("div");
         box.className = "quiz-question-box";
-        let html = `<p>${i + 1}. ${q.q}</p>`
+        const questionTitle = document.createElement("p");
+        questionTitle.textContent = `${i + 1}. ${q.q}`;
+        box.appendChild(questionTitle);
         const shuffledOptions = shuffle(q.options);
         shuffledOptions.forEach(opt => {
-            html += `
-                <div class="answer-option">
-                    <input type="radio" name="q${i}" value="${opt}">
-                    <label>${opt}</label>
-                    <span class="status-icon"></span>
-                </div>
-            `;
-        });
-        box.innerHTML = html;
-        container.appendChild(box)
-        box.querySelectorAll(".answer-option").forEach(option => {
-            option.onclick = function () {
-                const radio = option.querySelector("input");
+        const optionDiv = document.createElement("div");
+        optionDiv.className = "answer-option";
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = `q${i}`;
+            radio.value = opt;
+            const label = document.createElement("label");
+            label.textContent = opt;
+            optionDiv.onclick = function () {
                 radio.checked = true;
-                box.querySelectorAll(".answer-option").forEach(o => o.classList.remove("selected"));
-                option.classList.add("selected");
+                box.querySelectorAll(".answer-option").forEach(el => el.classList.remove("selected"));
+                optionDiv.classList.add("selected");
             };
+            optionDiv.appendChild(radio);
+            optionDiv.appendChild(label);
+            box.appendChild(optionDiv);
         });
+        container.appendChild(box);
     });
 }
+
 
 
 
