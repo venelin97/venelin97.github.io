@@ -228,24 +228,19 @@ practiceBtn.onclick = function() {
 };
 /* ===== QUIZ ===== */ 
 function generateQuiz() {
-  let sourceQuestions = extraQuestions;
-  if (focusTopic) {
-    sourceQuestions = extraQuestions.filter(q =>
-      q.topic && q.topic.toLowerCase().includes(focusTopic)
-    );
-  }
-  const container = document.getElementById("questions-container");
-  container.innerHTML = "";
-  if (!sourceQuestions.length) {
-    container.innerHTML = `
-      <p style="color:#b00020; font-weight:600;">
-        Няма налични въпроси по тази тема.
-      </p>
-    `;
-    document.getElementById("check-button").style.display = "none";
-    focusTopic = null;
-    return;
-  }
+   
+    let sourceQuestions = extraQuestions;
+    input.value = ""; 
+    const container = document.getElementById("questions-container");
+    container.innerHTML = "";
+    if (!sourceQuestions.length) {
+        container.innerHTML = `<p style="color:#b00020;">Грешка при зареждане на въпросите.</p>`;
+        return;
+    }
+    urrentQuizSelection = shuffle(sourceQuestions).slice(0, 10);
+    renderQuiz();
+    document.getElementById("check-button").style.display = "block";
+}
   currentQuizSelection = shuffle(sourceQuestions).slice(0, 10);
   renderQuiz();
   document.getElementById("check-button").style.display = "block";
@@ -261,14 +256,11 @@ function shuffle(arr) {
 } 
 function renderQuiz() {
   const container = document.getElementById("questions-container");
-  container.innerHTML = "";
-
+  container.innerHTML = ""
   currentQuizSelection.forEach((q, i) => {
     const box = document.createElement("div");
     box.className = "quiz-question-box";
-
     let html = `<p>${i + 1}. ${q.q}</p>`;
-
     shuffle(q.options).forEach(opt => {
       html += `
         <div class="answer-option">
@@ -278,10 +270,8 @@ function renderQuiz() {
         </div>
       `;
     });
-
     box.innerHTML = html;
     container.appendChild(box);
-
     box.querySelectorAll(".answer-option").forEach(option => {
       option.onclick = function () {
         const radio = option.querySelector("input");
@@ -292,6 +282,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
