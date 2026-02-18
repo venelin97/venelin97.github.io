@@ -173,21 +173,27 @@ input.addEventListener("keydown", async function (e) {
   `;
   practiceBtn.classList.add("hidden"); 
 try {
-  const response = await fetch(
-    "https://noncellulous-endlessly-kennith.ngrok-free.dev/focus-ai",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        "ngrok-skip-browser-warning": "true"
-      },
-      body: JSON.stringify({
-        topic: topic
-      })
-    }
-  );
+
   const data = await response.json();
   console.log(data.text);
+const topicRaw = document.getElementById("topic-input").value;
+
+// насилваме UTF-8
+const encoder = new TextEncoder();
+const decoder = new TextDecoder("utf-8");
+const safeTopic = decoder.decode(encoder.encode(topicRaw));
+
+const response = await fetch(
+  "https://noncellulous-endlessly-kennith.ngrok-free.dev/focus-ai",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "ngrok-skip-browser-warning": "true"
+    },
+    body: JSON.stringify({ topic: safeTopic })
+  }
+);
 
 } catch (err) {
   console.error("Грешка:", err);
@@ -262,6 +268,7 @@ function renderQuiz() {
         container.appendChild(box);
     });
 }
+
 
 
 
