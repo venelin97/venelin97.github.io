@@ -162,63 +162,49 @@ const practiceBtn = document.getElementById("focusPractice");
 const title = document.getElementById("focusTitle");
 input.addEventListener("keydown", async function (e) {
   if (e.key !== "Enter") return;
-  const topic = input.value.trim();
-  if (!topic) return;
-  title.textContent = ` ${topic}`;
+  const topicRaw = input.value.trim();
+  if (!topicRaw) return;
+  const encoder = new TextEncoder();
+  const decoder = new TextDecoder("utf-8");
+  const safeTopic = decoder.decode(encoder.encode(topicRaw));
+  title.textContent = topicRaw;
   textBox.classList.remove("hidden");
   textBox.innerHTML = `
     <div class="loading-container">
-      <p class="loading-text">⏳ Моля, изчакайте.</p>
+      <p class="loading-text">⏳ Моля, изчакайте...</p>
     </div>
   `;
-  practiceBtn.classList.add("hidden"); 
-try {
-
-  const data = await response.json();
-  console.log(data.text);
-const topicRaw = document.getElementById("topic-input").value;
-
-// насилваме UTF-8
-const encoder = new TextEncoder();
-const decoder = new TextDecoder("utf-8");
-const safeTopic = decoder.decode(encoder.encode(topicRaw));
-
-const response = await fetch(
-  "https://noncellulous-endlessly-kennith.ngrok-free.dev/focus-ai",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      "ngrok-skip-browser-warning": "true"
-    },
-    body: JSON.stringify({ topic: safeTopic })
-  }
-);
-
-} catch (err) {
-  console.error("Грешка:", err);
-}
-
-   if (!response.ok) throw new Error("Сървърът не отговаря.");
+  practiceBtn.classList.add("hidden");
+  try {
+    const response = await fetch(
+      "https://noncellulous-endlessly-kennith.ngrok-free.dev/focus-ai",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "ngrok-skip-browser-warning": "true"
+        },
+        body: JSON.stringify({ topic: safeTopic })
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Сървърът не отговаря");
+    }
     const data = await response.json();
-    title.textContent = topic; 
     textBox.innerHTML = `<div class="ai-response">${data.text}</div>`;
-   if (data.questions && data.questions.length > 0) {
-    currentQuizSelection = data.questions; 
-} else {
-    console.warn("AI не генерира специфични въпроси.");
-}
-practiceBtn.classList.remove("hidden");
-textBox.scrollIntoView({ behavior: 'smooth' });
+    practiceBtn.classList.remove("hidden");
+    textBox.scrollIntoView({ behavior: "smooth" });
   } catch (err) {
-    title.textContent = "⚠️ Проблем със сървъра!";
-    textBox.innerHTML = `
-      <p style="color: red; padding: 10px; border: 1px dashed red; background: #fff5f5;">
-        ⚠️ Проблем със сървъра!
-      </p>`;
     console.error("AI Error:", err);
+    title.textContent = "⚠️ Грешка";
+    textBox.innerHTML = `
+      <p style="color:red; padding:10px;">
+        ⚠️ Проблем със сървъра
+      </p>
+    `;
   }
 });
+
 /* ===== ГЕНЕРИРАНЕ НА ОБЩ ТЕСТ ===== */
 function generateQuiz() {
     input.value = ""; 
@@ -268,6 +254,7 @@ function renderQuiz() {
         container.appendChild(box);
     });
 }
+
 
 
 
