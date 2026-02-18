@@ -172,15 +172,27 @@ input.addEventListener("keydown", async function (e) {
     </div>
   `;
   practiceBtn.classList.add("hidden"); 
-  try {
-    const response = await fetch("https://noncellulous-endlessly-kennith.ngrok-free.dev/focus-ai", {
+try {
+  const response = await fetch(
+    "https://noncellulous-endlessly-kennith.ngrok-free.dev/focus-ai",
+    {
       method: "POST",
-      headers: { 
-        "Content-Type": "application/json",
-        "ngrok-skip-browser-warning": "true" 
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "ngrok-skip-browser-warning": "true"
       },
-      body: JSON.stringify({ topic: topic })
-    });
+      body: JSON.stringify({
+        topic: topic
+      })
+    }
+  );
+  const data = await response.json();
+  console.log(data.text);
+
+} catch (err) {
+  console.error("Грешка:", err);
+}
+
    if (!response.ok) throw new Error("Сървърът не отговаря.");
     const data = await response.json();
     title.textContent = topic; 
@@ -250,6 +262,7 @@ function renderQuiz() {
         container.appendChild(box);
     });
 }
+
 
 
 
