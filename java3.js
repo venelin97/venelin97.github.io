@@ -164,9 +164,6 @@ input.addEventListener("keydown", async function (e) {
   if (e.key !== "Enter") return;
   const topicRaw = input.value.trim();
   if (!topicRaw) return;
-  const encoder = new TextEncoder();
-  const decoder = new TextDecoder("utf-8");
-  const safeTopic = decoder.decode(encoder.encode(topicRaw));
   title.textContent = topicRaw;
   textBox.classList.remove("hidden");
   textBox.innerHTML = `
@@ -176,6 +173,7 @@ input.addEventListener("keydown", async function (e) {
   `;
   practiceBtn.classList.add("hidden");
   try {
+    const topic = input.value.trim();
     const response = await fetch(
       "https://noncellulous-endlessly-kennith.ngrok-free.dev/focus-ai",
       {
@@ -254,6 +252,7 @@ function renderQuiz() {
         container.appendChild(box);
     });
 }
+
 
 
 
