@@ -128,7 +128,17 @@ function showSection(id) {
   document.querySelectorAll('.section').forEach(s => {
     s.classList.add('hidden');
     s.classList.remove('active');
+    s.style.display = 'none'; 
   });
+  const target = document.getElementById(id);
+  if (target) {
+    target.classList.remove('hidden');
+    target.classList.add('active');
+    // Показваме само нужната секция
+    target.style.display = 'flex'; 
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
   const target = document.getElementById(id);
   if (target) {
     target.classList.remove('hidden');
@@ -240,6 +250,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
