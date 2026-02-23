@@ -193,8 +193,8 @@ input.addEventListener("keydown", async (e) => {
   }
 });
 
+/* ===== QUIZ ===== */ 
 function generateQuiz() { 
-  showSection('quiz-section');
   currentQuizSelection = shuffle(extraQuestions).slice(0, 10); 
   renderQuiz(); 
   document.getElementById("check-button").style.display = "block"; 
@@ -240,6 +240,8 @@ function renderQuiz() {
     });
   });
 }
+
+
 
 
 
