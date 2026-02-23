@@ -156,102 +156,85 @@ function closeOverlay() {
   document.body.style.overflow = "auto";
   document.getElementById("event-overlay").style.display = "none"; 
 } 
+
 const input = document.getElementById("focusInput");
 const textBox = document.getElementById("focusText");
-const practiceBtn = document.getElementById("focusPractice");
 const title = document.getElementById("focusTitle");
+
 input.addEventListener("keydown", async function (e) {
   if (e.key !== "Enter") return;
-  const topicRaw = input.value.trim();
-  if (!topicRaw) return;
-  title.textContent = topicRaw;
+  const topic = input.value.trim();
+  if (!topic) return;
+  title.textContent = topic;
   textBox.classList.remove("hidden");
-  textBox.innerHTML = `
-    <div class="loading-container">
-      <p class="loading-text">⏳ Моля, изчакайте...</p>
-    </div>
-  `;
-  practiceBtn.classList.add("hidden");
+  textBox.innerHTML = `<div class="loading-container"><p>⏳ Моля, изчакайте...</p></div>`;
   try {
-    const topic = input.value.trim();
-    const response = await fetch(
-      "https://noncellulous-endlessly-kennith.ngrok-free.dev/focus-ai",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          "ngrok-skip-browser-warning": "true"
-        },
-        body: JSON.stringify({ topic: safeTopic })
-      }
-    );
-    if (!response.ok) {
-      throw new Error("Сървърът не отговаря");
-    }
+    const response = await fetch("https://noncellulous-endlessly-kennith.ngrok-free.dev/focus-ai", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "ngrok-skip-browser-warning": "true"
+      },
+      body: JSON.stringify({ topic: topic })
+    });
+    if (!response.ok) throw new Error("Сървърна грешка");
     const data = await response.json();
     textBox.innerHTML = `<div class="ai-response">${data.text}</div>`;
-    practiceBtn.classList.remove("hidden");
     textBox.scrollIntoView({ behavior: "smooth" });
   } catch (err) {
-    console.error("AI Error:", err);
     title.textContent = "⚠️ Грешка";
-    textBox.innerHTML = `
-      <p style="color:red; padding:10px;">
-        ⚠️ Проблем със сървъра
-      </p>
-    `;
+    textBox.innerHTML = `<p style="color:red; padding:10px;">Проблем със свързването към учителя.</p>`;
+    console.error(err);
   }
 });
 
-/* ===== ГЕНЕРИРАНЕ НА ОБЩ ТЕСТ ===== */
-function generateQuiz() {
-    input.value = ""; 
-    const container = document.getElementById("questions-container");
-    container.innerHTML = "";
-    if (!extraQuestions.length) {
-        container.innerHTML = `<p style="color:#b00020;">Грешка при зареждане на въпросите.</p>`;
-        return;
-    }
-    currentQuizSelection = shuffle(extraQuestions).slice(0, 10);
-    renderQuiz();
-    const checkBtn = document.getElementById("check-button");
-    if(checkBtn) checkBtn.style.display = "block";
-}
+function generateQuiz() { 
+  currentQuizSelection = shuffle(extraQuestions).slice(0, 10); 
+  renderQuiz(); 
+  document.getElementById("check-button").style.display = "block"; 
+} 
+function shuffleCurrentQuiz() { 
+  if (!currentQuizSelection.length) return; 
+  currentQuizSelection = shuffle(currentQuizSelection); 
+  renderQuiz(); 
+} 
+function shuffle(arr) { 
+  return [...arr].sort(() => Math.random() - 0.5); 
+} 
 function renderQuiz() {
-    const container = document.getElementById("questions-container");
-    container.innerHTML = ""; 
-    currentQuizSelection.forEach((q, i) => {
-        const box = document.createElement("div");
-        box.className = "quiz-question-box";
-        const questionTitle = document.createElement("p");
-        questionTitle.textContent = `${i + 1}. ${q.q}`;
-        box.appendChild(questionTitle);
-        const shuffledOptions = shuffle(q.options);
-        shuffledOptions.forEach(opt => {
-            const optionDiv = document.createElement("div");
-            optionDiv.className = "answer-option";
-            const radio = document.createElement("input");
-            radio.type = "radio";
-            radio.name = `q${i}`;
-            radio.value = opt;
-            const label = document.createElement("label");
-            label.textContent = opt;
-            const icon = document.createElement("span");
-            icon.className = "status-icon"; 
-            optionDiv.onclick = function () {
-                radio.checked = true;
-                box.querySelectorAll(".answer-option").forEach(el => el.classList.remove("selected"));
-                optionDiv.classList.add("selected");
-            };
-            optionDiv.appendChild(radio);
-            optionDiv.appendChild(label);
-            optionDiv.appendChild(icon);
-            
-            box.appendChild(optionDiv);
-        });
-        container.appendChild(box);
+  const container = document.getElementById("questions-container");
+  container.innerHTML = "";
+
+  currentQuizSelection.forEach((q, i) => {
+    const box = document.createElement("div");
+    box.className = "quiz-question-box";
+
+    let html = `<p>${i + 1}. ${q.q}</p>`;
+
+    shuffle(q.options).forEach(opt => {
+      html += `
+        <div class="answer-option">
+          <input type="radio" name="q${i}" value="${opt}">
+          <label>${opt}</label>
+          <span class="status-icon"></span>
+        </div>
+      `;
     });
+
+    box.innerHTML = html;
+    container.appendChild(box);
+
+    box.querySelectorAll(".answer-option").forEach(option => {
+      option.onclick = function () {
+        const radio = option.querySelector("input");
+        radio.checked = true;
+        box.querySelectorAll(".answer-option").forEach(o => o.classList.remove("selected"));
+        option.classList.add("selected");
+      };
+    });
+  });
 }
+
 
 
 
