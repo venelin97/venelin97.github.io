@@ -189,7 +189,6 @@ input.addEventListener("keydown", async (e) => {
     textBox.scrollIntoView({ behavior: "smooth" });
     input.value = "";
   } catch (err) {
-    title.textContent = "⚠️ Грешка";
     textBox.innerHTML = `<p style="color:red; padding:10px;">Проблем със свързването към сървъра.</p>`;
   }
 });
@@ -240,6 +239,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
