@@ -161,13 +161,13 @@ const input = document.getElementById("focusInput");
 const textBox = document.getElementById("focusText");
 const title = document.getElementById("focusTitle");
 
-input.addEventListener("keydown", async function (e) {
+input.addEventListener("keydown", async (e) => {
   if (e.key !== "Enter") return;
   const topic = input.value.trim();
   if (!topic) return;
   title.textContent = topic;
   textBox.classList.remove("hidden");
-  textBox.innerHTML = `<div class="loading-container"><p>⏳ Моля, изчакайте...</p></div>`;
+  textBox.innerHTML = `<div class="loading-container">⏳ Моля, изчакайте...</div>`;
   try {
     const response = await fetch("https://noncellulous-endlessly-kennith.ngrok-free.dev/focus-ai", {
       method: "POST",
@@ -175,16 +175,15 @@ input.addEventListener("keydown", async function (e) {
         "Content-Type": "application/json; charset=utf-8",
         "ngrok-skip-browser-warning": "true"
       },
-      body: JSON.stringify({ topic: topic })
+      body: JSON.stringify({ topic })
     });
-    if (!response.ok) throw new Error("Сървърна грешка");
     const data = await response.json();
     textBox.innerHTML = `<div class="ai-response">${data.text}</div>`;
     textBox.scrollIntoView({ behavior: "smooth" });
+    input.value = "";
   } catch (err) {
     title.textContent = "⚠️ Грешка";
-    textBox.innerHTML = `<p style="color:red; padding:10px;">Проблем със свързването към учителя.</p>`;
-    console.error(err);
+    textBox.innerHTML = `<p style="color:red; padding:10px;">Проблем със свързването към сървъра.</p>`;
   }
 });
 
@@ -234,6 +233,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
