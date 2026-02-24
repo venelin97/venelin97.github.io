@@ -171,13 +171,14 @@ const textBox = document.getElementById("focusText");
 const title = document.getElementById("focusTitle");
 
 input.addEventListener("keydown", async (e) => {
-  if (e.key !== "Enter") return;
+  if (e.key !== "Enter" || input.disabled) return;
   const topic = input.value.trim();
   input.value = "";
   if (!topic) return;
+  input.disabled = true;
   title.textContent = topic;
   textBox.classList.remove("hidden");
-  textBox.innerHTML = `<div class="loading-container">⏳ Учителят проверява в архивите...</div>`;
+  textBox.innerHTML = `<div class="loading-container">⏳ Моля, изчакйте ...</div>`;
   try {
     const response = await fetch("https://venelin45-history-api.hf.space/focus-ai", {
       method: "POST",
@@ -190,12 +191,13 @@ input.addEventListener("keydown", async (e) => {
     if (data.text) {
       textBox.innerHTML = `<div style="white-space: pre-wrap;">${data.text}</div>`;
     } else {
-      textBox.innerHTML = "Грешка: AI не върна валиден текст.";
+      textBox.innerHTML = "Грешка в сървъра";
     }
   } catch (error) {
-    console.error("Проблем със сървъра", error);
-    textBox.innerHTML = "❌ Връзката със сървъра бе прекъсната. Моля, проверете дали Space-ът е Running.";
+    console.error("Грешка в сървъра", error);
+    textBox.innerHTML = "Грешка в сървъра";
   }
+  input.disabled = false;
 });
 /* ===== QUIZ ===== */ 
 function generateQuiz() { 
@@ -244,6 +246,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
