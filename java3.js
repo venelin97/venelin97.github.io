@@ -172,6 +172,7 @@ const title = document.getElementById("focusTitle");
 
 input.addEventListener("keydown", async (e) => {
   if (e.key !== "Enter") return;
+  input.value = "";
   const topic = input.value.trim();
   if (!topic) return;
   title.textContent = topic;
@@ -243,6 +244,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
