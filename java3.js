@@ -134,7 +134,6 @@ function showSection(id) {
   if (target) {
     target.classList.remove('hidden');
     target.classList.add('active');
-    // Показваме само нужната секция
     target.style.display = 'flex'; 
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -250,6 +249,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
