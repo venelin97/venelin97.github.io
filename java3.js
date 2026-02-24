@@ -176,25 +176,26 @@ input.addEventListener("keydown", async (e) => {
   if (!topic) return;
   title.textContent = topic;
   textBox.classList.remove("hidden");
-  textBox.innerHTML = `<div class="loading-container">⏳ Моля, изчакайте...</div>`;
+  textBox.innerHTML = `<div class="loading-container">⏳ Учителят проверява в архивите...</div>`;
   try {
-    const response = await fetch("https://noncellulous-endlessly-kennith.ngrok-free.dev/focus-ai", {
+    const response = await fetch("https://venelin45-history-api.hf.space/focus-ai", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        "ngrok-skip-browser-warning": "true"
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify({ topic })
+      body: JSON.stringify({ topic: topic })
     });
     const data = await response.json();
-    textBox.innerHTML = `<div class="ai-response">${data.text}</div>`;
-    textBox.scrollIntoView({ behavior: "smooth" });
-    input.value = "";
-  } catch (err) {
-    textBox.innerHTML = `<p style="color:red; padding:10px;">Проблем със свързването към сървъра.</p>`;
+    if (data.text) {
+      textBox.innerHTML = `<div style="white-space: pre-wrap;">${data.text}</div>`;
+    } else {
+      textBox.innerHTML = "Грешка: AI не върна валиден текст.";
+    }
+  } catch (error) {
+    console.error("Проблем със сървъра", error);
+    textBox.innerHTML = "❌ Връзката със сървъра бе прекъсната. Моля, проверете дали Space-ът е Running.";
   }
 });
-
 /* ===== QUIZ ===== */ 
 function generateQuiz() { 
   currentQuizSelection = shuffle(extraQuestions).slice(0, 10); 
@@ -242,6 +243,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
