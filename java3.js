@@ -138,13 +138,6 @@ function showSection(id) {
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-  const target = document.getElementById(id);
-  if (target) {
-    target.classList.remove('hidden');
-    target.classList.add('active');
-  }
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 /* ===== ЕПОХИ ===== */ 
 function showEpoch(epoch) { 
   currentEpoch = epoch; 
@@ -249,6 +242,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
