@@ -172,8 +172,8 @@ const title = document.getElementById("focusTitle");
 
 input.addEventListener("keydown", async (e) => {
   if (e.key !== "Enter") return;
-  input.value = "";
   const topic = input.value.trim();
+  input.value = "";
   if (!topic) return;
   title.textContent = topic;
   textBox.classList.remove("hidden");
@@ -244,6 +244,7 @@ function renderQuiz() {
     });
   });
 }
+
 
 
 
