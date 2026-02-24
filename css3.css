@@ -293,9 +293,17 @@ nav {
   transition: 0.3s;
 }
 
+#focusText div {
+    line-height: 1.6;
+    color: #333;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border-left: 4px solid #d4af37; 
+}
+
 .focus-search input:focus {
   border-bottom-color: #a52a2a;
-  /* Цвета остава същия при писане */
 }
 
 .focus-search input::placeholder {
@@ -494,6 +502,7 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
 
 
 
