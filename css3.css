@@ -67,6 +67,13 @@ button {
   margin: 20px 0;
 }
 
+.section {
+    display: none;
+}
+
+.section.active {
+    display: flex;
+}
 
 /* ===== МЕНЮ ===== */
 nav {
@@ -502,6 +509,7 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
 
 
 
