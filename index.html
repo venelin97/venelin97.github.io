@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Пътешествие през събитията, личностите и идеите, които изграждат България.">
-<meta name="theme-color" content="#1d2c3d">
+<meta name="theme-color" content="#71352c">
 <title>Българската история</title>
 <link rel="stylesheet" href="css3.css">
 </head>
 <body>
+<a class="skip-link" href="#sections">Към съдържанието</a>
 <header id="cover">
   <div class="hero-top">
     <span class="brand-mark" aria-hidden="true">Б</span>
@@ -23,9 +24,11 @@
 </header>
 
 <nav id="menu" aria-label="Основна навигация">
-  <button type="button" data-section="line" aria-controls="line" aria-pressed="true" onclick="showSection('line')">Разгледай</button>
-  <button type="button" data-section="focus" aria-controls="focus" aria-pressed="false" onclick="showSection('focus')">Фокус и учене</button>
-  <button type="button" data-section="games" aria-controls="games" aria-pressed="false" onclick="showSection('games')">Игри и карти</button>
+  <div class="menu-pill-track">
+    <button type="button" data-section="line" aria-controls="line" aria-pressed="true" class="active" onclick="showSection('line')">Разгледай</button>
+    <button type="button" data-section="focus" aria-controls="focus" aria-pressed="false" onclick="showSection('focus')">Фокус и учене</button>
+    <button type="button" data-section="games" aria-controls="games" aria-pressed="false" onclick="showSection('games')">Игри и карти</button>
+  </div>
 </nav>
 
 <main id="sections">
@@ -33,7 +36,7 @@
     <div class="section-intro">
       <p class="section-kicker">През вековете</p>
       <h2 class="page-title" id="line-title">Българската история в линия на времето</h2>
-      <p class="section-description">Избери епоха, потърси тема или запази събитията, към които искаш да се върнеш.</p>
+      <p class="section-description">Избери епоха, за да разгледаш събитията в контекст. Отвори всяка карта за подробен разказ, ключови факти и връзки с други моменти от миналото.</p>
     </div>
     <div id="timeline-ui">
       <div id="timeline-line"></div>
@@ -56,107 +59,190 @@
   </section>
 
   <section id="focus" class="section" aria-labelledby="focusTitle">
-    <div class="section-intro">
-      <p class="section-kicker">История по твой избор</p>
-      <h2 id="focusTitle">Избери историческа тема</h2>
-      <p class="section-description">Избери историческа тема за учене или задай въпрос на гида. Всяка тема води до отделен тест.</p>
+    <div class="section-intro focus-intro">
+      <p class="section-kicker">Твоята лична учебна стая</p>
+      <h2 id="focusTitle">Избери път. Открий историята.</h2>
+      <p class="section-description">Следвай тематичните пътеки, за да видиш как отделните събития се свързват в по-голяма история. Разгледай ключовите дати, прочети историческия контекст и продължи с допълнителните събития.</p>
     </div>
-    <div class="focus-paths" aria-label="Исторически тематични пътища">
-      <button type="button" class="focus-path" data-focus-path="statehood">
-        <span class="focus-path-icon" aria-hidden="true">01</span>
-        <span><strong>Българска държавност</strong><small>Създаване, възстановяване и обединение</small></span>
-        <span class="focus-path-arrow" aria-hidden="true">↗</span>
-      </button>
-      <button type="button" class="focus-path" data-focus-path="letters">
-        <span class="focus-path-icon" aria-hidden="true">02</span>
-        <span><strong>Вяра, писменост и образование</strong><small>Покръстване, книжовност и училища</small></span>
-        <span class="focus-path-arrow" aria-hidden="true">↗</span>
-      </button>
-      <button type="button" class="focus-path" data-focus-path="freedom">
-        <span class="focus-path-icon" aria-hidden="true">03</span>
-        <span><strong>Борби за освобождение</strong><small>Въстания, революционери и Освобождение</small></span>
-        <span class="focus-path-arrow" aria-hidden="true">↗</span>
-      </button>
-      <button type="button" class="focus-path" data-focus-path="turning-points">
-        <span class="focus-path-icon" aria-hidden="true">04</span>
-        <span><strong>България през XX–XXI век</strong><small>Войни, общество и членство в Европейския съюз</small></span>
-        <span class="focus-path-arrow" aria-hidden="true">↗</span>
-      </button>
+
+    <div class="focus-subnav-wrapper">
+      <div class="focus-subnav" role="tablist" aria-label="Избери начин да учиш">
+        <button type="button" class="focus-subnav-btn active" id="btn-focus-lessons" role="tab" aria-selected="true" aria-controls="focus-lessons-panel" onclick="switchFocusMode('lessons')">
+          <svg class="subnav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>Пътеки и уроци</span>
+        </button>
+        <button type="button" class="focus-subnav-btn" id="btn-focus-chat" role="tab" aria-selected="false" aria-controls="focus-chat-panel" onclick="switchFocusMode('chat')">
+          <svg class="subnav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Разговор с гида</span>
+        </button>
+      </div>
     </div>
-    <div id="focusText" class="focus-content hidden" aria-live="polite"></div>
-    <button type="button" class="original-blue-btn focus-topic-quiz hidden" id="focus-topic-quiz">Тествай се по тази тема <span aria-hidden="true">→</span></button>
-    <div class="focus-chat">
-      <div class="focus-chat-heading">
-        <div>
-          <p class="section-kicker">Разговор с историческия гид</p>
-          <h3>Питай, уточнявай, откривай</h3>
+
+    <button type="button" class="original-blue-btn focus-topic-quiz hidden" id="focus-topic-quiz"></button>
+
+    <div class="focus-panel" id="focus-lessons-panel" role="tabpanel" aria-labelledby="btn-focus-lessons">
+      <div class="lesson-workspace">
+        <aside class="focus-path-navigator" aria-label="Избери историческа пътека">
+          <div class="navigator-heading">
+            <span class="navigator-eyebrow">Учебни пътеки</span>
+            <span class="navigator-count">04 теми</span>
+          </div>
+          <div class="focus-paths" aria-label="Исторически тематични пътища">
+            <button type="button" class="focus-path active" data-focus-path="statehood" aria-pressed="true">
+              <span class="focus-path-icon" aria-hidden="true">01</span>
+              <span><strong>Държавност</strong><small>От Аспарух до независимостта</small></span>
+              <span class="focus-path-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="focus-path" data-focus-path="letters" aria-pressed="false">
+              <span class="focus-path-icon" aria-hidden="true">02</span>
+              <span><strong>Вяра и писменост</strong><small>Книжовност и просвещение</small></span>
+              <span class="focus-path-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="focus-path" data-focus-path="freedom" aria-pressed="false">
+              <span class="focus-path-icon" aria-hidden="true">03</span>
+              <span><strong>Пътят към свободата</strong><small>Революционери и въстания</small></span>
+              <span class="focus-path-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="focus-path" data-focus-path="turning-points" aria-pressed="false">
+              <span class="focus-path-icon" aria-hidden="true">04</span>
+              <span><strong>Новата България</strong><small>XX–XXI век и Европа</small></span>
+              <span class="focus-path-arrow" aria-hidden="true">↗</span>
+            </button>
+          </div>
+          <p class="navigator-hint">Избери тема, за да започнеш урока.</p>
+        </aside>
+        <div class="lesson-stage">
+          <div class="lesson-stage-heading">
+            <span class="lesson-stage-label">ТВОЯТ СЛЕДВАЩ УРОК</span>
+            <span class="lesson-stage-mark" aria-hidden="true">✳</span>
+          </div>
+          <div id="focusText" class="focus-content" aria-live="polite"></div>
         </div>
-        <button type="button" class="chat-clear" id="clear-chat">Нов разговор</button>
       </div>
-      <div id="chat-log" class="chat-log" aria-live="polite" aria-label="История на разговора">
-        <p class="chat-welcome">Здравей! Попитай за личност, събитие или епоха. Ще продължим разговора оттам.</p>
+    </div>
+
+    <div class="focus-panel hidden" id="focus-chat-panel" role="tabpanel" aria-labelledby="btn-focus-chat" hidden>
+      <div class="focus-chat">
+        <div class="focus-chat-heading">
+          <div>
+            <p class="section-kicker">Твоят исторически събеседник</p>
+            <h3>Попитай. Историята отговаря.</h3>
+            <p class="focus-chat-desc">Задай въпрос за личност, събитие, битка или епоха.</p>
+          </div>
+          <button type="button" class="chat-clear" id="clear-chat">Нов разговор</button>
+        </div>
+        <div class="chat-suggestions" aria-label="Предложени въпроси">
+          <span class="chat-suggestions-title">Бързи въпроси:</span>
+          <button type="button" class="chat-suggestion-chip" onclick="askSuggestedQuestion('Разкажи ми за Златния век на цар Симеон')">Златният век на Симеон</button>
+          <button type="button" class="chat-suggestion-chip" onclick="askSuggestedQuestion('Какво е значението на Априлското въстание?')">Априлското въстание</button>
+          <button type="button" class="chat-suggestion-chip" onclick="askSuggestedQuestion('Как е обявено Съединението през 1885 г.?')">Съединението 1885 г.</button>
+          <button type="button" class="chat-suggestion-chip" onclick="askSuggestedQuestion('Какво знаем за делото на Васил Левски?')">Васил Левски</button>
+        </div>
+        <div id="chat-log" class="chat-log" aria-live="polite" aria-label="История на разговора">
+          <p class="chat-welcome">Здравей! Попитай за личност, събитие или епоха. Историческият гид ще ти отговори подробно.</p>
+        </div>
+        <form class="focus-ask" id="focus-form">
+          <label for="focusInput">Искаш да научиш нещо конкретно?</label>
+          <div class="focus-search">
+            <input type="text" id="focusInput" placeholder="Например: Как се е променял животът в Преслав?" aria-label="Въпрос към историческия гид" autocomplete="off">
+            <button type="submit" class="original-blue-btn" id="focus-submit">Попитай гида <span aria-hidden="true">→</span></button>
+          </div>
+          <p class="focus-hint">Гидът помни контекста в рамките на този разговор. Натисни Enter или бутона за изпращане.</p>
+        </form>
       </div>
-    <form class="focus-ask" id="focus-form">
-      <label for="focusInput">Искаш да научиш нещо конкретно?</label>
-      <div class="focus-search">
-        <input type="text" id="focusInput" placeholder="Например: Как се е променял животът в Плиска?" aria-label="Въпрос към историческия гид" autocomplete="off">
-        <button type="submit" class="original-blue-btn" id="focus-submit">Попитай гида <span aria-hidden="true">→</span></button>
-      </div>
-      <p class="focus-hint">Гидът помни контекста в рамките на този разговор. Натисни Enter или бутона за изпращане.</p>
-    </form>
     </div>
   </section>
 
   <section id="games" class="section" aria-labelledby="quiz-title">
-    <div class="section-intro">
-      <p class="section-kicker">Ученето продължава в играта</p>
-      <h2 class="page-title" id="quiz-title">Игри и интерактивна карта</h2>
-      <p class="section-description" id="game-intro">Свържи снимки със събития, подреди датите или разгледай историческите места върху реална карта.</p>
+    <div class="section-intro games-intro">
+      <p class="section-kicker">Българско минало · нови предизвикателства</p>
+      <h2 class="page-title" id="quiz-title">Историческа лаборатория</h2>
+      <p class="section-description" id="game-intro">Провери какво помниш, свържи личности с техните дела, подреди събитията и открий историческите места. Всеки режим упражнява различен начин да мислиш за миналото.</p>
     </div>
-    <div class="game-tabs" role="tablist" aria-label="Избери игра">
-      <button type="button" class="game-tab active" id="tab-quiz" role="tab" aria-selected="true" aria-controls="game-quiz" data-game="quiz">Тествай се</button>
-      <button type="button" class="game-tab" id="tab-memory" role="tab" aria-selected="false" aria-controls="game-memory" data-game="memory">Игра „Памет“</button>
-      <button type="button" class="game-tab" id="tab-order" role="tab" aria-selected="false" aria-controls="game-order" data-game="order">Подреди времето</button>
-      <button type="button" class="game-tab" id="tab-map" role="tab" aria-selected="false" aria-controls="game-map" data-game="map">Историческа карта</button>
+    <div class="game-workspace">
+      <aside class="game-navigator" aria-label="Предизвикателства">
+        <div class="game-navigator-heading">
+          <span class="navigator-eyebrow">Избери предизвикателство</span>
+          <span class="navigator-count">04 режима</span>
+        </div>
+        <div class="game-tabs" role="tablist" aria-label="Избери игра" aria-orientation="vertical">
+        <button type="button" class="game-tab active" id="tab-quiz" role="tab" aria-selected="true" aria-controls="game-quiz" data-game="quiz" tabindex="0">
+          <span class="game-tab-icon" aria-hidden="true">01</span>
+          <span class="game-tab-copy"><strong>Провери знанията</strong><small>Тест и личен резултат</small></span>
+        </button>
+        <button type="button" class="game-tab" id="tab-memory" role="tab" aria-selected="false" aria-controls="game-memory" data-game="memory" tabindex="-1">
+          <span class="game-tab-icon" aria-hidden="true">02</span>
+          <span class="game-tab-copy"><strong>Игра „Памет“</strong><small>Свържи личност и дело</small></span>
+        </button>
+        <button type="button" class="game-tab" id="tab-order" role="tab" aria-selected="false" aria-controls="game-order" data-game="order" tabindex="-1">
+          <span class="game-tab-icon" aria-hidden="true">03</span>
+          <span class="game-tab-copy"><strong>Подреди времето</strong><small>Събитията по ред</small></span>
+        </button>
+        <button type="button" class="game-tab" id="tab-map" role="tab" aria-selected="false" aria-controls="game-map" data-game="map" tabindex="-1">
+          <span class="game-tab-icon" aria-hidden="true">04</span>
+          <span class="game-tab-copy"><strong>Изследвай картата</strong><small>Градове и исторически места</small></span>
+        </button>
+        </div>
+        <p class="game-navigator-hint"><span aria-hidden="true">↳</span> Избирай режим, за да започнеш.</p>
+      </aside>
+      <div class="game-stage">
+        <div class="game-stage-heading">
+          <div>
+            <span class="lesson-stage-label">ТВОЕТО ПРЕДИЗВИКАТЕЛСТВО</span>
+            <h3 id="active-game-title" aria-live="polite">Провери знанията</h3>
+          </div>
+          <span class="game-stage-mark" aria-hidden="true">БЪЛГАРСКА ИСТОРИЯ <span>✦</span></span>
+        </div>
+    <div class="game-panel" id="game-quiz" role="tabpanel" aria-labelledby="tab-quiz" aria-hidden="false">
+      <p class="topic-quiz-notice hidden" id="topic-quiz-notice" role="status"></p>
+      <div class="quiz-controls">
+        <button type="button" class="quiz-mode active" data-quiz-count="5" data-quiz-seconds="0"><span>Бърз рунд</span><small>5 въпроса · без бързане</small></button>
+        <button type="button" class="quiz-mode" data-quiz-count="10" data-quiz-seconds="0"><span>Голям рунд</span><small>10 въпроса · провери знанията</small></button>
+        <button type="button" class="quiz-mode" data-quiz-count="8" data-quiz-seconds="60"><span>На време</span><small>8 въпроса · 60 секунди</small></button>
+      </div>
+      <div class="quiz-progress-panel" id="quiz-progress-panel">
+        <div class="quiz-progress-copy"><span id="quiz-progress-text">0 от 5 отговорени</span><span id="quiz-timer" class="quiz-timer hidden">01:00</span></div>
+        <div class="quiz-progress-track"><span id="quiz-progress-fill"></span></div>
+        <div class="quiz-record">Най-добър резултат: <strong id="quiz-best">—</strong></div>
+      </div>
+      <div class="quiz-controls quiz-start-controls">
+        <button type="button" class="original-blue-btn" id="start-quiz">Нови въпроси <span aria-hidden="true">↺</span></button>
+        <button type="button" class="original-blue-btn ux-shuffle" id="shuffle-quiz" aria-label="Разбъркай въпросите" title="Разбъркай въпросите">⇌ Разбъркай</button>
+      </div>
+      <div id="questions-container"></div>
+      <button type="button" id="check-button" class="original-blue-btn" onclick="checkQuiz()">Виж резултата</button>
     </div>
-    <div class="game-panel" id="game-quiz" role="tabpanel" aria-labelledby="tab-quiz">
-    <p class="topic-quiz-notice hidden" id="topic-quiz-notice" role="status"></p>
-    <div class="quiz-controls">
-      <button type="button" class="quiz-mode active" data-quiz-count="5" data-quiz-seconds="0"><span>Бърз рунд</span><small>5 въпроса · без бързане</small></button>
-      <button type="button" class="quiz-mode" data-quiz-count="10" data-quiz-seconds="0"><span>Голям рунд</span><small>10 въпроса · провери знанията</small></button>
-      <button type="button" class="quiz-mode" data-quiz-count="8" data-quiz-seconds="60"><span>На време</span><small>8 въпроса · 60 секунди</small></button>
-    </div>
-    <div class="quiz-progress-panel hidden" id="quiz-progress-panel">
-      <div class="quiz-progress-copy"><span id="quiz-progress-text">0 от 5 отговорени</span><span id="quiz-timer" class="quiz-timer hidden">01:00</span></div>
-      <div class="quiz-progress-track"><span id="quiz-progress-fill"></span></div>
-      <div class="quiz-record">Най-добър резултат: <strong id="quiz-best">—</strong></div>
-    </div>
-    <div class="quiz-controls quiz-start-controls">
-      <button type="button" class="original-blue-btn" id="start-quiz">Започни рунда <span aria-hidden="true">→</span></button>
-      <button type="button" class="original-blue-btn ux-shuffle" id="shuffle-quiz" aria-label="Разбъркай въпросите" title="Разбъркай въпросите">⇌</button>
-    </div>
-    <div id="questions-container"></div>
-    <button type="button" id="check-button" class="original-blue-btn" onclick="checkQuiz()" style="display:none;">Виж резултата</button>
-    </div>
-    <div class="game-panel hidden" id="game-memory" role="tabpanel" aria-labelledby="tab-memory">
+    <div class="game-panel hidden" id="game-memory" role="tabpanel" aria-labelledby="tab-memory" aria-hidden="true">
       <div class="game-panel-heading">
-        <div><p class="section-kicker">Свържи образа със събитието</p><h3>Игра „Памет“</h3><p>Всяка двойка съдържа снимка и заглавие на едно и също историческо събитие.</p></div>
-        <div class="game-score" id="memory-score" aria-live="polite">0 / 6 двойки</div>
+        <div>
+          <p class="section-kicker">Свържи личностите и събитията</p>
+          <p>Всяка двойка съдържа карта с портрет/паметник и карта с историческото му описание. Намери всички 6 двойки!</p>
+        </div>
+        <div class="memory-status-box">
+          <div class="game-score" id="memory-score" aria-live="polite">0 / 6 двойки</div>
+          <div class="memory-moves" id="memory-moves">Ходове: 0</div>
+        </div>
       </div>
       <div class="memory-grid" id="memory-grid"></div>
-      <button type="button" class="original-blue-btn game-restart" id="restart-memory">Разбъркай картите</button>
+      <button type="button" class="original-blue-btn game-restart" id="restart-memory">Нова игра с разбъркани карти</button>
     </div>
-    <div class="game-panel hidden" id="game-order" role="tabpanel" aria-labelledby="tab-order">
+    <div class="game-panel hidden" id="game-order" role="tabpanel" aria-labelledby="tab-order" aria-hidden="true">
       <div class="game-panel-heading">
-        <div><p class="section-kicker">От минало към настояще</p><h3>Подреди времето</h3><p>Премествай събитията, докато застанат в правилния хронологичен ред.</p></div>
-        <div class="game-score" id="order-status" aria-live="polite">Готов ли си?</div>
+        <div>
+          <p class="section-kicker">От древността към съвремието</p>
+          <p>Подреди събитията хронологично от най-ранното към най-късното с бутоните ↑ и ↓.</p>
+        </div>
+        <div class="game-score" id="order-status" aria-live="polite">Готов ли си? Подреди събитията и натисни „Провери“.</div>
       </div>
       <ol class="order-list" id="order-list"></ol>
-      <div class="game-actions"><button type="button" class="event-tool-button" id="check-order">Провери реда</button><button type="button" class="original-blue-btn" id="restart-order">Нова подредба</button></div>
+      <div class="game-actions">
+        <button type="button" class="event-tool-button" id="check-order">Провери подредбата</button>
+        <button type="button" class="original-blue-btn" id="restart-order">Ново разбъркване</button>
+      </div>
     </div>
-    <div class="game-panel hidden" id="game-map" role="tabpanel" aria-labelledby="tab-map">
+    <div class="game-panel hidden" id="game-map" role="tabpanel" aria-labelledby="tab-map" aria-hidden="true">
       <div class="game-panel-heading">
-        <div><p class="section-kicker">Местата пазят истории</p><h3>Карта на българското минало</h3><p>Избери отбелязано място, за да видиш какво се е случило там.</p></div>
+        <div><p class="section-kicker">Местата пазят истории</p><p>Избери историческо място, за да откриеш неговия разказ.</p></div>
       </div>
       <div class="history-map-layout">
         <div class="history-map-column">
@@ -183,19 +269,75 @@
         </aside>
       </div>
     </div>
+      </div>
+    </div>
   </section>
 </main>
 
 <footer>Създадено с уважение към българското минало.</footer>
 <button type="button" id="scrollToTop" onclick="scrollToTop()" aria-label="Върни се в началото">↑</button>
-<div id="event-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="event-title" aria-describedby="event-text">
-  <div id="event-content">
+<div id="event-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="event-title" aria-describedby="event-story-container">
+  <div id="event-content" class="modal-card">
     <button type="button" id="close-overlay" onclick="closeOverlay()" aria-label="Затвори">&times;</button>
-    <img id="event-img" src="" alt="">
-    <p id="event-image-credit" class="overlay-image-credit hidden"></p>
-    <h2 id="event-title"></h2>
-    <p id="event-text"></p>
-    <button type="button" class="original-blue-btn study-event-button" id="study-event">Учи тази тема <span aria-hidden="true">→</span></button>
+    <div class="overlay-grid">
+      <!-- Лява колона: визуална част и исторически контекст -->
+      <div class="overlay-visual">
+        <div class="overlay-image-wrapper">
+          <img id="event-img" src="" alt="">
+          <span class="overlay-badge" id="event-badge"></span>
+        </div>
+        <p id="event-image-credit" class="overlay-image-credit hidden"></p>
+        <div class="overlay-context-box">
+          <span class="context-box-title">Исторически контекст</span>
+          <div class="context-row">
+            <span class="context-label">Епоха:</span>
+            <strong id="overlay-epoch-name"></strong>
+          </div>
+          <div class="context-row">
+            <span class="context-label">Период:</span>
+            <strong id="overlay-date-val"></strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Дясна колона: заглавие, превключвател на разказа и съдържание -->
+      <div class="overlay-body">
+        <span class="section-kicker" id="overlay-kicker">Историческо събитие</span>
+        <h2 id="event-title"></h2>
+
+        <div class="story-toggle" role="tablist" aria-label="Формат на разказа">
+          <button type="button" class="story-toggle-btn active" id="story-toggle-short" role="tab" aria-selected="true" onclick="setStoryMode('short')">
+            <span class="toggle-icon">⚡</span> <span>Кратък синтез</span>
+          </button>
+          <button type="button" class="story-toggle-btn" id="story-toggle-full" role="tab" aria-selected="false" onclick="setStoryMode('full')">
+            <span class="toggle-icon">📜</span> <span>Подробен разказ</span>
+          </button>
+        </div>
+
+        <div id="event-story-container" class="overlay-story-area">
+          <div id="story-short-view" class="story-view-block">
+            <div class="synthesis-card">
+              <p id="event-synthesis-text" class="synthesis-text"></p>
+              <div class="synthesis-keypoints" id="event-keypoints"></div>
+            </div>
+          </div>
+          <div id="story-full-view" class="story-view-block hidden">
+            <div id="event-full-narrative" class="full-narrative-text"></div>
+          </div>
+        </div>
+
+        <p id="event-text" class="visually-hidden" aria-hidden="true"></p>
+
+        <div class="overlay-actions">
+          <button type="button" class="original-blue-btn study-event-button" id="study-event">
+            🎯 Упражни се с въпроси по темата <span aria-hidden="true">→</span>
+          </button>
+          <button type="button" class="overlay-fav-btn" id="overlay-fav-btn" onclick="toggleCurrentEventSaved()" aria-label="Запази в любими" aria-pressed="false">
+            <span id="overlay-fav-icon">♡</span> <span id="overlay-fav-text">Запази</span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
